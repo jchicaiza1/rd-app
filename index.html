@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>Real Disciple · PHC Wandsworth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+:root {
+  --bg: #f5f5f5;
+  --surface: #ffffff;
+  --ink: #111111;
+  --ink2: #444444;
+  --ink3: #888888;
+  --ink4: #cccccc;
+  --line: #e8e8e8;
+  --grn: #16a34a;
+  --grn-l: #f0fdf4;
+  --grn-ring: #22c55e;
+  --amb: #d97706;
+  --amb-l: #fffbeb;
+  --amb-ring: #f59e0b;
+  --red: #dc2626;
+  --red-l: #fef2f2;
+  --red-ring: #ef4444;
+  --r: 12px;
+  --r-lg: 18px;
+  --hdr-h: 54px;
+  --bnav-h: 68px;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body {
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px; line-height:1.5;
+  background:#111;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  overscroll-behavior:none;
+}
+.hidden { display:none !important; }
+
+/* SHELL */
+.shell {
+  max-width:430px; margin:0 auto;
+  height:100dvh; display:flex; flex-direction:column;
+  background:var(--surface); overflow:hidden; position:relative;
+}
+
+/* LOGIN */
+#login-screen {
+  position:fixed; inset:0; z-index:200;
+  background:var(--bg); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+#login-panels {
+  display:flex; width:200%; height:100%;
+  transition:transform .32s cubic-bezier(.4,0,.2,1);
+}
+#login-panels.show-pin { transform:translateX(-50%); }
+#step-select, #step-pin {
+  width:50%; flex-shrink:0; height:100%;
+  display:flex; flex-direction:column; overflow-y:auto;
+}
+.login-hero {
+  padding:60px 24px 28px;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+.login-icon {
+  width:76px; height:76px; border-radius:20px;
+  background:var(--ink); color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; font-weight:800; letter-spacing:-1px;
+  margin-bottom:18px;
+}
+.login-title { font-size:30px; font-weight:800; letter-spacing:-.75px; margin-bottom:4px; }
+.login-sub { font-size:14px; color:var(--ink3); }
+.leader-list { padding:8px 16px 48px; }
+.leader-list-label {
+  font-size:11px; font-weight:700; color:var(--ink4);
+  text-transform:uppercase; letter-spacing:.1em; padding:0 4px 10px; display:block;
+}
+.leader-btn {
+  width:100%; display:flex; align-items:center; gap:14px;
+  padding:14px 16px; border:1.5px solid var(--line);
+  border-radius:var(--r); background:var(--surface);
+  cursor:pointer; margin-bottom:8px;
+  font-family:inherit; text-align:left;
+  transition:border-color .12s;
+}
+.leader-btn:active { border-color:var(--ink); }
+.leader-av {
+  width:42px; height:42px; border-radius:50%;
+  background:var(--bg); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:700; flex-shrink:0;
+}
+.leader-name { font-size:15px; font-weight:600; }
+.leader-group { font-size:12px; color:var(--ink3); margin-top:1px; }
+
+/* PIN */
+.pin-hero {
+  padding:52px 24px 24px;
+  display:flex; flex-direction:column; align-items:center;
+}
+.pin-av-lg {
+  width:68px; height:68px; border-radius:50%;
+  background:var(--ink); color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; font-weight:700; margin-bottom:14px;
+}
+.pin-name { font-size:19px; font-weight:700; margin-bottom:4px; }
+.pin-hint { font-size:14px; color:var(--ink3); }
+.pin-dots { display:flex; gap:14px; margin:28px 0; }
+.pin-dot {
+  width:13px; height:13px; border-radius:50%;
+  border:2px solid var(--ink4); background:transparent;
+  transition:all .12s;
+}
+.pin-dot.filled { background:var(--ink); border-color:var(--ink); }
+.pin-dot.error { background:var(--red); border-color:var(--red); animation:shake .32s; }
+@keyframes shake {
+  0%,100% { transform:translateX(0); }
+  25% { transform:translateX(-5px); }
+  75% { transform:translateX(5px); }
+}
+.pin-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:10px; padding:0 28px 24px; width:100%;
+}
+.pin-key {
+  aspect-ratio:1; border:none;
+  background:var(--bg); border-radius:50%;
+  font-family:inherit; font-size:22px; font-weight:600;
+  cursor:pointer; transition:background .1s;
+  display:flex; align-items:center; justify-content:center;
+}
+.pin-key:active { background:var(--line); }
+.pin-key.del { font-size:18px; color:var(--ink3); }
+.pin-back-btn {
+  background:none; border:none; color:var(--ink3);
+  font-family:inherit; font-size:14px; cursor:pointer;
+  padding:8px 24px 32px; text-align:center; width:100%;
+}
+
+/* HEADER */
+.app-hdr {
+  height:var(--hdr-h); display:flex; align-items:center;
+  padding:0 16px; gap:10px;
+  border-bottom:1.5px solid var(--line); flex-shrink:0;
+  background:var(--surface);
+}
+.hdr-back {
+  width:34px; height:34px; border-radius:50%;
+  border:none; background:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink); font-size:20px; font-weight:300;
+}
+.hdr-title { flex:1; font-size:17px; font-weight:700; letter-spacing:-.3px; }
+.hdr-pill {
+  height:32px; padding:0 14px; border-radius:999px;
+  border:none; background:var(--ink); color:white;
+  font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
+}
+.hdr-text-btn {
+  border:none; background:none; cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:600;
+  color:var(--red); padding:0 2px;
+}
+
+/* VIEWS */
+.view { display:none; flex:1; overflow-y:auto; flex-direction:column; }
+.view.v-active { display:flex; }
+
+/* BOTTOM NAV */
+.bnav {
+  height:var(--bnav-h);
+  border-top:1.5px solid var(--line);
+  display:flex; flex-shrink:0;
+  padding:0 4px;
+  padding-bottom:env(safe-area-inset-bottom);
+  background:var(--surface);
+}
+.bnav-btn {
+  flex:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px;
+  border:none; background:none; cursor:pointer;
+  color:var(--ink4); font-family:inherit;
+  font-size:10px; font-weight:600; letter-spacing:.01em;
+  padding:6px 4px;
+}
+.bnav-btn.active { color:var(--ink); }
+.bnav-icon {
+  width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+}
+.add-pill {
+  width:52px; height:32px; border-radius:16px;
+  background:var(--ink); display:flex;
+  align-items:center; justify-content:center;
+}
+.add-pill svg { stroke:white; }
+
+/* HOME */
+.home-top { padding:24px 16px 8px; }
+.home-greeting-line { font-size:13px; color:var(--ink3); margin-bottom:2px; }
+.home-name { font-size:27px; font-weight:800; letter-spacing:-.6px; line-height:1.15; }
+.home-sub { font-size:13px; color:var(--ink3); margin-top:3px; }
+
+.health-card {
+  margin:14px 16px; padding:18px 20px;
+  border:1.5px solid var(--line); border-radius:var(--r-lg);
+  background:var(--surface);
+}
+.health-card-title {
+  font-size:11px; font-weight:700; color:var(--ink3);
+  text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px;
+}
+.health-bars { display:flex; gap:8px; }
+.hb-item { flex:1; }
+.hb-num { font-size:26px; font-weight:800; line-height:1; margin-bottom:6px; }
+.hb-num.grn { color:var(--grn); }
+.hb-num.amb { color:var(--amb); }
+.hb-num.red { color:var(--red); }
+.hb-track { height:5px; border-radius:3px; background:var(--line); margin-bottom:6px; overflow:hidden; }
+.hb-fill { height:100%; border-radius:3px; transition:width .5s; }
+.hb-fill.grn { background:var(--grn-ring); }
+.hb-fill.amb { background:var(--amb-ring); }
+.hb-fill.red { background:var(--red-ring); }
+.hb-label { font-size:11px; font-weight:600; color:var(--ink3); }
+
+.section-row {
+  display:flex; align-items:center;
+  padding:14px 16px 8px;
+}
+.section-row h2 { flex:1; font-size:15px; font-weight:700; }
+.section-row button {
+  border:none; background:none; cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:600; color:var(--ink3);
+}
+
+/* PERSON CARD */
+.person-card {
+  display:flex; align-items:center; gap:14px;
+  padding:13px 16px; border-bottom:1px solid var(--line);
+  cursor:pointer; background:var(--surface); transition:background .1s;
+}
+.person-card:active { background:var(--bg); }
+.pc-info { flex:1; min-width:0; }
+.pc-name { font-size:16px; font-weight:700; }
+.pc-att { font-size:12px; color:var(--ink3); margin-top:1px; }
+.pc-badges { display:flex; gap:5px; flex-wrap:wrap; margin-top:6px; }
+.pc-badge {
+  font-size:11px; font-weight:600; padding:2px 8px;
+  border-radius:999px; background:var(--bg); border:1px solid var(--line);
+  color:var(--ink3);
+}
+.pc-arrow { color:var(--ink4); font-size:18px; font-weight:300; }
+
+/* PEOPLE SEARCH */
+.search-bar-wrap {
+  padding:10px 16px 6px; background:var(--surface);
+  border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5;
+}
+.search-inner {
+  display:flex; align-items:center; gap:10px;
+  background:var(--bg); border-radius:10px; padding:10px 14px;
+}
+.search-inner svg { flex-shrink:0; color:var(--ink3); }
+.search-input {
+  flex:1; border:none; outline:none; background:transparent;
+  font-family:inherit; font-size:15px; color:var(--ink);
+}
+.search-input::placeholder { color:var(--ink4); }
+.filter-row {
+  display:flex; gap:7px; padding:10px 16px 6px;
+  overflow-x:auto; flex-shrink:0;
+}
+.filter-chip {
+  padding:6px 14px; border-radius:999px; white-space:nowrap;
+  border:1.5px solid var(--line); background:var(--surface);
+  font-family:inherit; font-size:13px; font-weight:600;
+  color:var(--ink3); cursor:pointer; flex-shrink:0;
+}
+.filter-chip.active { background:var(--ink); border-color:var(--ink); color:white; }
+.empty-state {
+  display:flex; flex-direction:column; align-items:center;
+  padding:56px 24px; gap:8px; text-align:center; color:var(--ink3);
+}
+.empty-state-icon { font-size:36px; margin-bottom:4px; }
+.empty-state h3 { font-size:17px; font-weight:700; color:var(--ink); }
+.empty-state p { font-size:14px; }
+
+/* DETAIL OVERLAY */
+.detail-overlay {
+  position:fixed; inset:0; z-index:50;
+  background:var(--bg);
+  display:flex; flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  max-width:430px; left:50%; margin-left:-215px;
+}
+@media (max-width:430px) { .detail-overlay { left:0; margin-left:0; } }
+.detail-overlay.open { transform:translateX(0); }
+.detail-hero {
+  padding:28px 24px 20px;
+  display:flex; flex-direction:column; align-items:center;
+  text-align:center; gap:10px;
+  background:var(--surface);
+  border-bottom:1.5px solid var(--line);
+}
+.detail-hero-name { font-size:24px; font-weight:800; letter-spacing:-.5px; }
+.detail-hero-status { font-size:14px; font-weight:700; }
+.detail-body { flex:1; overflow-y:auto; padding:14px 16px 32px; }
+
+/* CARDS */
+.card {
+  background:var(--surface); border:1.5px solid var(--line);
+  border-radius:var(--r); margin-bottom:10px; overflow:hidden;
+}
+.card-hdr {
+  padding:10px 14px; border-bottom:1px solid var(--line);
+  font-size:11px; font-weight:700; color:var(--ink3);
+  text-transform:uppercase; letter-spacing:.1em;
+}
+.toggle-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px; border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.toggle-row:last-child { border-bottom:none; }
+.toggle-label { flex:1; }
+.toggle-title { font-size:15px; font-weight:500; }
+.toggle-sub { font-size:12px; color:var(--ink3); margin-top:1px; }
+.toggle-sw {
+  width:46px; height:27px; border-radius:14px;
+  background:var(--line); border:none; cursor:pointer;
+  position:relative; flex-shrink:0; transition:background .2s;
+}
+.toggle-sw::after {
+  content:''; position:absolute;
+  width:21px; height:21px; border-radius:50%;
+  background:white; top:3px; left:3px;
+  transition:transform .2s;
+  box-shadow:0 1px 4px rgba(0,0,0,.25);
+}
+.toggle-sw.on { background:var(--ink); }
+.toggle-sw.on::after { transform:translateX(19px); }
+
+.select-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px; border-bottom:1px solid var(--line);
+}
+.select-row:last-child { border-bottom:none; }
+.select-val {
+  font-size:14px; font-weight:600; color:var(--ink2);
+  cursor:pointer; display:flex; align-items:center; gap:3px;
+}
+
+.need-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px; border-bottom:1px solid var(--line);
+  cursor:pointer;
+}
+.need-row:last-child { border-bottom:none; }
+.need-check {
+  width:22px; height:22px; border-radius:6px;
+  border:2px solid var(--ink4); background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:all .15s;
+}
+.need-check.on { background:var(--ink); border-color:var(--ink); }
+.need-title { font-size:15px; font-weight:500; flex:1; }
+
+.ministry-row {
+  display:flex; flex-direction:column;
+  padding:13px 14px;
+}
+.ministry-row-top { display:flex; align-items:center; gap:12px; }
+.ministry-input {
+  margin-top:8px; margin-left:0;
+  width:100%; border:none; border-top:1px solid var(--line);
+  padding:10px 0 0; outline:none;
+  font-family:inherit; font-size:14px; color:var(--ink);
+  background:transparent;
+}
+.ministry-input::placeholder { color:var(--ink4); }
+
+/* ADD OVERLAY */
+.add-overlay {
+  position:fixed; inset:0; z-index:60;
+  background:var(--bg);
+  display:flex; flex-direction:column;
+  transform:translateY(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+  max-width:430px; left:50%; margin-left:-215px;
+}
+@media (max-width:430px) { .add-overlay { left:0; margin-left:0; } }
+.add-overlay.open { transform:translateY(0); }
+.add-body { flex:1; overflow-y:auto; padding:16px 16px 32px; }
+
+.form-label {
+  display:block; font-size:11px; font-weight:700;
+  color:var(--ink3); text-transform:uppercase; letter-spacing:.1em;
+  margin-bottom:6px;
+}
+.form-input {
+  width:100%; padding:13px 14px;
+  border:1.5px solid var(--line); border-radius:var(--r);
+  font-family:inherit; font-size:16px;
+  background:var(--surface); color:var(--ink);
+  outline:none; transition:border-color .12s;
+  margin-bottom:14px;
+}
+.form-input:focus { border-color:var(--ink); }
+.form-row { display:flex; gap:10px; }
+.form-row .form-input:first-child { flex:1; }
+.form-row .initial-input { width:80px; flex-shrink:0; }
+
+.att-group { display:flex; gap:7px; margin-bottom:14px; }
+.att-opt {
+  flex:1; padding:11px 6px; text-align:center;
+  border:1.5px solid var(--line); border-radius:var(--r);
+  background:var(--surface); cursor:pointer;
+  font-family:inherit; font-size:12px; font-weight:600;
+  color:var(--ink3); transition:all .12s;
+}
+.att-opt.sel { background:var(--ink); border-color:var(--ink); color:white; }
+
+.submit-btn {
+  width:100%; padding:15px; border-radius:var(--r);
+  border:none; background:var(--ink); color:white;
+  font-family:inherit; font-size:16px; font-weight:700;
+  cursor:pointer; margin-top:10px;
+}
+
+/* SHEET */
+.sheet {
+  position:fixed; inset:0; z-index:90;
+  background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none;
+  transition:opacity .2s;
+  display:flex; flex-direction:column; justify-content:flex-end;
+}
+.sheet.open { opacity:1; pointer-events:all; }
+.sheet-inner {
+  background:var(--surface); border-radius:20px 20px 0 0;
+  padding:16px 16px 40px;
+  transform:translateY(100%); transition:transform .25s cubic-bezier(.4,0,.2,1);
+  max-width:430px; margin:0 auto; width:100%;
+}
+.sheet.open .sheet-inner { transform:translateY(0); }
+.sheet-title {
+  font-size:13px; font-weight:600; color:var(--ink3);
+  text-align:center; padding:4px 0 14px;
+}
+.sheet-opt {
+  width:100%; padding:15px; text-align:center;
+  border:none; border-radius:var(--r);
+  background:var(--bg); font-family:inherit;
+  font-size:16px; font-weight:600; cursor:pointer;
+  margin-bottom:8px; transition:background .1s; color:var(--ink);
+}
+.sheet-opt:active { background:var(--line); }
+.sheet-opt.sel { background:var(--ink); color:white; }
+.sheet-cancel {
+  width:100%; padding:15px; text-align:center;
+  border:none; border-radius:var(--r);
+  background:var(--bg); color:var(--ink3);
+  font-family:inherit; font-size:16px; font-weight:600;
+  cursor:pointer; margin-top:4px;
+}
+
+/* SETTINGS */
+.settings-section {
+  background:var(--surface); border:1.5px solid var(--line);
+  border-radius:var(--r); margin:14px 16px; overflow:hidden;
+}
+.settings-row {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px; border-bottom:1px solid var(--line);
+  font-size:15px;
+}
+.settings-row:last-child { border-bottom:none; }
+.settings-row-label { flex:1; font-weight:500; }
+.settings-row-val { color:var(--ink3); font-size:14px; }
+.settings-signout {
+  width:calc(100% - 32px); margin:4px 16px 16px;
+  padding:14px; border-radius:var(--r);
+  border:1.5px solid var(--line); background:var(--surface);
+  font-family:inherit; font-size:15px; font-weight:600;
+  color:var(--red); cursor:pointer;
+}
+
+/* TOAST */
+.toast {
+  position:fixed;
+  bottom:calc(var(--bnav-h) + 12px);
+  left:50%; transform:translateX(-50%) translateY(16px);
+  background:var(--ink); color:white;
+  padding:11px 20px; border-radius:999px;
+  font-size:14px; font-weight:600;
+  opacity:0; transition:all .25s;
+  pointer-events:none; white-space:nowrap; z-index:999;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* SPINNER */
+.spinner-wrap {
+  display:flex; align-items:center; justify-content:center;
+  flex:1; flex-direction:column; gap:12px; color:var(--ink3);
+  font-size:14px;
+}
+.spinner {
+  width:28px; height:28px; border:3px solid var(--line);
+  border-top-color:var(--ink); border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* CHECKMARK SVG for needs */
+.chk-svg { display:none; }
+.need-check.on .chk-svg { display:block; }
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN ─────────────────────────────────── -->
+<div id="login-screen">
+  <div id="login-panels">
+
+    <div id="step-select">
+      <div class="login-hero">
+        <div class="login-icon">RD</div>
+        <div class="login-title">Real Disciple</div>
+        <div class="login-sub">PHC Wandsworth</div>
+      </div>
+      <div class="leader-list">
+        <span class="leader-list-label">Select your name</span>
+        <div id="leader-list-container"></div>
+      </div>
+    </div>
+
+    <div id="step-pin">
+      <div class="pin-hero">
+        <div class="pin-av-lg" id="pin-av"></div>
+        <div class="pin-name" id="pin-name-label"></div>
+        <div class="pin-hint">Enter your 4-digit PIN</div>
+        <div class="pin-dots">
+          <div class="pin-dot" id="pd0"></div>
+          <div class="pin-dot" id="pd1"></div>
+          <div class="pin-dot" id="pd2"></div>
+          <div class="pin-dot" id="pd3"></div>
+        </div>
+      </div>
+      <div class="pin-grid">
+        <button class="pin-key" onclick="pinKey('1')">1</button>
+        <button class="pin-key" onclick="pinKey('2')">2</button>
+        <button class="pin-key" onclick="pinKey('3')">3</button>
+        <button class="pin-key" onclick="pinKey('4')">4</button>
+        <button class="pin-key" onclick="pinKey('5')">5</button>
+        <button class="pin-key" onclick="pinKey('6')">6</button>
+        <button class="pin-key" onclick="pinKey('7')">7</button>
+        <button class="pin-key" onclick="pinKey('8')">8</button>
+        <button class="pin-key" onclick="pinKey('9')">9</button>
+        <button class="pin-key del" onclick="pinKey('back')">&#9003;</button>
+        <button class="pin-key" onclick="pinKey('0')">0</button>
+        <button class="pin-key" style="visibility:hidden"></button>
+      </div>
+      <button class="pin-back-btn" onclick="showSelect()">Back</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── APP SHELL ──────────────────────────────── -->
+<div class="shell hidden" id="app-shell">
+
+  <div class="app-hdr" id="app-hdr">
+    <button class="hdr-back hidden" id="hdr-back" onclick="hdrBack()">&#8592;</button>
+    <div class="hdr-title" id="hdr-title">Real Disciple</div>
+    <div id="hdr-right"></div>
+  </div>
+
+  <!-- HOME -->
+  <div class="view v-active" id="view-home">
+    <div class="home-top">
+      <div class="home-greeting-line" id="hm-time"></div>
+      <div class="home-name" id="hm-name"></div>
+      <div class="home-sub" id="hm-sub"></div>
+    </div>
+    <div class="health-card">
+      <div class="health-card-title">Group Health</div>
+      <div class="health-bars">
+        <div class="hb-item">
+          <div class="hb-num grn" id="hs-grn">0</div>
+          <div class="hb-track"><div class="hb-fill grn" id="hb-grn" style="width:0"></div></div>
+          <div class="hb-label">Flourishing</div>
+        </div>
+        <div class="hb-item">
+          <div class="hb-num amb" id="hs-amb">0</div>
+          <div class="hb-track"><div class="hb-fill amb" id="hb-amb" style="width:0"></div></div>
+          <div class="hb-label">Growing</div>
+        </div>
+        <div class="hb-item">
+          <div class="hb-num red" id="hs-red">0</div>
+          <div class="hb-track"><div class="hb-fill red" id="hb-red" style="width:0"></div></div>
+          <div class="hb-label">Needs Care</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-row">
+      <h2>Your Group</h2>
+      <button onclick="switchTab('people')">See all</button>
+    </div>
+    <div id="home-preview"></div>
+  </div>
+
+  <!-- PEOPLE -->
+  <div class="view" id="view-people">
+    <div class="search-bar-wrap">
+      <div class="search-inner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-input" id="search-input" placeholder="Search..." oninput="renderPeople()">
+      </div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-chip active" data-f="all"   onclick="setFilter(this)">All</button>
+      <button class="filter-chip"        data-f="grn"   onclick="setFilter(this)">Flourishing</button>
+      <button class="filter-chip"        data-f="amb"   onclick="setFilter(this)">Growing</button>
+      <button class="filter-chip"        data-f="red"   onclick="setFilter(this)">Needs Care</button>
+    </div>
+    <div id="people-list"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="view" id="view-settings">
+    <div class="settings-section" style="margin-top:20px">
+      <div class="settings-row">
+        <span class="settings-row-label">Logged in as</span>
+        <span class="settings-row-val" id="s-name"></span>
+      </div>
+      <div class="settings-row">
+        <span class="settings-row-label">Group</span>
+        <span class="settings-row-val" id="s-group"></span>
+      </div>
+      <div class="settings-row">
+        <span class="settings-row-label">People in group</span>
+        <span class="settings-row-val" id="s-count"></span>
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-row">
+        <span class="settings-row-label">App version</span>
+        <span class="settings-row-val">1.0</span>
+      </div>
+      <div class="settings-row">
+        <span class="settings-row-label">Church</span>
+        <span class="settings-row-val">PHC Wandsworth</span>
+      </div>
+    </div>
+    <button class="settings-signout" onclick="signOut()">Sign out</button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bnav">
+    <button class="bnav-btn active" data-tab="home" onclick="switchTab('home')">
+      <div class="bnav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg>
+      </div>
+      <span>Home</span>
+    </button>
+    <button class="bnav-btn" data-tab="people" onclick="switchTab('people')">
+      <div class="bnav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87"/></svg>
+      </div>
+      <span>My Group</span>
+    </button>
+    <button class="bnav-btn" onclick="openAdd()">
+      <div class="bnav-icon">
+        <div class="add-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+      </div>
+      <span>Add</span>
+    </button>
+    <button class="bnav-btn" data-tab="settings" onclick="switchTab('settings')">
+      <div class="bnav-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      </div>
+      <span>Settings</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ─── PERSON DETAIL OVERLAY ──────────────────── -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="app-hdr">
+    <button class="hdr-back" onclick="closeDetail()">&#8592;</button>
+    <div class="hdr-title" id="d-hdr-title"></div>
+    <button class="hdr-text-btn" onclick="confirmDelete()">Remove</button>
+  </div>
+  <div class="detail-hero" id="d-hero"></div>
+  <div class="detail-body" id="d-body"></div>
+</div>
+
+<!-- ─── ADD PERSON OVERLAY ─────────────────────── -->
+<div class="add-overlay" id="add-overlay">
+  <div class="app-hdr">
+    <button class="hdr-back" onclick="closeAdd()">&#10005;</button>
+    <div class="hdr-title">Add Person</div>
+    <div></div>
+  </div>
+  <div class="add-body">
+    <div class="form-row">
+      <input class="form-input" id="add-fname" type="text" placeholder="First name" autocomplete="off">
+      <input class="form-input initial-input" id="add-init" type="text" placeholder="A" maxlength="1" autocomplete="off" style="text-transform:uppercase">
+    </div>
+    <label class="form-label">Attendance</label>
+    <div class="att-group" id="add-att">
+      <button class="att-opt sel" data-v="unknown">Unknown</button>
+      <button class="att-opt" data-v="sporadic">Sporadic</button>
+      <button class="att-opt" data-v="fellowship">FG Regular</button>
+    </div>
+    <label class="form-label">Discipleship Steps</label>
+    <div class="card" style="margin-bottom:14px">
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">New Start</div></div>
+        <button class="toggle-sw" id="a-newstart" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">Baptised</div></div>
+        <button class="toggle-sw" id="a-baptised" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">Gospel Class</div></div>
+        <button class="toggle-sw" id="a-gospel" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">Be One, Make One</div></div>
+        <button class="toggle-sw" id="a-beone" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">RD Class</div></div>
+        <button class="toggle-sw" id="a-rdclass" onclick="this.classList.toggle('on')"></button>
+      </div>
+    </div>
+    <label class="form-label">Ministry</label>
+    <div class="card" style="margin-bottom:14px">
+      <div class="ministry-row">
+        <div class="ministry-row-top">
+          <div class="toggle-label"><div class="toggle-title">In Ministry</div></div>
+          <button class="toggle-sw" id="a-ministry" onclick="this.classList.toggle('on');toggleMinistryInput('a-min-name',this)"></button>
+        </div>
+        <input class="ministry-input hidden" id="a-min-name" type="text" placeholder="Which ministry? e.g. Worship, Media..." autocomplete="off">
+      </div>
+    </div>
+    <button class="submit-btn" onclick="submitAdd()">Add to My Group</button>
+  </div>
+</div>
+
+<!-- ─── ATTENDANCE SHEET ──────────────────────── -->
+<div class="sheet" id="att-sheet" onclick="closeSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title">Attendance</div>
+    <button class="sheet-opt" data-v="unknown"     onclick="pickAtt('unknown')">Unknown / IDK</button>
+    <button class="sheet-opt" data-v="sporadic"    onclick="pickAtt('sporadic')">Sporadic</button>
+    <button class="sheet-opt" data-v="fellowship"  onclick="pickAtt('fellowship')">Fellowship Group Regular</button>
+    <button class="sheet-cancel" onclick="closeSheet()">Cancel</button>
+  </div>
+</div>
+
+<!-- ─── TOAST ─────────────────────────────────── -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+/* ──────────────────────────────────────────────
+   FIREBASE CONFIG
+   Replace these values with your own from:
+   Firebase Console → Project Settings → Your apps
+   ────────────────────────────────────────────── */
+const FIREBASE_CONFIG = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+
+/* ──────────────────────────────────────────────
+   LEADERS
+   Add or rename leaders here. isAdmin = sees all groups.
+   ────────────────────────────────────────────── */
+const LEADERS = [
+  { id:'admin', name:'Pastor Royston',  group:'All Groups',      pin:'0000', isAdmin:true  },
+  { id:'cg1',   name:'Leader One',      group:'Connect Group A', pin:'1111', isAdmin:false },
+  { id:'cg2',   name:'Leader Two',      group:'Connect Group B', pin:'2222', isAdmin:false },
+  { id:'cg3',   name:'Leader Three',    group:'Connect Group C', pin:'3333', isAdmin:false },
+];
+
+/* ──────────────────────────────────────────────
+   STATE
+   ────────────────────────────────────────────── */
+let db          = null;
+let useLocal    = false;
+let currentUser = null;
+let people      = [];
+let activeFilter = 'all';
+let detailId    = null;
+let attSheetPid = null;
+
+/* ──────────────────────────────────────────────
+   FIREBASE
+   ────────────────────────────────────────────── */
+(function initFirebase() {
+  try {
+    if (FIREBASE_CONFIG.apiKey === 'YOUR_API_KEY') throw new Error('not configured');
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.firestore();
+  } catch (e) {
+    useLocal = true;
+    console.warn('Firebase not configured — using local storage.');
+  }
+})();
+
+async function dbLoad() {
+  if (useLocal) {
+    return JSON.parse(localStorage.getItem('rd_people') || '[]');
+  }
+  const snap = await db.collection('people').orderBy('createdAt','desc').get();
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+
+async function dbSave(person) {
+  if (useLocal) {
+    if (!person.id) person.id = 'l' + Date.now();
+    const i = people.findIndex(p => p.id === person.id);
+    if (i >= 0) people[i] = person; else people.push(person);
+    localStorage.setItem('rd_people', JSON.stringify(people));
+    return person;
+  }
+  if (person.id) {
+    const { id, ...data } = person;
+    await db.collection('people').doc(id).set(data, { merge:true });
+    return person;
+  }
+  const ref = await db.collection('people').add(person);
+  return { ...person, id: ref.id };
+}
+
+async function dbDelete(id) {
+  if (useLocal) {
+    people = people.filter(p => p.id !== id);
+    localStorage.setItem('rd_people', JSON.stringify(people));
+    return;
+  }
+  await db.collection('people').doc(id).delete();
+}
+
+/* ──────────────────────────────────────────────
+   HEALTH SCORE
+   Max 7 points:
+   New Start, Baptised, Attendance, Ministry,
+   Gospel Class, Be One Make One, RD Class
+   ────────────────────────────────────────────── */
+function score(p) {
+  let s = 0;
+  if (p.newStart)              s += 1;
+  if (p.baptised)              s += 1;
+  if (p.attendance === 'fellowship') s += 1;
+  else if (p.attendance === 'sporadic') s += 0.5;
+  if (p.inMinistry)            s += 1;
+  if (p.gospelClass)           s += 1;
+  if (p.beOneMakeOne)          s += 1;
+  if (p.rdClass)               s += 1;
+  return Math.min(s / 7, 1);
+}
+
+function healthMeta(pct) {
+  if (pct >= 0.7) return { key:'grn', ring:'#22c55e', bg:'#f0fdf4', label:'Flourishing', text:'#16a34a' };
+  if (pct >= 0.35) return { key:'amb', ring:'#f59e0b', bg:'#fffbeb', label:'Growing',     text:'#d97706' };
+  return               { key:'red', ring:'#ef4444', bg:'#fef2f2', label:'Needs Care',  text:'#dc2626' };
+}
+
+function ringHTML(pct, size) {
+  const r = (size - 7) / 2;
+  const c = 2 * Math.PI * r;
+  const m = healthMeta(pct);
+  const fs = size < 50 ? 10 : 13;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#e8e8e8" stroke-width="5"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${m.ring}" stroke-width="5"
+      stroke-dasharray="${pct*c} ${c}" stroke-dashoffset="${c/4}" stroke-linecap="round"
+      transform="rotate(0 ${size/2} ${size/2})"/>
+    <text x="${size/2}" y="${size/2+1}" text-anchor="middle" dominant-baseline="middle"
+      font-family="Inter,system-ui,sans-serif" font-size="${fs}" font-weight="800" fill="${m.ring}">
+      ${Math.round(pct*100)}%
+    </text>
+  </svg>`;
+}
+
+function attLabel(v) {
+  if (v === 'fellowship') return 'FG Regular';
+  if (v === 'sporadic') return 'Sporadic';
+  return 'Unknown';
+}
+
+/* ──────────────────────────────────────────────
+   LOGIN
+   ────────────────────────────────────────────── */
+let pinStr = '';
+let pinLeader = null;
+
+function renderLeaders() {
+  document.getElementById('leader-list-container').innerHTML = LEADERS.map(l =>
+    `<button class="leader-btn" onclick="selectLeader('${l.id}')">
+      <div class="leader-av">${initials(l.name)}</div>
+      <div>
+        <div class="leader-name">${l.name}</div>
+        <div class="leader-group">${l.group}</div>
+      </div>
+    </button>`
+  ).join('');
+}
+
+function selectLeader(id) {
+  pinLeader = LEADERS.find(l => l.id === id);
+  pinStr = '';
+  document.getElementById('pin-av').textContent = initials(pinLeader.name);
+  document.getElementById('pin-name-label').textContent = pinLeader.name;
+  updateDots();
+  document.getElementById('login-panels').classList.add('show-pin');
+}
+
+function showSelect() {
+  document.getElementById('login-panels').classList.remove('show-pin');
+  pinStr = '';
+}
+
+function pinKey(k) {
+  if (k === 'back') { pinStr = pinStr.slice(0,-1); }
+  else if (pinStr.length < 4) pinStr += k;
+  updateDots();
+  if (pinStr.length === 4) setTimeout(checkPin, 80);
+}
+
+function updateDots() {
+  for (let i=0;i<4;i++) {
+    const d = document.getElementById('pd'+i);
+    d.classList.toggle('filled', i < pinStr.length);
+    d.classList.remove('error');
+  }
+}
+
+async function checkPin() {
+  if (pinStr === pinLeader.pin) {
+    currentUser = pinLeader;
+    people = await dbLoad();
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('app-shell').classList.remove('hidden');
+    renderHome();
+    renderPeople();
+    renderSettings();
+  } else {
+    for (let i=0;i<4;i++) document.getElementById('pd'+i).classList.add('error');
+    setTimeout(() => { pinStr=''; updateDots(); }, 700);
+  }
+}
+
+function signOut() {
+  currentUser = null; people = [];
+  document.getElementById('app-shell').classList.add('hidden');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('login-panels').classList.remove('show-pin');
+  pinStr = '';
+}
+
+/* ──────────────────────────────────────────────
+   NAVIGATION
+   ────────────────────────────────────────────── */
+function switchTab(tab) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
+  document.querySelectorAll('.bnav-btn[data-tab]').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('v-active');
+  document.querySelector(`.bnav-btn[data-tab="${tab}"]`)?.classList.add('active');
+  const titles = { home:'Real Disciple', people:'My Group', settings:'Settings' };
+  document.getElementById('hdr-title').textContent = titles[tab] || 'Real Disciple';
+  document.getElementById('hdr-back').classList.add('hidden');
+  document.getElementById('hdr-right').innerHTML = '';
+  if (tab === 'home') renderHome();
+  if (tab === 'people') renderPeople();
+}
+
+function hdrBack() { switchTab('home'); }
+
+/* ──────────────────────────────────────────────
+   HOME
+   ────────────────────────────────────────────── */
+function myPeople() {
+  if (!currentUser) return [];
+  if (currentUser.isAdmin) return people;
+  return people.filter(p => p.leaderId === currentUser.id);
+}
+
+function renderHome() {
+  const h = new Date().getHours();
+  document.getElementById('hm-time').textContent =
+    h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('hm-name').textContent = currentUser.name.split(' ')[0];
+  document.getElementById('hm-sub').textContent  = currentUser.group;
+
+  const mp = myPeople();
+  const total = mp.length || 1;
+  const gn = mp.filter(p => score(p) >= 0.7).length;
+  const am = mp.filter(p => { const s=score(p); return s>=0.35&&s<0.7; }).length;
+  const rd = mp.filter(p => score(p) < 0.35).length;
+
+  document.getElementById('hs-grn').textContent = gn;
+  document.getElementById('hs-amb').textContent = am;
+  document.getElementById('hs-red').textContent = rd;
+  document.getElementById('hb-grn').style.width = (gn/total*100)+'%';
+  document.getElementById('hb-amb').style.width = (am/total*100)+'%';
+  document.getElementById('hb-red').style.width = (rd/total*100)+'%';
+
+  const preview = mp.slice(0,5);
+  const el = document.getElementById('home-preview');
+  if (!preview.length) {
+    el.innerHTML = `<div class="empty-state">
+      <div class="empty-state-icon">&#128100;</div>
+      <h3>No one in your group yet</h3>
+      <p>Tap the + button to add your first person</p>
+    </div>`;
+  } else {
+    el.innerHTML = preview.map(personCardHTML).join('');
+  }
+}
+
+/* ──────────────────────────────────────────────
+   PEOPLE LIST
+   ────────────────────────────────────────────── */
+function setFilter(btn) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.f;
+  renderPeople();
+}
+
+function renderPeople() {
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  let list = myPeople();
+  if (q) list = list.filter(p =>
+    `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q) ||
+    (p.ministryName||'').toLowerCase().includes(q)
+  );
+  if (activeFilter === 'grn') list = list.filter(p => score(p) >= 0.7);
+  else if (activeFilter === 'amb') list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
+  else if (activeFilter === 'red') list = list.filter(p => score(p) < 0.35);
+
+  const el = document.getElementById('people-list');
+  if (!list.length) {
+    el.innerHTML = `<div class="empty-state">
+      <div class="empty-state-icon">&#128269;</div>
+      <h3>No results</h3>
+      <p>Try a different search or filter</p>
+    </div>`;
+  } else {
+    el.innerHTML = list.map(personCardHTML).join('');
+  }
+}
+
+function personCardHTML(p) {
+  const pct = score(p);
+  const m   = healthMeta(pct);
+  const ring = ringHTML(pct, 44);
+  const badges = [];
+  if (p.baptised)   badges.push('Baptised');
+  if (p.inMinistry) badges.push(p.ministryName || 'Ministry');
+  if (p.rdClass)    badges.push('RD Class');
+  return `<div class="person-card" onclick="openDetail('${p.id}')">
+    ${ring}
+    <div class="pc-info">
+      <div class="pc-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+      <div class="pc-att">${attLabel(p.attendance)}</div>
+      ${badges.length ? `<div class="pc-badges">${badges.map(b=>`<span class="pc-badge">${esc(b)}</span>`).join('')}</div>` : ''}
+    </div>
+    <div class="pc-arrow">&#8250;</div>
+  </div>`;
+}
+
+/* ──────────────────────────────────────────────
+   PERSON DETAIL
+   ────────────────────────────────────────────── */
+function openDetail(id) {
+  detailId = id;
+  const p = people.find(x => x.id === id);
+  if (!p) return;
+  renderDetail(p);
+  document.getElementById('detail-overlay').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  detailId = null;
+  renderHome();
+  renderPeople();
+}
+
+function renderDetail(p) {
+  const pct = score(p);
+  const m   = healthMeta(pct);
+
+  document.getElementById('d-hdr-title').textContent = `${p.firstName} ${p.lastInit}.`;
+
+  document.getElementById('d-hero').style.background = m.bg;
+  document.getElementById('d-hero').innerHTML = `
+    ${ringHTML(pct, 84)}
+    <div class="detail-hero-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+    <div class="detail-hero-status" style="color:${m.text}">${m.label}</div>
+  `;
+
+  document.getElementById('d-body').innerHTML = `
+    <!-- Discipleship Journey -->
+    <div class="card">
+      <div class="card-hdr">Discipleship Journey</div>
+      ${toggleRowHTML(p, 'newStart',    'New Start',          '')}
+      ${toggleRowHTML(p, 'baptised',    'Baptised',           '')}
+      ${attRowHTML(p)}
+      ${ministryRowHTML(p)}
+      ${toggleRowHTML(p, 'gospelClass', 'Gospel Class',       '')}
+      ${toggleRowHTML(p, 'beOneMakeOne','Be One, Make One',   '')}
+      ${toggleRowHTML(p, 'rdClass',     'RD Class',           '')}
+    </div>
+
+    <!-- Needs -->
+    <div class="card">
+      <div class="card-hdr">General Needs</div>
+      ${needRowHTML(p, 'needsMarital',      'Marital')}
+      ${needRowHTML(p, 'needsFamily',       'Family')}
+      ${needRowHTML(p, 'needsBereavement',  'Bereavement')}
+    </div>
+  `;
+}
+
+function toggleRowHTML(p, field, title, sub) {
+  const on = !!p[field];
+  return `<div class="toggle-row">
+    <div class="toggle-label">
+      <div class="toggle-title">${title}</div>
+      ${sub ? `<div class="toggle-sub">${sub}</div>` : ''}
+    </div>
+    <button class="toggle-sw ${on?'on':''}"
+      onclick="toggleField('${p.id}','${field}',this)"></button>
+  </div>`;
+}
+
+function attRowHTML(p) {
+  return `<div class="select-row">
+    <div class="toggle-label"><div class="toggle-title">Attendance</div></div>
+    <div class="select-val" onclick="openAttSheet('${p.id}')">
+      ${attLabel(p.attendance)} <span style="color:#ccc">&#8250;</span>
+    </div>
+  </div>`;
+}
+
+function ministryRowHTML(p) {
+  const on = !!p.inMinistry;
+  return `<div class="ministry-row">
+    <div class="ministry-row-top">
+      <div class="toggle-label"><div class="toggle-title">In Ministry</div></div>
+      <button class="toggle-sw ${on?'on':''}"
+        onclick="toggleMinistry('${p.id}',this)"></button>
+    </div>
+    <input class="ministry-input ${on?'':'hidden'}" id="min-inp-${p.id}"
+      type="text" value="${esc(p.ministryName||'')}"
+      placeholder="Which ministry? e.g. Worship, Media..."
+      onchange="updateField('${p.id}','ministryName',this.value)">
+  </div>`;
+}
+
+function needRowHTML(p, field, label) {
+  const on = !!p[field];
+  return `<div class="need-row" onclick="toggleNeed('${p.id}','${field}',this)">
+    <div class="need-check ${on?'on':''}">
+      <svg class="chk-svg" width="12" height="12" viewBox="0 0 24 24"
+        fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <span class="need-title">${label}</span>
+  </div>`;
+}
+
+/* Field updates */
+async function toggleField(pid, field, btn) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p[field] = !p[field];
+  btn.classList.toggle('on', p[field]);
+  await dbSave(p);
+  refreshHealth(pid);
+  toast('Saved');
+}
+
+async function toggleMinistry(pid, btn) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.inMinistry = !p.inMinistry;
+  btn.classList.toggle('on', p.inMinistry);
+  const inp = document.getElementById('min-inp-'+pid);
+  if (inp) inp.classList.toggle('hidden', !p.inMinistry);
+  await dbSave(p);
+  refreshHealth(pid);
+  toast('Saved');
+}
+
+async function toggleNeed(pid, field, row) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p[field] = !p[field];
+  row.querySelector('.need-check').classList.toggle('on', p[field]);
+  await dbSave(p);
+  toast('Saved');
+}
+
+async function updateField(pid, field, value) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p[field] = value;
+  await dbSave(p);
+}
+
+function refreshHealth(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  const pct = score(p);
+  const m   = healthMeta(pct);
+  document.getElementById('d-hero').style.background = m.bg;
+  document.getElementById('d-hero').innerHTML = `
+    ${ringHTML(pct, 84)}
+    <div class="detail-hero-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+    <div class="detail-hero-status" style="color:${m.text}">${m.label}</div>
+  `;
+}
+
+/* Attendance sheet (from detail) */
+function openAttSheet(pid) {
+  attSheetPid = pid;
+  const p = people.find(x => x.id === pid);
+  document.querySelectorAll('.sheet-opt').forEach(o =>
+    o.classList.toggle('sel', o.dataset.v === p?.attendance)
+  );
+  document.getElementById('att-sheet').classList.add('open');
+}
+
+async function pickAtt(val) {
+  if (!attSheetPid) return;
+  const p = people.find(x => x.id === attSheetPid);
+  if (!p) return;
+  p.attendance = val;
+  await dbSave(p);
+  closeSheet();
+  renderDetail(p);
+  toast('Attendance updated');
+}
+
+function closeSheet(e) {
+  if (e && e.target !== document.getElementById('att-sheet')) return;
+  document.getElementById('att-sheet').classList.remove('open');
+  attSheetPid = null;
+}
+
+/* Delete */
+async function confirmDelete() {
+  if (!detailId) return;
+  const p = people.find(x => x.id === detailId);
+  if (!p || !confirm(`Remove ${p.firstName} ${p.lastInit}. from the group?`)) return;
+  await dbDelete(detailId);
+  people = people.filter(x => x.id !== detailId);
+  closeDetail();
+  toast('Removed');
+}
+
+/* ──────────────────────────────────────────────
+   ADD PERSON
+   ────────────────────────────────────────────── */
+function openAdd() {
+  // Reset
+  document.getElementById('add-fname').value = '';
+  document.getElementById('add-init').value  = '';
+  document.querySelectorAll('#add-att .att-opt').forEach((b,i) =>
+    b.classList.toggle('sel', i===0)
+  );
+  ['a-newstart','a-baptised','a-gospel','a-beone','a-rdclass','a-ministry']
+    .forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('a-min-name').classList.add('hidden');
+  document.getElementById('a-min-name').value = '';
+  document.getElementById('add-overlay').classList.add('open');
+}
+
+function closeAdd() {
+  document.getElementById('add-overlay').classList.remove('open');
+}
+
+function toggleMinistryInput(inputId, btn) {
+  document.getElementById(inputId).classList.toggle('hidden', !btn.classList.contains('on'));
+}
+
+document.querySelectorAll('#add-att .att-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#add-att .att-opt').forEach(b => b.classList.remove('sel'));
+    btn.classList.add('sel');
+  });
+});
+
+async function submitAdd() {
+  const fname = document.getElementById('add-fname').value.trim();
+  const init  = document.getElementById('add-init').value.trim().toUpperCase() || '?';
+  if (!fname) { toast('Enter a first name'); return; }
+
+  const attSel = document.querySelector('#add-att .att-opt.sel');
+  const person = {
+    firstName:     fname,
+    lastInit:      init,
+    leaderId:      currentUser.id,
+    leaderName:    currentUser.name,
+    attendance:    attSel ? attSel.dataset.v : 'unknown',
+    newStart:      document.getElementById('a-newstart').classList.contains('on'),
+    baptised:      document.getElementById('a-baptised').classList.contains('on'),
+    gospelClass:   document.getElementById('a-gospel').classList.contains('on'),
+    beOneMakeOne:  document.getElementById('a-beone').classList.contains('on'),
+    rdClass:       document.getElementById('a-rdclass').classList.contains('on'),
+    inMinistry:    document.getElementById('a-ministry').classList.contains('on'),
+    ministryName:  document.getElementById('a-min-name').value.trim(),
+    needsMarital:      false,
+    needsFamily:       false,
+    needsBereavement:  false,
+    createdAt:     new Date().toISOString(),
+  };
+
+  const saved = await dbSave(person);
+  if (!people.find(p => p.id === saved.id)) people.push(saved);
+  closeAdd();
+  renderHome();
+  renderPeople();
+  toast(`${fname} added`);
+}
+
+/* ──────────────────────────────────────────────
+   SETTINGS
+   ────────────────────────────────────────────── */
+function renderSettings() {
+  document.getElementById('s-name').textContent  = currentUser?.name  || '';
+  document.getElementById('s-group').textContent = currentUser?.group || '';
+  document.getElementById('s-count').textContent = myPeople().length;
+}
+
+/* ──────────────────────────────────────────────
+   UTILS
+   ────────────────────────────────────────────── */
+function initials(name) {
+  return name.trim().split(/\s+/).slice(0,2).map(w=>w[0].toUpperCase()).join('');
+}
+
+function esc(str) {
+  return String(str||'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ──────────────────────────────────────────────
+   BOOT
+   ────────────────────────────────────────────── */
+renderLeaders();
+</script>
+</body>
+</html>
