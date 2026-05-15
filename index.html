@@ -562,6 +562,24 @@ body {
   font-size:14px; font-weight:600; color:var(--ink2);
   cursor:pointer; display:flex; align-items:center; gap:3px;
 }
+/* CONNECT GROUP SESSION DOTS */
+.cg-row { flex-direction:column; align-items:stretch; }
+.cg-row-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.cg-session-grid { display:flex; flex-wrap:wrap; gap:5px; padding-top:10px; margin-top:2px; }
+.cg-dot {
+  width:34px; padding:5px 0 4px;
+  border:1.5px solid var(--line); background:var(--bg);
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  cursor:pointer; user-select:none;
+  transition:background .12s, border-color .12s;
+}
+.cg-dot:not(.future):active { opacity:0.7; }
+.cg-dot.attended { background:var(--ink); border-color:var(--ink); }
+.cg-dot.future { opacity:0.3; cursor:default; pointer-events:none; }
+.cg-day { font-size:13px; font-weight:600; color:var(--ink); line-height:1; }
+.cg-mon { font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink3); }
+.cg-dot.attended .cg-day,
+.cg-dot.attended .cg-mon { color:white; }
 
 .need-row {
   display:flex; align-items:center; gap:12px;
@@ -589,6 +607,7 @@ body {
   padding:10px 0 0; outline:none;
   font-family:inherit; font-size:14px; color:var(--ink);
   background:transparent;
+  -webkit-appearance:none; appearance:none;
 }
 .ministry-input::placeholder { color:var(--ink4); }
 
@@ -789,7 +808,97 @@ body {
 .group-stat-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
 .group-no-members { font-size:12px; color:var(--ink4); }
 
+/* CLASS PROGRESS STEPPER */
+.cls-stepper { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.cls-btn {
+  width:30px; height:30px; border:1px solid var(--line);
+  background:var(--surface); cursor:pointer;
+  font-size:20px; font-weight:300; color:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; font-family:inherit; line-height:1;
+}
+.cls-btn:disabled { opacity:0.3; cursor:default; }
+.cls-btn:not(:disabled):active { background:var(--bg); }
+.cls-count { font-size:13px; font-weight:700; color:var(--ink); min-width:30px; text-align:center; }
+.cls-pips { display:flex; gap:4px; flex-wrap:wrap; padding-top:10px; }
+.cls-pip { width:10px; height:4px; background:var(--line); flex-shrink:0; transition:background .15s; }
+.cls-pip.on { background:var(--ink); }
+.cls-pip.on-partial { background:var(--amb); }
+
+/* MILESTONE VIEW BANNER (People tab) */
+.ms-view-bar {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 20px; background:var(--ink);
+  border-bottom:1px solid var(--ink); flex-shrink:0;
+}
+.ms-view-icon { color:white; font-size:18px; }
+.ms-view-label {
+  flex:1; font-size:11px; font-weight:700;
+  letter-spacing:0.2em; text-transform:uppercase; color:white;
+}
+.ms-view-clear {
+  border:none; background:none; cursor:pointer; color:rgba(255,255,255,.7);
+  padding:0; display:flex; align-items:center; font-size:20px;
+}
+.ms-view-clear:active { color:white; }
+.th-ms-active { background:var(--ink) !important; color:white !important; }
+
+/* MILESTONE DATE TAP */
+.toggle-date-tap {
+  color:var(--ink3); cursor:pointer;
+  border-bottom:1px dashed var(--ink4);
+  display:inline-block; line-height:1.4;
+}
+.toggle-date-tap:active { color:var(--ink); }
+
 /* MORE BUTTON in detail header — now uses .hdr-menu-btn */
+
+/* MILESTONES TAB */
+.ms-header { padding:28px 24px 24px; border-bottom:1px solid var(--line); }
+.ms-row { border-bottom:1px solid var(--line); }
+.ms-row-hdr {
+  display:flex; align-items:center; gap:14px;
+  padding:16px 24px; cursor:pointer;
+  transition:background .1s; background:var(--surface);
+}
+.ms-row-hdr:active { background:var(--bg); }
+.ms-info { flex:1; min-width:0; }
+.ms-name { font-size:15px; font-weight:600; color:var(--ink); }
+.ms-bar-track { height:2px; background:var(--line); margin-top:7px; overflow:hidden; }
+.ms-bar-fill { height:100%; background:var(--ink); transition:width .4s; }
+.ms-count {
+  font-size:14px; font-weight:700; color:var(--ink);
+  white-space:nowrap; flex-shrink:0;
+}
+.ms-count span { color:var(--ink4); font-weight:400; }
+.ms-expand-body { display:none; border-top:1px solid var(--line); background:var(--bg); }
+.ms-expand-body.open { display:block; }
+.ms-tabs {
+  display:flex; border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.ms-tab {
+  flex:1; padding:11px 8px; text-align:center;
+  font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase;
+  border:none; border-bottom:2px solid transparent;
+  background:none; cursor:pointer; color:var(--ink3);
+  font-family:inherit; transition:color .1s, border-color .1s;
+}
+.ms-tab.active { color:var(--ink); border-bottom-color:var(--ink); }
+.ms-person-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 24px; border-bottom:1px solid var(--line);
+  cursor:pointer; background:var(--surface);
+  transition:background .1s;
+}
+.ms-person-row:last-child { border-bottom:none; }
+.ms-person-row:active { background:var(--bg); }
+.ms-person-name { font-size:15px; font-weight:600; color:var(--ink); }
+.ms-person-sub { font-size:12px; color:var(--ink3); margin-top:1px; }
+.ms-empty {
+  padding:28px 24px; text-align:center;
+  font-size:14px; color:var(--ink4);
+}
 </style>
 </head>
 <body>
@@ -863,29 +972,29 @@ body {
       <p class="dash-sub" id="hm-sub"></p>
     </section>
     <section class="dash-grid">
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('gospelClass')">
         <span class="material-symbols-outlined">auto_stories</span>
         <span class="dash-cell-label">GOSPEL CLASS</span>
       </div>
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('cgAttendance')">
         <span class="material-symbols-outlined">groups</span>
         <span class="dash-cell-label">CONNECT GROUP</span>
       </div>
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('baptised')">
         <span class="material-symbols-outlined">water_drop</span>
         <span class="dash-cell-label">BAPTISED</span>
       </div>
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('beOneMakeOne')">
         <span class="material-symbols-outlined">diversity_3</span>
         <span class="dash-cell-label">BE ONE MAKE ONE</span>
       </div>
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('rdClass')">
         <span class="material-symbols-outlined">workspace_premium</span>
         <span class="dash-cell-label">MEMBERSHIP CLASS</span>
       </div>
-      <div class="dash-cell" onclick="switchTab('people')">
+      <div class="dash-cell" onclick="switchToMilestone('inMinistry')">
         <span class="material-symbols-outlined">school</span>
-        <span class="dash-cell-label">RD CLASS</span>
+        <span class="dash-cell-label">MINISTRY</span>
       </div>
     </section>
     <section class="dash-metrics">
@@ -971,17 +1080,25 @@ body {
         <button class="filter-chip" data-f="red" onclick="setFilter(this)">Needs Care</button>
       </div>
     </div>
+    <div id="ms-view-bar" class="ms-view-bar hidden">
+      <span class="material-symbols-outlined ms-view-icon" id="ms-view-icon"></span>
+      <span class="ms-view-label" id="ms-view-label"></span>
+      <button class="ms-view-clear" onclick="clearMilestoneView()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
     <div class="tracker-table-wrap">
       <table class="tracker-table">
         <thead>
           <tr>
             <th>NAME</th>
-            <th>GOSPEL</th>
-            <th>CONNECT</th>
-            <th>BAPTISM</th>
-            <th>B1M1</th>
-            <th>MEMBER</th>
-            <th>MINISTRY</th>
+            <th id="th-connect">CONNECT</th>
+            <th id="th-gospel">GOSPEL</th>
+            <th id="th-newstart">NEW START</th>
+            <th id="th-baptism">BAPTISM</th>
+            <th id="th-b1m1">B1M1</th>
+            <th id="th-member">MEMBER</th>
+            <th id="th-ministry">MINISTRY</th>
           </tr>
         </thead>
         <tbody id="people-list"></tbody>
@@ -1029,17 +1146,27 @@ body {
     <button class="settings-signout" onclick="signOut()">Sign out</button>
   </div>
 
+  <!-- MILESTONES -->
+  <div class="view" id="view-milestones">
+    <section class="ms-header">
+      <p class="dash-overline">DISCIPLESHIP JOURNEY</p>
+      <h2 class="dash-headline">Pathway Overview.</h2>
+      <p class="dash-sub" id="ms-sub"></p>
+    </section>
+    <div id="ms-list"></div>
+  </div>
+
   <!-- BOTTOM NAV -->
   <nav class="bnav">
     <button class="bnav-btn active" data-tab="home" onclick="switchTab('home')">
       <span class="material-symbols-outlined">space_dashboard</span>
       <span>DASHBOARD</span>
     </button>
-    <button class="bnav-btn" data-tab="milestones" onclick="toast('Milestones coming soon')">
+    <button class="bnav-btn" data-tab="milestones" onclick="switchTab('milestones')">
       <span class="material-symbols-outlined">checklist_rtl</span>
       <span>MILESTONES</span>
     </button>
-    <button class="bnav-btn" data-tab="people" onclick="switchTab('people')">
+    <button class="bnav-btn" data-tab="people" onclick="navPeople()">
       <span class="material-symbols-outlined">group</span>
       <span>PEOPLE</span>
     </button>
@@ -1081,16 +1208,14 @@ body {
       <input class="form-input" id="add-fname" type="text" placeholder="First name" autocomplete="off">
       <input class="form-input initial-input" id="add-init" type="text" placeholder="A" maxlength="1" autocomplete="off" style="text-transform:uppercase">
     </div>
-    <label class="form-label">Attendance</label>
-    <div class="att-group" id="add-att">
-      <button class="att-opt sel" data-v="unknown">Unknown</button>
-      <button class="att-opt" data-v="sporadic">Sporadic</button>
-      <button class="att-opt" data-v="fellowship">FG Regular</button>
-    </div>
     <label class="form-label">Discipleship Steps</label>
     <div class="card" style="margin-bottom:14px">
       <div class="toggle-row">
-        <div class="toggle-label"><div class="toggle-title">New Start</div></div>
+        <div class="toggle-label"><div class="toggle-title">Gospel Class</div></div>
+        <button class="toggle-sw" id="a-gospel" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label"><div class="toggle-title">New Start Class</div></div>
         <button class="toggle-sw" id="a-newstart" onclick="this.classList.toggle('on')"></button>
       </div>
       <div class="toggle-row">
@@ -1098,15 +1223,11 @@ body {
         <button class="toggle-sw" id="a-baptised" onclick="this.classList.toggle('on')"></button>
       </div>
       <div class="toggle-row">
-        <div class="toggle-label"><div class="toggle-title">Gospel Class</div></div>
-        <button class="toggle-sw" id="a-gospel" onclick="this.classList.toggle('on')"></button>
-      </div>
-      <div class="toggle-row">
         <div class="toggle-label"><div class="toggle-title">Be One, Make One</div></div>
         <button class="toggle-sw" id="a-beone" onclick="this.classList.toggle('on')"></button>
       </div>
       <div class="toggle-row">
-        <div class="toggle-label"><div class="toggle-title">RD Class</div></div>
+        <div class="toggle-label"><div class="toggle-title">Membership Class</div></div>
         <button class="toggle-sw" id="a-rdclass" onclick="this.classList.toggle('on')"></button>
       </div>
     </div>
@@ -1117,7 +1238,7 @@ body {
           <div class="toggle-label"><div class="toggle-title">In Ministry</div></div>
           <button class="toggle-sw" id="a-ministry" onclick="this.classList.toggle('on');toggleMinistryInput('a-min-name',this)"></button>
         </div>
-        <input class="ministry-input hidden" id="a-min-name" type="text" placeholder="Which ministry? e.g. Worship, Media..." autocomplete="off">
+        <select class="ministry-input hidden" id="a-min-name"></select>
       </div>
     </div>
     <button class="submit-btn" onclick="submitAdd()">Add to My Group</button>
@@ -1125,16 +1246,6 @@ body {
 </div>
 
 <!-- ─── ATTENDANCE SHEET ──────────────────────── -->
-<div class="sheet" id="att-sheet" onclick="closeSheet(event)">
-  <div class="sheet-inner">
-    <div class="sheet-title">Attendance</div>
-    <button class="sheet-opt" data-v="unknown"     onclick="pickAtt('unknown')">Unknown / IDK</button>
-    <button class="sheet-opt" data-v="sporadic"    onclick="pickAtt('sporadic')">Sporadic</button>
-    <button class="sheet-opt" data-v="fellowship"  onclick="pickAtt('fellowship')">Fellowship Group Regular</button>
-    <button class="sheet-cancel" onclick="closeSheet()">Cancel</button>
-  </div>
-</div>
-
 <!-- ─── DETAIL ACTION MENU ────────────────────── -->
 <div class="sheet" id="action-sheet" onclick="closeActionSheet(event)">
   <div class="sheet-inner">
@@ -1163,6 +1274,17 @@ body {
       <input class="form-input initial-input" id="edit-init" type="text" placeholder="A" maxlength="1" autocomplete="off" style="text-transform:uppercase;margin-bottom:0">
     </div>
     <button class="submit-btn" onclick="saveEditName()">Save</button>
+  </div>
+</div>
+
+<!-- ─── MILESTONE DATE SHEET ──────────────────── -->
+<div class="sheet" id="msdate-sheet" onclick="closeMilestoneDateSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title" id="msdate-title"></div>
+    <label class="form-label" style="display:block;margin-bottom:6px">DATE ACHIEVED</label>
+    <input class="form-input" id="msdate-input" type="date" style="margin-bottom:10px">
+    <button class="submit-btn" onclick="saveMilestoneDate()">Save</button>
+    <button class="sheet-cancel" onclick="closeMilestoneDateSheet()">Cancel</button>
   </div>
 </div>
 
@@ -1211,6 +1333,58 @@ const LEADERS = [
   { id:'cg_of', name:'Okeme',     group:'Kennington, SE11',        pin:'1234', isAdmin:false },
 ];
 
+const MINISTRIES = [
+  { name: "Children's Church", leader: 'Antony'       },
+  { name: 'Cleaning',          leader: 'Renate'        },
+  { name: 'Data Team',         leader: 'Miles'         },
+  { name: 'Follow Up Team',    leader: 'Jorge & John'  },
+  { name: 'Instagram',         leader: 'Audrey'        },
+  { name: 'Livestream',        leader: 'Seyi'          },
+  { name: 'Media',             leader: 'James'         },
+  { name: 'Photography',       leader: 'Lloyd'         },
+  { name: 'Prayer Team',       leader: 'John'          },
+  { name: 'Projection',        leader: 'Gillian'       },
+  { name: 'Sound & Lights',    leader: 'Jimmy'         },
+  { name: 'TikTok',            leader: 'Nana'          },
+  { name: 'Usher',             leader: 'Prince'        },
+  { name: 'Welcome Team',      leader: 'Jorge'         },
+  { name: 'Worship',           leader: 'Jahni'         },
+  { name: 'Young Adults',      leader: 'Chinedu'       },
+  { name: 'Youth',             leader: 'Okeme'         },
+];
+
+/* Connect Group session dates — 1st & 3rd Friday each active month */
+const CG_SESSIONS = [
+  /* Season 1 (Jan–Mar 2026) */
+  '2026-01-03', '2026-01-17',
+  '2026-02-07', '2026-02-21',
+  '2026-03-07', '2026-03-21',
+  /* Apr–May break */
+  /* Season 2 (Jun–Jul 2026) */
+  '2026-06-06', '2026-06-20',
+  '2026-07-04', '2026-07-18',
+  /* August break */
+  /* Season 3 (Sep–Nov 2026) */
+  '2026-09-05', '2026-09-19',
+  '2026-10-03', '2026-10-17',
+  '2026-11-07', '2026-11-21',
+  /* Dec break */
+  /* Season 1 (Jan–Mar 2027) */
+  '2027-01-02', '2027-01-16',
+  '2027-02-06', '2027-02-20',
+  '2027-03-06', '2027-03-20',
+  /* Apr–May break */
+  /* Season 2 (Jun–Jul 2027) */
+  '2027-06-05', '2027-06-19',
+  '2027-07-03', '2027-07-17',
+  /* August break */
+  /* Season 3 (Sep–Nov 2027) */
+  '2027-09-04', '2027-09-18',
+  '2027-10-02', '2027-10-16',
+  '2027-11-06', '2027-11-20',
+  /* Dec break */
+];
+
 /* ──────────────────────────────────────────────
    STATE
    ────────────────────────────────────────────── */
@@ -1218,10 +1392,30 @@ let db          = null;
 let useLocal    = false;
 let currentUser = null;
 let people      = [];
-let activeFilter = 'all';
-let peoplePage  = 0;
+let activeFilter       = 'all';
+let peoplePage         = 0;
+let activeMilestoneView = null;
+
+const MS_VIEW_INFO = {
+  cgAttendance: { label:'CONNECT GROUP',   icon:'groups'             },
+  gospelClass:  { label:'GOSPEL CLASS',    icon:'auto_stories'       },
+  newStart:     { label:'NEW START CLASS', icon:'school'             },
+  baptised:     { label:'BAPTISM',         icon:'water_drop'         },
+  beOneMakeOne: { label:'BE ONE MAKE ONE', icon:'diversity_3'        },
+  rdClass:      { label:'MEMBERSHIP CLASS',icon:'workspace_premium'  },
+  inMinistry:   { label:'IN MINISTRY',     icon:'volunteer_activism' },
+};
+
+const MS_COL = {
+  cgAttendance: 'th-connect',
+  gospelClass:  'th-gospel',
+  newStart:     'th-newstart',
+  baptised:     'th-baptism',
+  beOneMakeOne: 'th-b1m1',
+  rdClass:      'th-member',
+  inMinistry:   'th-ministry',
+};
 let detailId    = null;
-let attSheetPid = null;
 
 /* ──────────────────────────────────────────────
    FIREBASE
@@ -1274,15 +1468,17 @@ async function dbDelete(id) {
 /* ──────────────────────────────────────────────
    HEALTH SCORE
    Max 7 points:
-   New Start, Baptised, Attendance, Ministry,
-   Gospel Class, Be One Make One, RD Class
+   Connect Group, Gospel Class, New Start Class,
+   Baptised, Be One Make One, Membership Class, In Ministry
    ────────────────────────────────────────────── */
 function score(p) {
   let s = 0;
   if (p.newStart)              s += 1;
   if (p.baptised)              s += 1;
-  if (p.attendance === 'fellowship') s += 1;
-  else if (p.attendance === 'sporadic') s += 0.5;
+  const cgRate = cgAttendanceRate(p);
+  if (cgRate >= 0.8)       s += 1;
+  else if (cgRate >= 0.5)  s += 0.75;
+  else if (cgRate >= 0.25) s += 0.5;
   if (p.inMinistry)            s += 1;
   if (p.gospelClass)           s += 1;
   if (p.beOneMakeOne)          s += 1;
@@ -1313,10 +1509,32 @@ function ringHTML(pct, size) {
   </svg>`;
 }
 
-function attLabel(v) {
-  if (v === 'fellowship') return 'FG Regular';
-  if (v === 'sporadic') return 'Sporadic';
-  return 'Unknown';
+function sessionsSince(p) {
+  const joined = (p.createdAt || '').slice(0, 10);
+  return joined ? CG_SESSIONS.filter(d => d >= joined) : CG_SESSIONS;
+}
+
+function cgAttendanceRate(p) {
+  const today = new Date().toISOString().slice(0, 10);
+  const applicable = sessionsSince(p).filter(d => d <= today);
+  if (!applicable.length) {
+    if (p.attendance === 'fellowship') return 1;
+    if (p.attendance === 'sporadic')   return 0.5;
+    return 0;
+  }
+  const attended = p.attendedSessions || [];
+  return applicable.filter(d => attended.includes(d)).length / applicable.length;
+}
+
+function cgAttendanceLabel(p) {
+  const today = new Date().toISOString().slice(0, 10);
+  const applicable = sessionsSince(p).filter(d => d <= today);
+  if (!applicable.length) return 'No sessions yet';
+  const rate = cgAttendanceRate(p);
+  if (rate >= 0.8)  return 'Regular';
+  if (rate >= 0.5)  return 'Occasional';
+  if (rate >= 0.25) return 'Sporadic';
+  return 'Lapsed';
 }
 
 /* ──────────────────────────────────────────────
@@ -1401,6 +1619,7 @@ function switchTab(tab) {
   if (view) view.classList.add('v-active');
   document.querySelector(`.bnav-btn[data-tab="${tab}"]`)?.classList.add('active');
   if (tab === 'home') renderHome();
+  if (tab === 'milestones') renderMilestones();
   if (tab === 'people') renderPeople();
   if (tab === 'settings') renderSettings();
 }
@@ -1484,6 +1703,105 @@ function renderAdminHome() {
 }
 
 /* ──────────────────────────────────────────────
+   MILESTONES
+   ────────────────────────────────────────────── */
+const MILESTONES_DEF = [
+  { key:'gospelClass',  label:'Gospel Class',    icon:'auto_stories',     total:4  },
+  { key:'newStart',     label:'New Start Class', icon:'school',           total:5  },
+  { key:'baptised',     label:'Baptised',        icon:'water_drop'                 },
+  { key:'beOneMakeOne', label:'Be One, Make One',icon:'diversity_3',      total:12 },
+  { key:'rdClass',      label:'Membership Class',icon:'workspace_premium'          },
+  { key:'inMinistry',   label:'In Ministry',     icon:'volunteer_activism'         },
+];
+
+let msOpen = null;
+let msTabs = {};
+
+function renderMilestones() {
+  const mp = myPeople();
+  document.getElementById('ms-sub').textContent = currentUser.isAdmin
+    ? `${mp.length} people · ${LEADERS.filter(l => !l.isAdmin).length} groups`
+    : currentUser.group;
+
+  document.getElementById('ms-list').innerHTML = MILESTONES_DEF.map(m => {
+    const reached    = mp.filter(p => !!p[m.key]);
+    const notDone    = mp.filter(p => !p[m.key]);
+    const inProgress = m.total ? notDone.filter(p => (p[m.key + 'Count'] || 0) > 0) : [];
+    const togo       = m.total ? notDone.filter(p => (p[m.key + 'Count'] || 0) === 0) : notDone;
+    const pct        = mp.length ? reached.length / mp.length : 0;
+    const isOpen     = msOpen === m.key;
+    const defaultTab = m.total ? 'inprogress' : 'togo';
+    const tab        = msTabs[m.key] || defaultTab;
+
+    let listPeople;
+    if (tab === 'reached')    listPeople = reached;
+    else if (tab === 'inprogress') listPeople = inProgress;
+    else                      listPeople = togo;
+    listPeople = listPeople.slice().sort((a, b) => score(b) - score(a));
+
+    const personRows = listPeople.length
+      ? listPeople.map(p => {
+          const progress = m.total && tab === 'inprogress'
+            ? `<div class="ms-person-sub" style="color:var(--amb)">${p[m.key + 'Count'] || 0}/${m.total} classes</div>`
+            : currentUser.isAdmin ? `<div class="ms-person-sub">${esc(p.leaderName || '')}</div>` : '';
+          return `<div class="ms-person-row" onclick="openDetail('${p.id}')">
+            <div style="flex:1;min-width:0">
+              <div class="ms-person-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+              ${progress}
+            </div>
+            <span class="material-symbols-outlined" style="color:var(--ink4);font-size:18px">chevron_right</span>
+          </div>`;
+        }).join('')
+      : `<div class="ms-empty">${
+          tab === 'reached'    ? 'No one has reached this milestone yet' :
+          tab === 'inprogress' ? 'No one is currently in progress' :
+                                 'Everyone has started or completed this milestone'
+        }</div>`;
+
+    const tabsHTML = m.total
+      ? `<button class="ms-tab ${tab === 'inprogress' ? 'active' : ''}" onclick="setMsTab('${m.key}','inprogress')">IN PROGRESS (${inProgress.length})</button>
+         <button class="ms-tab ${tab === 'togo'       ? 'active' : ''}" onclick="setMsTab('${m.key}','togo')">NOT STARTED (${togo.length})</button>
+         <button class="ms-tab ${tab === 'reached'    ? 'active' : ''}" onclick="setMsTab('${m.key}','reached')">DONE (${reached.length})</button>`
+      : `<button class="ms-tab ${tab === 'togo'    ? 'active' : ''}" onclick="setMsTab('${m.key}','togo')">TO GO (${togo.length})</button>
+         <button class="ms-tab ${tab === 'reached' ? 'active' : ''}" onclick="setMsTab('${m.key}','reached')">REACHED (${reached.length})</button>`;
+
+    const inProgressBadge = m.total && inProgress.length
+      ? `<div style="font-size:11px;font-weight:600;color:var(--amb);margin-top:4px;letter-spacing:0.05em">${inProgress.length} IN PROGRESS</div>`
+      : '';
+
+    return `
+      <div class="ms-row">
+        <div class="ms-row-hdr" onclick="toggleMs('${m.key}')">
+          <span class="material-symbols-outlined" style="flex-shrink:0">${m.icon}</span>
+          <div class="ms-info">
+            <div class="ms-name">${m.label}</div>
+            <div class="ms-bar-track">
+              <div class="ms-bar-fill" style="width:${Math.round(pct * 100)}%"></div>
+            </div>
+            ${inProgressBadge}
+          </div>
+          <span class="ms-count">${reached.length}<span> / ${mp.length}</span></span>
+          <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px;flex-shrink:0">${isOpen ? 'expand_less' : 'expand_more'}</span>
+        </div>
+        <div class="ms-expand-body ${isOpen ? 'open' : ''}">
+          <div class="ms-tabs">${tabsHTML}</div>
+          <div>${personRows}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function toggleMs(key) {
+  msOpen = msOpen === key ? null : key;
+  renderMilestones();
+}
+
+function setMsTab(key, tab) {
+  msTabs[key] = tab;
+  renderMilestones();
+}
+
+/* ──────────────────────────────────────────────
    PEOPLE LIST
    ────────────────────────────────────────────── */
 const PAGE_SIZE = 10;
@@ -1543,13 +1861,32 @@ function personRowHTML(p) {
   const mmt = `<span class="material-symbols-outlined" style="font-size:20px;color:var(--ink4)">radio_button_unchecked</span>`;
   return `<tr onclick="openDetail('${p.id}')">
     <td>${esc(p.firstName)} ${esc(p.lastInit)}.</td>
+    <td>${cgAttendanceRate(p) >= 0.5 ? chk : mmt}</td>
     <td>${p.gospelClass              ? chk : mmt}</td>
-    <td>${p.attendance==='fellowship'? chk : mmt}</td>
+    <td>${p.newStart                 ? chk : mmt}</td>
     <td>${p.baptised                 ? chk : mmt}</td>
     <td>${p.beOneMakeOne             ? chk : mmt}</td>
-    <td>${mmt}</td>
+    <td>${p.rdClass                  ? chk : mmt}</td>
     <td>${p.inMinistry               ? chk : mmt}</td>
   </tr>`;
+}
+
+function switchToMilestone(key) {
+  activeMilestoneView = key;
+  peoplePage = 0;
+  switchTab('people');
+}
+
+function navPeople() {
+  activeMilestoneView = null;
+  peoplePage = 0;
+  switchTab('people');
+}
+
+function clearMilestoneView() {
+  activeMilestoneView = null;
+  peoplePage = 0;
+  renderPeople();
 }
 
 function renderPeople() {
@@ -1560,16 +1897,36 @@ function renderPeople() {
   const nF = all.filter(p => p.needsFamily).length;
   const nB = all.filter(p => p.needsBereavement).length;
   const r  = n => `${n} ${n===1?'REQUEST':'REQUESTS'}`;
-  document.getElementById('nc-marital')    ?.textContent = r(nM);
-  document.getElementById('nc-family')     ?.textContent = r(nF);
-  document.getElementById('nc-bereavement')?.textContent = r(nB);
+  document.getElementById('nc-marital').textContent     = r(nM);
+  document.getElementById('nc-family').textContent      = r(nF);
+  document.getElementById('nc-bereavement').textContent = r(nB);
 
-  const list  = filteredPeople(q);
+  let list = filteredPeople(q);
+
+  if (activeMilestoneView) {
+    list = list.slice().sort((a, b) => {
+      const aHas = activeMilestoneView === 'cgAttendance' ? cgAttendanceRate(a) >= 0.5 : !!a[activeMilestoneView];
+      const bHas = activeMilestoneView === 'cgAttendance' ? cgAttendanceRate(b) >= 0.5 : !!b[activeMilestoneView];
+      return (bHas ? 1 : 0) - (aHas ? 1 : 0);
+    });
+    const info = MS_VIEW_INFO[activeMilestoneView];
+    document.getElementById('ms-view-icon').textContent  = info.icon;
+    document.getElementById('ms-view-label').textContent = info.label;
+    document.getElementById('ms-view-bar').classList.remove('hidden');
+  } else {
+    document.getElementById('ms-view-bar').classList.add('hidden');
+  }
+
+  document.querySelectorAll('.tracker-table thead th').forEach(th => th.classList.remove('th-ms-active'));
+  if (activeMilestoneView && MS_COL[activeMilestoneView]) {
+    document.getElementById(MS_COL[activeMilestoneView])?.classList.add('th-ms-active');
+  }
+
   const paged = list.slice(peoplePage * PAGE_SIZE, (peoplePage + 1) * PAGE_SIZE);
   const el    = document.getElementById('people-list');
   el.innerHTML = paged.length
     ? paged.map(personRowHTML).join('')
-    : `<tr><td colspan="7" class="empty-td">No results</td></tr>`;
+    : `<tr><td colspan="8" class="empty-td">No results</td></tr>`;
 }
 
 function personCardHTML(p) {
@@ -1579,12 +1936,12 @@ function personCardHTML(p) {
   const badges = [];
   if (p.baptised)   badges.push('Baptised');
   if (p.inMinistry) badges.push(p.ministryName || 'Ministry');
-  if (p.rdClass)    badges.push('RD Class');
+  if (p.rdClass)    badges.push('Membership Class');
   return `<div class="person-card" onclick="openDetail('${p.id}')">
     ${ring}
     <div class="pc-info">
       <div class="pc-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
-      <div class="pc-att">${attLabel(p.attendance)}</div>
+      <div class="pc-att">${cgAttendanceLabel(p)}</div>
       ${badges.length ? `<div class="pc-badges">${badges.map(b=>`<span class="pc-badge">${esc(b)}</span>`).join('')}</div>` : ''}
     </div>
     <div class="pc-arrow">&#8250;</div>
@@ -1633,13 +1990,14 @@ function renderDetailHero(p) {
       </div>
       <div class="detail-stat-cell">
         <span class="detail-stat-label">MEMBERSHIP</span>
-        <span class="detail-stat-val">${p.membershipClass ? 'YES' : 'NO'}</span>
+        <span class="detail-stat-val">${p.rdClass ? 'YES' : 'NO'}</span>
       </div>
+      ${currentUser.isAdmin ? `
       <div class="detail-stat-cell">
         <span class="detail-stat-label">GROUP</span>
         <span class="detail-stat-sub">LEADER</span>
         <span class="detail-stat-val-sm">${ldr ? esc(ldr.name) : 'Unassigned'}</span>
-      </div>
+      </div>` : ''}
       <div class="detail-stat-cell stat-active">
         <span class="detail-stat-label">STATUS</span>
         <span class="detail-stat-val">${m.label.toUpperCase()}</span>
@@ -1655,13 +2013,13 @@ function renderDetailBody(p) {
   body.innerHTML = `
     <div class="card">
       <div class="card-hdr">DISCIPLESHIP PATHWAY</div>
-      ${toggleRowHTML(p, 'newStart',    'New Start',        '')}
-      ${toggleRowHTML(p, 'baptised',    'Baptised',         '')}
-      ${attRowHTML(p)}
+      ${cgSessionRowHTML(p)}
+      ${classProgressRowHTML(p, 'gospelClass',  'Gospel Class',    4)}
+      ${classProgressRowHTML(p, 'newStart',     'New Start Class', 5)}
+      ${toggleRowHTML(p, 'baptised',    'Baptised',          '')}
+      ${classProgressRowHTML(p, 'beOneMakeOne', 'Be One, Make One',12)}
+      ${toggleRowHTML(p, 'rdClass',     'Membership Class',  '')}
       ${ministryRowHTML(p)}
-      ${toggleRowHTML(p, 'gospelClass', 'Gospel Class',     '')}
-      ${toggleRowHTML(p, 'beOneMakeOne','Be One, Make One', '')}
-      ${toggleRowHTML(p, 'rdClass',     'RD Class',         '')}
     </div>
     <div class="card">
       <div class="card-hdr">SUPPORT NEEDED</div>
@@ -1721,26 +2079,122 @@ async function saveNote(pid) {
   toast('Note saved');
 }
 
+function classProgressRowHTML(p, field, title, total) {
+  const count = p[field + 'Count'] || 0;
+  const done  = !!p[field];
+  let statusHTML, statusColor;
+  if (done) {
+    const dt = p[field + 'Date'] ? fmtDate(p[field + 'Date']) : null;
+    statusColor = 'var(--grn)';
+    statusHTML  = `<span class="toggle-date-tap" onclick="openMilestoneDateSheet('${p.id}','${field}','${title}',true)">${dt || '+ Set date'}</span>`;
+  } else if (count > 0) {
+    statusColor = 'var(--amb)';
+    statusHTML  = `${count} of ${total} classes`;
+  } else {
+    statusColor = 'var(--ink4)';
+    statusHTML  = 'Not started';
+  }
+  const pips = Array.from({ length: total }, (_, i) =>
+    `<span class="cls-pip ${i < count ? (done ? 'on' : 'on-partial') : ''}"></span>`
+  ).join('');
+  return `<div class="toggle-row cg-row">
+    <div class="cg-row-top">
+      <div class="toggle-label">
+        <div class="toggle-title">${title}</div>
+        <div class="toggle-sub" style="color:${statusColor}">${statusHTML}</div>
+      </div>
+      <div class="cls-stepper">
+        <button class="cls-btn" onclick="adjustClassCount('${p.id}','${field}',${total},-1)"${count === 0 ? ' disabled' : ''}>−</button>
+        <span class="cls-count">${count}/${total}</span>
+        <button class="cls-btn" onclick="adjustClassCount('${p.id}','${field}',${total},1)"${count === total ? ' disabled' : ''}>+</button>
+      </div>
+    </div>
+    <div class="cls-pips">${pips}</div>
+  </div>`;
+}
+
+async function adjustClassCount(pid, field, total, delta) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  const prev = p[field + 'Count'] || 0;
+  const next = Math.max(0, Math.min(total, prev + delta));
+  if (next === prev) return;
+  p[field + 'Count'] = next;
+  const wasDone = !!p[field];
+  const nowDone = next === total;
+  if (nowDone && !wasDone) {
+    p[field] = true;
+    await dbSave(p);
+    renderDetail(p);
+    const def = MILESTONES_DEF.find(m => m.key === field);
+    openMilestoneDateSheet(pid, field, def ? def.label : field, false);
+  } else {
+    if (!nowDone && wasDone) { p[field] = false; delete p[field + 'Date']; }
+    await dbSave(p);
+    renderDetail(p);
+    toast('Saved');
+  }
+}
+
 function toggleRowHTML(p, field, title, sub) {
   const on = !!p[field];
-  const dateSub = (on && p[field + 'Date']) ? fmtDate(p[field + 'Date']) : sub;
+  const dateLabel = on && p[field + 'Date'] ? fmtDate(p[field + 'Date']) : null;
+  const subContent = on
+    ? `<div class="toggle-sub"><span class="toggle-date-tap" onclick="openMilestoneDateSheet('${p.id}','${field}','${title}',true)">${dateLabel || '+ Set date'}</span></div>`
+    : sub ? `<div class="toggle-sub">${sub}</div>` : '';
   return `<div class="toggle-row">
     <div class="toggle-label">
       <div class="toggle-title">${title}</div>
-      ${dateSub ? `<div class="toggle-sub">${dateSub}</div>` : ''}
+      ${subContent}
     </div>
     <button class="toggle-sw ${on?'on':''}"
       onclick="toggleField('${p.id}','${field}',this)"></button>
   </div>`;
 }
 
-function attRowHTML(p) {
-  return `<div class="select-row">
-    <div class="toggle-label"><div class="toggle-title">Attendance</div></div>
-    <div class="select-val" onclick="openAttSheet('${p.id}')">
-      ${attLabel(p.attendance)} <span style="color:#ccc">&#8250;</span>
+function cgSessionRowHTML(p) {
+  const today    = new Date().toISOString().slice(0, 10);
+  const sessions = sessionsSince(p);
+  const past     = sessions.filter(d => d <= today);
+  const attended = new Set(p.attendedSessions || []);
+  const rate     = cgAttendanceRate(p);
+  const label    = cgAttendanceLabel(p);
+  const pct      = past.length ? Math.round(rate * 100) : null;
+
+  const dots = sessions.map(d => {
+    const isPast   = d <= today;
+    const ticked   = attended.has(d);
+    const day = new Date(d + 'T00:00:00').getDate();
+    const mon = new Date(d + 'T00:00:00').toLocaleString('en-GB', { month: 'short' });
+    if (!isPast) {
+      return `<div class="cg-dot future"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></div>`;
+    }
+    return `<button class="cg-dot${ticked ? ' attended' : ''}" onclick="toggleSession('${p.id}','${d}',this)"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></button>`;
+  }).join('');
+
+  return `<div class="toggle-row cg-row">
+    <div class="cg-row-top">
+      <div class="toggle-label">
+        <div class="toggle-title">Connect Group</div>
+        <div class="toggle-sub">${pct !== null ? `${label} · ${pct}%` : 'Sessions start June'}</div>
+      </div>
     </div>
+    <div class="cg-session-grid">${dots}</div>
   </div>`;
+}
+
+async function toggleSession(pid, date, dotEl) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  if (!p.attendedSessions) p.attendedSessions = [];
+  const idx = p.attendedSessions.indexOf(date);
+  if (idx === -1) p.attendedSessions.push(date);
+  else           p.attendedSessions.splice(idx, 1);
+  await dbSave(p);
+  dotEl.classList.toggle('attended');
+  renderDetailHero(p);
+  renderPeople();
+  renderHome();
 }
 
 function ministryRowHTML(p) {
@@ -1751,10 +2205,11 @@ function ministryRowHTML(p) {
       <button class="toggle-sw ${on?'on':''}"
         onclick="toggleMinistry('${p.id}',this)"></button>
     </div>
-    <input class="ministry-input ${on?'':'hidden'}" id="min-inp-${p.id}"
-      type="text" value="${esc(p.ministryName||'')}"
-      placeholder="Which ministry? e.g. Worship, Media..."
+    <select class="ministry-input ${on?'':'hidden'}" id="min-inp-${p.id}"
       onchange="updateField('${p.id}','ministryName',this.value)">
+      <option value="">Select ministry...</option>
+      ${MINISTRIES.map(m=>`<option value="${esc(m.name)}"${p.ministryName===m.name?' selected':''}>${esc(m.name)} — ${esc(m.leader)}</option>`).join('')}
+    </select>
   </div>`;
 }
 
@@ -1775,12 +2230,56 @@ function needRowHTML(p, field, label) {
 async function toggleField(pid, field, btn) {
   const p = people.find(x => x.id === pid);
   if (!p) return;
-  p[field] = !p[field];
-  if (p[field]) p[field + 'Date'] = new Date().toISOString();
-  else          delete p[field + 'Date'];
+  const turningOn = !p[field];
+  if (!turningOn) {
+    p[field] = false;
+    delete p[field + 'Date'];
+    await dbSave(p);
+    renderDetail(p);
+    toast('Removed');
+  } else {
+    p[field] = true;
+    const def = MILESTONES_DEF.find(m => m.key === field);
+    openMilestoneDateSheet(pid, field, def ? def.label : field, false);
+  }
+}
+
+let msDatePid   = null;
+let msDateField = null;
+let msDateIsEdit = false;
+
+function openMilestoneDateSheet(pid, field, title, isEdit) {
+  msDatePid    = pid;
+  msDateField  = field;
+  msDateIsEdit = !!isEdit;
+  const p = people.find(x => x.id === pid);
+  const existing = p && p[field + 'Date'] ? p[field + 'Date'].slice(0, 10) : '';
+  document.getElementById('msdate-title').textContent = title;
+  document.getElementById('msdate-input').value = existing || new Date().toISOString().slice(0, 10);
+  document.getElementById('msdate-sheet').classList.add('open');
+}
+
+async function saveMilestoneDate() {
+  const date = document.getElementById('msdate-input').value;
+  if (!date || !msDatePid || !msDateField) return;
+  const p = people.find(x => x.id === msDatePid);
+  if (!p) return;
+  p[msDateField] = true;
+  p[msDateField + 'Date'] = date + 'T00:00:00.000Z';
   await dbSave(p);
+  document.getElementById('msdate-sheet').classList.remove('open');
   renderDetail(p);
   toast('Saved');
+}
+
+function closeMilestoneDateSheet(e) {
+  if (e && e.target !== document.getElementById('msdate-sheet')) return;
+  if (!msDateIsEdit && msDatePid) {
+    const p = people.find(x => x.id === msDatePid);
+    if (p) { p[msDateField] = false; delete p[msDateField + 'Date']; renderDetail(p); }
+  }
+  document.getElementById('msdate-sheet').classList.remove('open');
+  msDatePid = null; msDateField = null;
 }
 
 async function toggleMinistry(pid, btn) {
@@ -1811,33 +2310,6 @@ async function updateField(pid, field, value) {
 function refreshHealth(pid) {
   const p = people.find(x => x.id === pid);
   if (p) renderDetailHero(p);
-}
-
-/* Attendance sheet (from detail) */
-function openAttSheet(pid) {
-  attSheetPid = pid;
-  const p = people.find(x => x.id === pid);
-  document.querySelectorAll('.sheet-opt').forEach(o =>
-    o.classList.toggle('sel', o.dataset.v === p?.attendance)
-  );
-  document.getElementById('att-sheet').classList.add('open');
-}
-
-async function pickAtt(val) {
-  if (!attSheetPid) return;
-  const p = people.find(x => x.id === attSheetPid);
-  if (!p) return;
-  p.attendance = val;
-  await dbSave(p);
-  closeSheet();
-  renderDetail(p);
-  toast('Attendance updated');
-}
-
-function closeSheet(e) {
-  if (e && e.target !== document.getElementById('att-sheet')) return;
-  document.getElementById('att-sheet').classList.remove('open');
-  attSheetPid = null;
 }
 
 /* Detail action menu */
@@ -1914,9 +2386,6 @@ function openAdd() {
   // Reset
   document.getElementById('add-fname').value = '';
   document.getElementById('add-init').value  = '';
-  document.querySelectorAll('#add-att .att-opt').forEach((b,i) =>
-    b.classList.toggle('sel', i===0)
-  );
   ['a-newstart','a-baptised','a-gospel','a-beone','a-rdclass','a-ministry']
     .forEach(id => document.getElementById(id).classList.remove('on'));
   document.getElementById('a-min-name').classList.add('hidden');
@@ -1932,25 +2401,18 @@ function toggleMinistryInput(inputId, btn) {
   document.getElementById(inputId).classList.toggle('hidden', !btn.classList.contains('on'));
 }
 
-document.querySelectorAll('#add-att .att-opt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('#add-att .att-opt').forEach(b => b.classList.remove('sel'));
-    btn.classList.add('sel');
-  });
-});
-
 async function submitAdd() {
   const fname = document.getElementById('add-fname').value.trim();
   const init  = document.getElementById('add-init').value.trim().toUpperCase() || '?';
   if (!fname) { toast('Enter a first name'); return; }
 
-  const attSel = document.querySelector('#add-att .att-opt.sel');
   const person = {
-    firstName:     fname,
-    lastInit:      init,
-    leaderId:      currentUser.id,
-    leaderName:    currentUser.name,
-    attendance:    attSel ? attSel.dataset.v : 'unknown',
+    firstName:        fname,
+    lastInit:         init,
+    leaderId:         currentUser.id,
+    leaderName:       currentUser.name,
+    attendance:       'unknown',
+    attendedSessions: [],
     newStart:      document.getElementById('a-newstart').classList.contains('on'),
     baptised:      document.getElementById('a-baptised').classList.contains('on'),
     gospelClass:   document.getElementById('a-gospel').classList.contains('on'),
@@ -2027,13 +2489,26 @@ const SEED_PEOPLE = [
   { id:'s12', firstName:'Leah',     lastInit:'S', leaderId:'cg_ms', leaderName:'Miles',     attendance:'unknown',    newStart:true,  baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-03-01T10:00:00.000Z' },
   { id:'s13', firstName:'Joshua',   lastInit:'N', leaderId:'cg_of', leaderName:'Okeme',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:false, rdClass:true,  inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-09-15T10:00:00.000Z' },
   { id:'s14', firstName:'Chloe',    lastInit:'D', leaderId:'cg_at', leaderName:'Adrian',    attendance:'sporadic',   newStart:true,  baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-01-12T10:00:00.000Z' },
-  { id:'s15', firstName:'Isaac',    lastInit:'F', leaderId:'cg_kb', leaderName:'Kwasi',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-11-25T10:00:00.000Z' },
+  { id:'s15', firstName:'Isaac',    lastInit:'F', leaderId:'cg_kb', leaderName:'Kwasi',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  gospelClassCount:4,  beOneMakeOne:false, beOneMakeOneCount:0,  rdClass:false, inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-11-25T10:00:00.000Z' },
+  { id:'s16', firstName:'Jada',     lastInit:'E', leaderId:'cg_at', leaderName:'Adrian',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:false, gospelClassCount:3,  newStartCount:5, beOneMakeOne:false, beOneMakeOneCount:0,  rdClass:false, inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-10-05T10:00:00.000Z' },
+  { id:'s17', firstName:'Natasha',  lastInit:'M', leaderId:'cg_at', leaderName:'Adrian',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  gospelClassCount:4,  newStartCount:5, beOneMakeOne:false, beOneMakeOneCount:6,  rdClass:true,  inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-07-20T10:00:00.000Z' },
+  { id:'s18', firstName:'Jaden',    lastInit:'E', leaderId:'cg_at', leaderName:'Adrian',    attendance:'sporadic',   newStart:false, baptised:false, gospelClass:false, gospelClassCount:2,  newStartCount:0, beOneMakeOne:false, beOneMakeOneCount:0,  rdClass:false, inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:true,  needsBereavement:false, createdAt:'2026-02-01T10:00:00.000Z' },
+  { id:'s19', firstName:'Ivon',     lastInit:'B', leaderId:'cg_at', leaderName:'Adrian',    attendance:'unknown',    newStart:false, baptised:false, gospelClass:false, gospelClassCount:0,  newStartCount:0, beOneMakeOne:false, beOneMakeOneCount:0,  rdClass:false, inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-04-10T10:00:00.000Z' },
+  { id:'s20', firstName:'Nifemi',   lastInit:'S', leaderId:'cg_at', leaderName:'Adrian',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  gospelClassCount:4,  newStartCount:5, beOneMakeOne:true,  beOneMakeOneCount:12, rdClass:false, inMinistry:true,  ministryName:'Youth', needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-06-15T10:00:00.000Z' },
+  { id:'s21', firstName:'Daniella', lastInit:'A', leaderId:'cg_at', leaderName:'Adrian',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  gospelClassCount:4,  newStartCount:5, beOneMakeOne:false, beOneMakeOneCount:4,  rdClass:false, inMinistry:false, ministryName:'',    needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-09-10T10:00:00.000Z' },
 ];
 
 function seedDemoData() {
   if (!useLocal) return;
-  if (localStorage.getItem('rd_people')) return;
-  localStorage.setItem('rd_people', JSON.stringify(SEED_PEOPLE));
+  const stored = JSON.parse(localStorage.getItem('rd_people') || '[]');
+  let changed = false;
+  for (const person of SEED_PEOPLE) {
+    if (!stored.find(p => p.id === person.id)) {
+      stored.push(person);
+      changed = true;
+    }
+  }
+  if (changed) localStorage.setItem('rd_people', JSON.stringify(stored));
 }
 
 /* ──────────────────────────────────────────────
@@ -2041,6 +2516,9 @@ function seedDemoData() {
    ────────────────────────────────────────────── */
 seedDemoData();
 renderLeaders();
+document.getElementById('a-min-name').innerHTML =
+  '<option value="">Select ministry...</option>' +
+  MINISTRIES.map(m => `<option value="${esc(m.name)}">${esc(m.name)} — ${esc(m.leader)}</option>`).join('');
 </script>
 </body>
 </html>
