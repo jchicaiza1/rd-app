@@ -8,43 +8,117 @@
 <title>Real Disciple · PHC Wandsworth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#000000",
+        "on-primary": "#ffffff",
+        "secondary": "#5d5f5f",
+        "surface": "#f9f9f9",
+        "background": "#f9f9f9",
+        "outline-variant": "#cfc4c5",
+        "outline": "#7e7576",
+        "on-surface": "#1a1c1c",
+        "on-surface-variant": "#4c4546",
+        "surface-container": "#eeeeee",
+        "surface-container-high": "#e8e8e8",
+        "surface-container-highest": "#e2e2e2",
+        "surface-container-low": "#f3f3f3",
+        "surface-container-lowest": "#ffffff",
+        "surface-bright": "#f9f9f9",
+        "surface-dim": "#dadada",
+        "on-secondary": "#ffffff",
+        "secondary-container": "#dfe0e0",
+        "on-secondary-container": "#616363",
+        "error": "#ba1a1a",
+        "on-error": "#ffffff",
+        "error-container": "#ffdad6",
+        "on-error-container": "#93000a",
+        "inverse-surface": "#2f3131",
+        "inverse-on-surface": "#f1f1f1",
+        "inverse-primary": "#c6c6c6",
+        "primary-container": "#1b1b1b",
+        "on-primary-container": "#848484",
+      },
+      borderRadius: {
+        "DEFAULT": "0px",
+        "sm": "0px",
+        "md": "0px",
+        "lg": "0px",
+        "xl": "0px",
+        "full": "9999px",
+      },
+      spacing: {
+        "stack-sm": "0.5rem",
+        "stack-md": "1.5rem",
+        "stack-lg": "3rem",
+        "margin-page": "2rem",
+        "gutter": "1rem",
+        "grid-unit": "4rem",
+      },
+      fontSize: {
+        "headline-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "headline-md": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "headline-sm": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+        "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "700" }],
+        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "label-md": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+        "title-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.2em", fontWeight: "600" }],
+      },
+    },
+  },
+}
+</script>
 <style>
 :root {
-  --bg: #f5f5f5;
+  --bg: #f9f9f9;
   --surface: #ffffff;
-  --ink: #111111;
-  --ink2: #444444;
-  --ink3: #888888;
-  --ink4: #cccccc;
-  --line: #e8e8e8;
+  --ink: #000000;
+  --ink2: #1a1c1c;
+  --ink3: #5d5f5f;
+  --ink4: #cfc4c5;
+  --line: #eeeeee;
   --grn: #16a34a;
   --grn-l: #f0fdf4;
   --grn-ring: #22c55e;
   --amb: #d97706;
   --amb-l: #fffbeb;
   --amb-ring: #f59e0b;
-  --red: #dc2626;
-  --red-l: #fef2f2;
-  --red-ring: #ef4444;
-  --r: 12px;
-  --r-lg: 18px;
-  --hdr-h: 54px;
-  --bnav-h: 68px;
+  --red: #ba1a1a;
+  --red-l: #ffdad6;
+  --red-ring: #ba1a1a;
+  --r: 0px;
+  --r-lg: 0px;
+  --hdr-h: 64px;
+  --bnav-h: 80px;
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html, body { height:100%; }
 body {
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
   font-size:16px; line-height:1.5;
-  background:#111;
+  background:var(--ink);
   color:var(--ink);
   -webkit-font-smoothing:antialiased;
   -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
   overscroll-behavior:none;
+}
+.material-symbols-outlined {
+  font-variation-settings:'FILL' 0,'wght' 200,'GRAD' 0,'opsz' 24;
+  font-size:24px; line-height:1;
+  display:inline-block; vertical-align:middle;
+  user-select:none;
 }
 .hidden { display:none !important; }
 
@@ -71,57 +145,65 @@ body {
   display:flex; flex-direction:column; overflow-y:auto;
 }
 .login-hero {
-  padding:60px 24px 28px;
+  padding:64px 32px 32px;
   display:flex; flex-direction:column; align-items:center; text-align:center;
+  border-bottom:1px solid var(--line);
 }
 .login-icon {
-  width:76px; height:76px; border-radius:20px;
+  width:72px; height:72px;
   background:var(--ink); color:white;
   display:flex; align-items:center; justify-content:center;
-  font-size:26px; font-weight:800; letter-spacing:-1px;
-  margin-bottom:18px;
+  font-size:20px; font-weight:700; letter-spacing:0.1em;
+  margin-bottom:20px;
 }
-.login-title { font-size:30px; font-weight:800; letter-spacing:-.75px; margin-bottom:4px; }
-.login-sub { font-size:14px; color:var(--ink3); }
-.leader-list { padding:8px 16px 48px; }
+.login-title {
+  font-size:12px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink); margin-bottom:4px;
+}
+.login-sub { font-size:12px; font-weight:500; color:var(--ink3); }
+.leader-list { padding:0 24px 48px; }
 .leader-list-label {
-  font-size:11px; font-weight:700; color:var(--ink4);
-  text-transform:uppercase; letter-spacing:.1em; padding:0 4px 10px; display:block;
+  font-size:11px; font-weight:600; color:var(--ink3);
+  text-transform:uppercase; letter-spacing:0.2em;
+  padding:20px 0 12px; display:block;
 }
 .leader-btn {
   width:100%; display:flex; align-items:center; gap:14px;
-  padding:14px 16px; border:1.5px solid var(--line);
-  border-radius:var(--r); background:var(--surface);
-  cursor:pointer; margin-bottom:8px;
+  padding:14px 16px; border:1px solid var(--line);
+  background:var(--surface);
+  cursor:pointer; margin-bottom:6px;
   font-family:inherit; text-align:left;
-  transition:border-color .12s;
+  transition:border-color .12s, background .12s;
 }
-.leader-btn:active { border-color:var(--ink); }
+.leader-btn:active { border-color:var(--ink); background:var(--bg); }
 .leader-av {
-  width:42px; height:42px; border-radius:50%;
-  background:var(--bg); border:1px solid var(--line);
+  width:40px; height:40px;
+  background:var(--ink); color:white;
   display:flex; align-items:center; justify-content:center;
-  font-size:15px; font-weight:700; flex-shrink:0;
+  font-size:13px; font-weight:700; flex-shrink:0;
+  letter-spacing:0.05em;
 }
-.leader-name { font-size:15px; font-weight:600; }
+.leader-name { font-size:15px; font-weight:600; color:var(--ink); }
 .leader-group { font-size:12px; color:var(--ink3); margin-top:1px; }
 
 /* PIN */
 .pin-hero {
-  padding:52px 24px 24px;
+  padding:60px 32px 24px;
   display:flex; flex-direction:column; align-items:center;
+  border-bottom:1px solid var(--line);
 }
 .pin-av-lg {
-  width:68px; height:68px; border-radius:50%;
+  width:64px; height:64px;
   background:var(--ink); color:white;
   display:flex; align-items:center; justify-content:center;
-  font-size:22px; font-weight:700; margin-bottom:14px;
+  font-size:18px; font-weight:700; margin-bottom:16px;
+  letter-spacing:0.05em;
 }
-.pin-name { font-size:19px; font-weight:700; margin-bottom:4px; }
-.pin-hint { font-size:14px; color:var(--ink3); }
-.pin-dots { display:flex; gap:14px; margin:28px 0; }
+.pin-name { font-size:24px; font-weight:600; margin-bottom:4px; color:var(--ink); }
+.pin-hint { font-size:12px; font-weight:500; color:var(--ink3); letter-spacing:0.05em; }
+.pin-dots { display:flex; gap:16px; margin:32px 0; }
 .pin-dot {
-  width:13px; height:13px; border-radius:50%;
+  width:12px; height:12px; border-radius:50%;
   border:2px solid var(--ink4); background:transparent;
   transition:all .12s;
 }
@@ -134,47 +216,52 @@ body {
 }
 .pin-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:10px; padding:0 28px 24px; width:100%;
+  gap:1px; padding:24px; width:100%;
+  background:var(--line);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
 .pin-key {
   aspect-ratio:1; border:none;
-  background:var(--bg); border-radius:50%;
-  font-family:inherit; font-size:22px; font-weight:600;
+  background:var(--bg);
+  font-family:inherit; font-size:24px; font-weight:400;
   cursor:pointer; transition:background .1s;
   display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
 }
-.pin-key:active { background:var(--line); }
-.pin-key.del { font-size:18px; color:var(--ink3); }
+.pin-key:active { background:var(--surface-container, #eeeeee); }
+.pin-key.del { font-size:20px; color:var(--ink3); }
 .pin-back-btn {
   background:none; border:none; color:var(--ink3);
-  font-family:inherit; font-size:14px; cursor:pointer;
-  padding:8px 24px 32px; text-align:center; width:100%;
+  font-family:inherit; font-size:11px; font-weight:600;
+  letter-spacing:0.15em; text-transform:uppercase;
+  cursor:pointer; padding:20px 24px 32px; text-align:center; width:100%;
 }
 
 /* HEADER */
 .app-hdr {
   height:var(--hdr-h); display:flex; align-items:center;
-  padding:0 16px; gap:10px;
-  border-bottom:1.5px solid var(--line); flex-shrink:0;
+  padding:0 16px;
+  border-bottom:1px solid var(--line); flex-shrink:0;
   background:var(--surface);
 }
-.hdr-back {
-  width:34px; height:34px; border-radius:50%;
-  border:none; background:none; cursor:pointer;
+.hdr-menu-btn {
+  width:34px; height:34px; border:none; background:none;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  color:var(--ink); flex-shrink:0; padding:0;
+}
+.hdr-title {
+  flex:1; text-align:center;
+  font-size:12px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--ink);
+}
+.hdr-avatar {
+  width:32px; height:32px; border-radius:50%;
+  border:1px solid var(--line);
+  background:var(--line); flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
-  color:var(--ink); font-size:20px; font-weight:300;
 }
-.hdr-title { flex:1; font-size:17px; font-weight:700; letter-spacing:-.3px; }
-.hdr-pill {
-  height:32px; padding:0 14px; border-radius:999px;
-  border:none; background:var(--ink); color:white;
-  font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
-}
-.hdr-text-btn {
-  border:none; background:none; cursor:pointer;
-  font-family:inherit; font-size:14px; font-weight:600;
-  color:var(--red); padding:0 2px;
-}
+.hdr-av-text { font-size:11px; font-weight:700; color:var(--ink3); }
 
 /* VIEWS */
 .view { display:none; flex:1; overflow-y:auto; flex-direction:column; }
@@ -183,68 +270,95 @@ body {
 /* BOTTOM NAV */
 .bnav {
   height:var(--bnav-h);
-  border-top:1.5px solid var(--line);
+  border-top:1px solid var(--line);
   display:flex; flex-shrink:0;
-  padding:0 4px;
   padding-bottom:env(safe-area-inset-bottom);
   background:var(--surface);
 }
 .bnav-btn {
   flex:1; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:3px;
+  align-items:center; justify-content:center; gap:2px;
   border:none; background:none; cursor:pointer;
-  color:var(--ink4); font-family:inherit;
-  font-size:10px; font-weight:600; letter-spacing:.01em;
-  padding:6px 4px;
+  color:var(--ink3); font-family:inherit;
+  font-size:10px; font-weight:600; letter-spacing:0.1em;
+  padding:6px 4px; text-transform:uppercase;
+  transition:background 0.15s, color 0.15s;
 }
-.bnav-btn.active { color:var(--ink); }
-.bnav-icon {
-  width:28px; height:28px;
-  display:flex; align-items:center; justify-content:center;
+.bnav-btn.active { background:var(--ink); color:white; }
+.bnav-btn.active .material-symbols-outlined {
+  font-variation-settings:'FILL' 1,'wght' 200,'GRAD' 0,'opsz' 24;
 }
-.add-pill {
-  width:52px; height:32px; border-radius:16px;
-  background:var(--ink); display:flex;
-  align-items:center; justify-content:center;
-}
-.add-pill svg { stroke:white; }
 
-/* HOME */
-.home-top { padding:24px 16px 8px; }
-.home-greeting-line { font-size:13px; color:var(--ink3); margin-bottom:2px; }
-.home-name { font-size:27px; font-weight:800; letter-spacing:-.6px; line-height:1.15; }
-.home-sub { font-size:13px; color:var(--ink3); margin-top:3px; }
-
-.health-card {
-  margin:14px 16px; padding:18px 20px;
-  border:1.5px solid var(--line); border-radius:var(--r-lg);
-  background:var(--surface);
+/* HOME / DASHBOARD */
+.dash-header { padding:28px 24px 24px; border-bottom:1px solid var(--line); }
+.dash-overline {
+  font-size:11px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink3); margin-bottom:8px;
 }
-.health-card-title {
-  font-size:11px; font-weight:700; color:var(--ink3);
-  text-transform:uppercase; letter-spacing:.1em; margin-bottom:14px;
+.dash-headline {
+  font-size:28px; font-weight:700; letter-spacing:-0.5px;
+  color:var(--ink); text-transform:uppercase; line-height:1.1;
 }
-.health-bars { display:flex; gap:8px; }
-.hb-item { flex:1; }
-.hb-num { font-size:26px; font-weight:800; line-height:1; margin-bottom:6px; }
-.hb-num.grn { color:var(--grn); }
-.hb-num.amb { color:var(--amb); }
-.hb-num.red { color:var(--red); }
-.hb-track { height:5px; border-radius:3px; background:var(--line); margin-bottom:6px; overflow:hidden; }
-.hb-fill { height:100%; border-radius:3px; transition:width .5s; }
-.hb-fill.grn { background:var(--grn-ring); }
-.hb-fill.amb { background:var(--amb-ring); }
-.hb-fill.red { background:var(--red-ring); }
-.hb-label { font-size:11px; font-weight:600; color:var(--ink3); }
-
+.dash-sub { font-size:12px; color:var(--ink3); margin-top:6px; }
+.dash-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  border-left:1px solid var(--line); border-top:1px solid var(--line);
+}
+.dash-cell {
+  aspect-ratio:1; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  cursor:pointer; padding:16px; transition:background 0.1s;
+}
+.dash-cell:active { background:var(--line); }
+.dash-cell-label {
+  font-size:10px; font-weight:600; letter-spacing:0.15em;
+  text-transform:uppercase; text-align:center; color:var(--ink);
+}
+.dash-metrics { padding:24px 24px 0; border-top:1px solid var(--line); }
+.dash-metrics-hdr {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:16px;
+}
+.dash-metrics-title {
+  font-size:16px; font-weight:600; color:var(--ink);
+  text-transform:uppercase; margin-top:4px;
+}
+.dash-bento { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); }
+.dash-bento-wide {
+  grid-column:span 2; padding:20px;
+  border-bottom:1px solid var(--line);
+}
+.dash-bento-cell {
+  padding:20px; border-right:1px solid var(--line);
+  display:flex; flex-direction:column; gap:6px;
+}
+.dash-bento-cell:last-child { border-right:none; }
+.dash-bento-top { display:flex; justify-content:space-between; margin-bottom:8px; }
+.dash-big-num {
+  font-size:40px; font-weight:700; letter-spacing:-1px;
+  color:var(--ink); line-height:1;
+}
+.dash-mid-num { font-size:28px; font-weight:700; color:var(--ink); line-height:1; }
+.dash-bento-label {
+  font-size:10px; font-weight:600; letter-spacing:0.15em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.dash-bar-track { height:2px; background:var(--line); margin-top:10px; overflow:hidden; }
+.dash-bar-fill { height:100%; background:var(--ink); transition:width .5s; }
+.dash-preview { padding-bottom:8px; }
 .section-row {
   display:flex; align-items:center;
-  padding:14px 16px 8px;
+  padding:20px 24px 12px; border-top:1px solid var(--line);
 }
-.section-row h2 { flex:1; font-size:15px; font-weight:700; }
+.section-row h2 {
+  flex:1; font-size:11px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--ink);
+}
 .section-row button {
   border:none; background:none; cursor:pointer;
-  font-family:inherit; font-size:13px; font-weight:600; color:var(--ink3);
+  font-family:inherit; font-size:11px; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--ink3);
 }
 
 /* PERSON CARD */
@@ -265,32 +379,97 @@ body {
 }
 .pc-arrow { color:var(--ink4); font-size:18px; font-weight:300; }
 
-/* PEOPLE SEARCH */
+/* PEOPLE TAB */
+.needs-section { border-bottom:1px solid var(--line); }
+.needs-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-left:1px solid var(--line); border-top:1px solid var(--line);
+}
+.needs-cell {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:20px 8px; gap:6px;
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  cursor:pointer; transition:background .1s;
+}
+.needs-cell:active, .needs-cell.needs-active { background:var(--line); }
+.needs-label {
+  font-size:10px; font-weight:600; letter-spacing:0.15em;
+  text-transform:uppercase; color:var(--ink);
+}
+.needs-count { font-size:10px; font-weight:500; color:var(--ink3); }
+.tracker-hdr {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px; border-bottom:2px solid var(--ink);
+}
+.tracker-title {
+  font-size:20px; font-weight:600; text-transform:uppercase;
+  color:var(--ink); letter-spacing:-0.3px;
+}
+.tracker-actions { display:flex; gap:16px; }
+.tracker-icon-btn {
+  border:none; background:none; cursor:pointer; color:var(--ink); padding:0;
+}
 .search-bar-wrap {
-  padding:10px 16px 6px; background:var(--surface);
-  border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5;
+  padding:10px 24px; border-bottom:1px solid var(--line); background:var(--surface);
 }
 .search-inner {
   display:flex; align-items:center; gap:10px;
-  background:var(--bg); border-radius:10px; padding:10px 14px;
+  background:var(--bg); border:1px solid var(--line); padding:10px 14px;
 }
-.search-inner svg { flex-shrink:0; color:var(--ink3); }
 .search-input {
   flex:1; border:none; outline:none; background:transparent;
   font-family:inherit; font-size:15px; color:var(--ink);
 }
 .search-input::placeholder { color:var(--ink4); }
 .filter-row {
-  display:flex; gap:7px; padding:10px 16px 6px;
-  overflow-x:auto; flex-shrink:0;
+  display:flex; gap:7px; padding:10px 24px;
+  overflow-x:auto; flex-shrink:0; border-bottom:1px solid var(--line);
 }
 .filter-chip {
-  padding:6px 14px; border-radius:999px; white-space:nowrap;
-  border:1.5px solid var(--line); background:var(--surface);
-  font-family:inherit; font-size:13px; font-weight:600;
+  padding:6px 14px; white-space:nowrap;
+  border:1px solid var(--line); background:var(--surface);
+  font-family:inherit; font-size:11px; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase;
   color:var(--ink3); cursor:pointer; flex-shrink:0;
 }
 .filter-chip.active { background:var(--ink); border-color:var(--ink); color:white; }
+.tracker-table-wrap { overflow-x:auto; flex:1; }
+.tracker-table { width:100%; border-collapse:collapse; min-width:340px; }
+.tracker-table thead th {
+  padding:12px 6px; font-size:10px; font-weight:600;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--ink3);
+  border-bottom:1px solid var(--line); white-space:nowrap; text-align:center;
+}
+.tracker-table thead th:first-child { text-align:left; padding-left:24px; min-width:90px; }
+.tracker-table tbody tr {
+  border-bottom:1px solid var(--line); cursor:pointer; transition:background .1s;
+}
+.tracker-table tbody tr:active { background:var(--bg); }
+.tracker-table tbody td { padding:14px 6px; text-align:center; }
+.tracker-table tbody td:first-child {
+  text-align:left; padding-left:24px;
+  font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap;
+}
+.empty-td {
+  padding:40px 24px; text-align:center;
+  color:var(--ink3); font-size:14px;
+}
+.tracker-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 24px; border-top:1px solid var(--line);
+  background:var(--surface); flex-shrink:0;
+}
+.tracker-add-btn {
+  background:var(--ink); color:white; border:none;
+  padding:12px 18px; font-family:inherit;
+  font-size:11px; font-weight:600; letter-spacing:0.15em;
+  text-transform:uppercase; cursor:pointer;
+}
+.tracker-pag-btn {
+  border:none; background:none; cursor:pointer;
+  color:var(--ink); padding:6px; transition:background .1s;
+}
+.tracker-pag-btn:active { background:var(--line); }
 .empty-state {
   display:flex; flex-direction:column; align-items:center;
   padding:56px 24px; gap:8px; text-align:center; color:var(--ink3);
@@ -310,20 +489,39 @@ body {
 }
 @media (max-width:430px) { .detail-overlay { left:0; margin-left:0; } }
 .detail-overlay.open { transform:translateX(0); }
-.detail-hero {
-  padding:28px 24px 20px;
-  display:flex; flex-direction:column; align-items:center;
-  text-align:center; gap:10px;
-  background:var(--surface);
-  border-bottom:1.5px solid var(--line);
+.detail-scroll { flex:1; overflow-y:auto; }
+.detail-header { padding:24px; border-bottom:1px solid var(--line); }
+.detail-name { font-size:28px; font-weight:700; color:var(--ink); letter-spacing:-0.5px; }
+.detail-id-badge {
+  font-size:12px; font-weight:500; color:var(--ink);
+  border:1px solid var(--ink); padding:4px 10px; white-space:nowrap;
 }
-.detail-hero-name { font-size:24px; font-weight:800; letter-spacing:-.5px; }
-.detail-hero-status { font-size:14px; font-weight:700; }
-.detail-body { flex:1; overflow-y:auto; padding:14px 16px 32px; }
+.detail-stats-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  border-left:1px solid var(--line); border-top:1px solid var(--line);
+}
+.detail-stat-cell {
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:16px; display:flex; flex-direction:column;
+  justify-content:space-between; min-height:80px;
+}
+.detail-stat-cell.stat-active { background:var(--ink); }
+.detail-stat-label {
+  font-size:10px; font-weight:600; letter-spacing:0.15em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.detail-stat-cell.stat-active .detail-stat-label { color:rgba(255,255,255,.6); }
+.detail-stat-val { font-size:20px; font-weight:600; color:var(--ink); }
+.detail-stat-cell.stat-active .detail-stat-val { color:white; }
+.detail-stat-sub {
+  font-size:10px; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:2px;
+}
+.detail-stat-val-sm { font-size:13px; font-weight:500; color:var(--ink); }
 
 /* CARDS */
 .card {
-  background:var(--surface); border:1.5px solid var(--line);
+  background:var(--surface); border:1px solid var(--line);
   border-radius:var(--r); margin-bottom:10px; overflow:hidden;
 }
 .card-hdr {
@@ -414,7 +612,7 @@ body {
 }
 .form-input {
   width:100%; padding:13px 14px;
-  border:1.5px solid var(--line); border-radius:var(--r);
+  border:1px solid var(--line); border-radius:var(--r);
   font-family:inherit; font-size:16px;
   background:var(--surface); color:var(--ink);
   outline:none; transition:border-color .12s;
@@ -428,7 +626,7 @@ body {
 .att-group { display:flex; gap:7px; margin-bottom:14px; }
 .att-opt {
   flex:1; padding:11px 6px; text-align:center;
-  border:1.5px solid var(--line); border-radius:var(--r);
+  border:1px solid var(--line); border-radius:var(--r);
   background:var(--surface); cursor:pointer;
   font-family:inherit; font-size:12px; font-weight:600;
   color:var(--ink3); transition:all .12s;
@@ -452,10 +650,11 @@ body {
 }
 .sheet.open { opacity:1; pointer-events:all; }
 .sheet-inner {
-  background:var(--surface); border-radius:20px 20px 0 0;
+  background:var(--surface); border-radius:0;
   padding:16px 16px 40px;
   transform:translateY(100%); transition:transform .25s cubic-bezier(.4,0,.2,1);
   max-width:430px; margin:0 auto; width:100%;
+  border-top:1px solid var(--line);
 }
 .sheet.open .sheet-inner { transform:translateY(0); }
 .sheet-title {
@@ -481,7 +680,7 @@ body {
 
 /* SETTINGS */
 .settings-section {
-  background:var(--surface); border:1.5px solid var(--line);
+  background:var(--surface); border:1px solid var(--line);
   border-radius:var(--r); margin:14px 16px; overflow:hidden;
 }
 .settings-row {
@@ -495,7 +694,7 @@ body {
 .settings-signout {
   width:calc(100% - 32px); margin:4px 16px 16px;
   padding:14px; border-radius:var(--r);
-  border:1.5px solid var(--line); background:var(--surface);
+  border:1px solid var(--line); background:var(--surface);
   font-family:inherit; font-size:15px; font-weight:600;
   color:var(--red); cursor:pointer;
 }
@@ -529,6 +728,68 @@ body {
 /* CHECKMARK SVG for needs */
 .chk-svg { display:none; }
 .need-check.on .chk-svg { display:block; }
+
+/* NOTES */
+.note-item {
+  padding:12px 14px; border-bottom:1px solid var(--line);
+}
+.note-item:last-child { border-bottom:none; }
+.note-date { font-size:11px; font-weight:700; color:var(--ink3); margin-bottom:3px; }
+.note-text { font-size:14px; line-height:1.55; white-space:pre-wrap; color:var(--ink2); }
+.note-empty { padding:12px 14px; font-size:14px; color:var(--ink4); }
+.note-add-wrap { padding:12px 14px; border-top:1px solid var(--line); }
+.note-textarea {
+  width:100%; border:none; outline:none;
+  font-family:inherit; font-size:14px; color:var(--ink);
+  background:transparent; resize:none; line-height:1.55; min-height:64px;
+}
+.note-textarea::placeholder { color:var(--ink4); }
+.note-footer { display:flex; justify-content:flex-end; margin-top:8px; gap:8px; }
+.note-save-btn {
+  padding:8px 18px; border-radius:0; border:none;
+  background:var(--ink); color:white;
+  font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
+}
+.note-cancel-btn {
+  padding:8px 14px; border-radius:0; border:none;
+  background:transparent; color:var(--ink3);
+  font-family:inherit; font-size:13px; font-weight:600; cursor:pointer;
+}
+.card-hdr-row {
+  display:flex; align-items:center;
+  padding:10px 14px; border-bottom:1px solid var(--line);
+}
+.card-hdr-row .card-hdr-label {
+  font-size:11px; font-weight:700; color:var(--ink3);
+  text-transform:uppercase; letter-spacing:.1em; flex:1;
+}
+.card-hdr-row .card-hdr-btn {
+  font-size:13px; font-weight:600; color:var(--ink3);
+  background:none; border:none; cursor:pointer; font-family:inherit; padding:0;
+}
+
+/* ADMIN GROUP CARDS */
+.group-card {
+  padding:16px 24px; background:var(--surface);
+  border-bottom:1px solid var(--line);
+  cursor:pointer; transition:background .1s;
+}
+.group-card:active { background:var(--bg); }
+.group-card-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.group-card-av {
+  width:36px; height:36px;
+  background:var(--ink); color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; font-weight:700; flex-shrink:0;
+}
+.group-card-name { font-size:15px; font-weight:600; color:var(--ink); }
+.group-card-region { font-size:12px; color:var(--ink3); margin-top:1px; }
+.group-card-stats { display:flex; gap:14px; flex-wrap:wrap; }
+.group-stat { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:var(--ink2); }
+.group-stat-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.group-no-members { font-size:12px; color:var(--ink4); }
+
+/* MORE BUTTON in detail header — now uses .hdr-menu-btn */
 </style>
 </head>
 <body>
@@ -585,60 +846,158 @@ body {
 <div class="shell hidden" id="app-shell">
 
   <div class="app-hdr" id="app-hdr">
-    <button class="hdr-back hidden" id="hdr-back" onclick="hdrBack()">&#8592;</button>
-    <div class="hdr-title" id="hdr-title">Real Disciple</div>
-    <div id="hdr-right"></div>
+    <button class="hdr-menu-btn">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="hdr-title">REAL DISCIPLE</div>
+    <div class="hdr-avatar" id="hdr-avatar">
+      <span class="hdr-av-text" id="hdr-av-initials"></span>
+    </div>
   </div>
 
-  <!-- HOME -->
+  <!-- HOME / DASHBOARD -->
   <div class="view v-active" id="view-home">
-    <div class="home-top">
-      <div class="home-greeting-line" id="hm-time"></div>
-      <div class="home-name" id="hm-name"></div>
-      <div class="home-sub" id="hm-sub"></div>
-    </div>
-    <div class="health-card">
-      <div class="health-card-title">Group Health</div>
-      <div class="health-bars">
-        <div class="hb-item">
-          <div class="hb-num grn" id="hs-grn">0</div>
-          <div class="hb-track"><div class="hb-fill grn" id="hb-grn" style="width:0"></div></div>
-          <div class="hb-label">Flourishing</div>
-        </div>
-        <div class="hb-item">
-          <div class="hb-num amb" id="hs-amb">0</div>
-          <div class="hb-track"><div class="hb-fill amb" id="hb-amb" style="width:0"></div></div>
-          <div class="hb-label">Growing</div>
-        </div>
-        <div class="hb-item">
-          <div class="hb-num red" id="hs-red">0</div>
-          <div class="hb-track"><div class="hb-fill red" id="hb-red" style="width:0"></div></div>
-          <div class="hb-label">Needs Care</div>
+    <section class="dash-header">
+      <p class="dash-overline">DASHBOARD OVERVIEW</p>
+      <h2 class="dash-headline">Equipping the Saints.</h2>
+      <p class="dash-sub" id="hm-sub"></p>
+    </section>
+    <section class="dash-grid">
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">auto_stories</span>
+        <span class="dash-cell-label">GOSPEL CLASS</span>
+      </div>
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">groups</span>
+        <span class="dash-cell-label">CONNECT GROUP</span>
+      </div>
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">water_drop</span>
+        <span class="dash-cell-label">BAPTISED</span>
+      </div>
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">diversity_3</span>
+        <span class="dash-cell-label">BE ONE MAKE ONE</span>
+      </div>
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">workspace_premium</span>
+        <span class="dash-cell-label">MEMBERSHIP CLASS</span>
+      </div>
+      <div class="dash-cell" onclick="switchTab('people')">
+        <span class="material-symbols-outlined">school</span>
+        <span class="dash-cell-label">RD CLASS</span>
+      </div>
+    </section>
+    <section class="dash-metrics">
+      <div class="dash-metrics-hdr">
+        <div>
+          <p class="dash-overline">METRICS &amp; GROWTH</p>
+          <h3 class="dash-metrics-title">Health Check-up Overview</h3>
         </div>
       </div>
-    </div>
-    <div class="section-row">
-      <h2>Your Group</h2>
-      <button onclick="switchTab('people')">See all</button>
-    </div>
-    <div id="home-preview"></div>
+      <div class="dash-bento">
+        <div class="dash-bento-wide">
+          <div class="dash-bento-top">
+            <span class="material-symbols-outlined">monitoring</span>
+          </div>
+          <div class="dash-big-num" id="hs-vitality">—</div>
+          <p class="dash-bento-label">SPIRITUAL VITALITY INDEX</p>
+          <div class="dash-bar-track"><div class="dash-bar-fill" id="hb-vitality" style="width:0"></div></div>
+        </div>
+        <div class="dash-bento-cell">
+          <span class="material-symbols-outlined">trending_up</span>
+          <div class="dash-mid-num" id="hs-grn">0</div>
+          <p class="dash-bento-label">FLOURISHING</p>
+        </div>
+        <div class="dash-bento-cell">
+          <span class="material-symbols-outlined">favorite_border</span>
+          <div class="dash-mid-num" id="hs-red">0</div>
+          <p class="dash-bento-label">NEEDS CARE</p>
+        </div>
+      </div>
+    </section>
+    <section class="dash-preview">
+      <div class="section-row">
+        <h2 id="home-section-title">YOUR GROUP</h2>
+        <button id="home-section-btn" onclick="switchTab('people')">SEE ALL</button>
+      </div>
+      <div id="home-preview"></div>
+    </section>
   </div>
 
   <!-- PEOPLE -->
   <div class="view" id="view-people">
-    <div class="search-bar-wrap">
+    <section class="needs-section">
+      <p class="dash-overline" style="text-align:center;padding:20px 24px 12px;">NEEDS ATTENTION</p>
+      <div class="needs-grid">
+        <div class="needs-cell" onclick="filterByNeed('marital')">
+          <span class="material-symbols-outlined" style="color:var(--red)">favorite_border</span>
+          <span class="needs-label">MARITAL</span>
+          <span class="needs-count" id="nc-marital">0 REQUESTS</span>
+        </div>
+        <div class="needs-cell" onclick="filterByNeed('family')">
+          <span class="material-symbols-outlined">family_history</span>
+          <span class="needs-label">FAMILY</span>
+          <span class="needs-count" id="nc-family">0 REQUESTS</span>
+        </div>
+        <div class="needs-cell" onclick="filterByNeed('bereavement')">
+          <span class="material-symbols-outlined">sentiment_dissatisfied</span>
+          <span class="needs-label">BEREAVEMENT</span>
+          <span class="needs-count" id="nc-bereavement">0 REQUESTS</span>
+        </div>
+      </div>
+    </section>
+    <div class="tracker-hdr">
+      <h3 class="tracker-title">Discipleship Tracker</h3>
+      <div class="tracker-actions">
+        <button class="tracker-icon-btn" onclick="toggleSearch()">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <button class="tracker-icon-btn" onclick="toggleFilter()">
+          <span class="material-symbols-outlined">filter_list</span>
+        </button>
+      </div>
+    </div>
+    <div id="search-wrap" class="search-bar-wrap hidden">
       <div class="search-inner">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input class="search-input" id="search-input" placeholder="Search..." oninput="renderPeople()">
       </div>
     </div>
-    <div class="filter-row">
-      <button class="filter-chip active" data-f="all"   onclick="setFilter(this)">All</button>
-      <button class="filter-chip"        data-f="grn"   onclick="setFilter(this)">Flourishing</button>
-      <button class="filter-chip"        data-f="amb"   onclick="setFilter(this)">Growing</button>
-      <button class="filter-chip"        data-f="red"   onclick="setFilter(this)">Needs Care</button>
+    <div id="filter-wrap" class="hidden">
+      <div class="filter-row">
+        <button class="filter-chip active" data-f="all" onclick="setFilter(this)">All</button>
+        <button class="filter-chip" data-f="grn" onclick="setFilter(this)">Flourishing</button>
+        <button class="filter-chip" data-f="amb" onclick="setFilter(this)">Growing</button>
+        <button class="filter-chip" data-f="red" onclick="setFilter(this)">Needs Care</button>
+      </div>
     </div>
-    <div id="people-list"></div>
+    <div class="tracker-table-wrap">
+      <table class="tracker-table">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>GOSPEL</th>
+            <th>CONNECT</th>
+            <th>BAPTISM</th>
+            <th>B1M1</th>
+            <th>MEMBER</th>
+            <th>MINISTRY</th>
+          </tr>
+        </thead>
+        <tbody id="people-list"></tbody>
+      </table>
+    </div>
+    <div class="tracker-footer">
+      <button class="tracker-add-btn" onclick="openAdd()">ADD NEW DISCIPLE</button>
+      <div style="display:flex">
+        <button class="tracker-pag-btn" onclick="prevPage()">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="tracker-pag-btn" onclick="nextPage()">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- SETTINGS -->
@@ -673,30 +1032,20 @@ body {
   <!-- BOTTOM NAV -->
   <nav class="bnav">
     <button class="bnav-btn active" data-tab="home" onclick="switchTab('home')">
-      <div class="bnav-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg>
-      </div>
-      <span>Home</span>
+      <span class="material-symbols-outlined">space_dashboard</span>
+      <span>DASHBOARD</span>
+    </button>
+    <button class="bnav-btn" data-tab="milestones" onclick="toast('Milestones coming soon')">
+      <span class="material-symbols-outlined">checklist_rtl</span>
+      <span>MILESTONES</span>
     </button>
     <button class="bnav-btn" data-tab="people" onclick="switchTab('people')">
-      <div class="bnav-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M16 3.13a4 4 0 010 7.75M21 21v-2a4 4 0 00-3-3.87"/></svg>
-      </div>
-      <span>My Group</span>
-    </button>
-    <button class="bnav-btn" onclick="openAdd()">
-      <div class="bnav-icon">
-        <div class="add-pill">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </div>
-      </div>
-      <span>Add</span>
+      <span class="material-symbols-outlined">group</span>
+      <span>PEOPLE</span>
     </button>
     <button class="bnav-btn" data-tab="settings" onclick="switchTab('settings')">
-      <div class="bnav-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      </div>
-      <span>Settings</span>
+      <span class="material-symbols-outlined">settings</span>
+      <span>SETTINGS</span>
     </button>
   </nav>
 </div>
@@ -704,20 +1053,28 @@ body {
 <!-- ─── PERSON DETAIL OVERLAY ──────────────────── -->
 <div class="detail-overlay" id="detail-overlay">
   <div class="app-hdr">
-    <button class="hdr-back" onclick="closeDetail()">&#8592;</button>
-    <div class="hdr-title" id="d-hdr-title"></div>
-    <button class="hdr-text-btn" onclick="confirmDelete()">Remove</button>
+    <button class="hdr-menu-btn" onclick="closeDetail()">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <div class="hdr-title">DISCIPLE PROFILE</div>
+    <button class="hdr-menu-btn" onclick="openDetailMenu()">
+      <span class="material-symbols-outlined">more_vert</span>
+    </button>
   </div>
-  <div class="detail-hero" id="d-hero"></div>
-  <div class="detail-body" id="d-body"></div>
+  <div class="detail-scroll" id="d-scroll">
+    <div id="d-hero"></div>
+    <div id="d-body"></div>
+  </div>
 </div>
 
 <!-- ─── ADD PERSON OVERLAY ─────────────────────── -->
 <div class="add-overlay" id="add-overlay">
   <div class="app-hdr">
-    <button class="hdr-back" onclick="closeAdd()">&#10005;</button>
-    <div class="hdr-title">Add Person</div>
-    <div></div>
+    <button class="hdr-menu-btn" onclick="closeAdd()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="hdr-title">ADD PERSON</div>
+    <div style="width:34px"></div>
   </div>
   <div class="add-body">
     <div class="form-row">
@@ -778,6 +1135,37 @@ body {
   </div>
 </div>
 
+<!-- ─── DETAIL ACTION MENU ────────────────────── -->
+<div class="sheet" id="action-sheet" onclick="closeActionSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title" id="action-sheet-title"></div>
+    <button class="sheet-opt" onclick="openEditName()">Edit name</button>
+    <button class="sheet-opt" style="color:var(--red)" onclick="openDeleteConfirm()">Remove from group</button>
+    <button class="sheet-cancel" onclick="closeActionSheet()">Cancel</button>
+  </div>
+</div>
+
+<!-- ─── DELETE CONFIRM SHEET ──────────────────── -->
+<div class="sheet" id="delete-sheet" onclick="closeDeleteSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title" id="delete-sheet-title"></div>
+    <button class="sheet-opt" style="color:var(--red);background:var(--red-l)" onclick="executeDelete()">Yes, remove</button>
+    <button class="sheet-cancel" onclick="closeDeleteSheet()">Cancel</button>
+  </div>
+</div>
+
+<!-- ─── EDIT NAME SHEET ────────────────────────── -->
+<div class="sheet" id="editname-sheet" onclick="closeEditNameSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title">Edit name</div>
+    <div class="form-row" style="margin-bottom:8px">
+      <input class="form-input" id="edit-fname" type="text" placeholder="First name" autocomplete="off" style="margin-bottom:0">
+      <input class="form-input initial-input" id="edit-init" type="text" placeholder="A" maxlength="1" autocomplete="off" style="text-transform:uppercase;margin-bottom:0">
+    </div>
+    <button class="submit-btn" onclick="saveEditName()">Save</button>
+  </div>
+</div>
+
 <!-- ─── TOAST ─────────────────────────────────── -->
 <div class="toast" id="toast"></div>
 
@@ -804,10 +1192,23 @@ const FIREBASE_CONFIG = {
    Add or rename leaders here. isAdmin = sees all groups.
    ────────────────────────────────────────────── */
 const LEADERS = [
-  { id:'admin', name:'Pastor Royston',  group:'All Groups',      pin:'0000', isAdmin:true  },
-  { id:'cg1',   name:'Leader One',      group:'Connect Group A', pin:'1111', isAdmin:false },
-  { id:'cg2',   name:'Leader Two',      group:'Connect Group B', pin:'2222', isAdmin:false },
-  { id:'cg3',   name:'Leader Three',    group:'Connect Group C', pin:'3333', isAdmin:false },
+  // Admins
+  { id:'admin_royston',  name:'Pastor Royston',  group:'All Groups', pin:'0000', isAdmin:true },
+  { id:'admin_courtney', name:'Pastor Courtney', group:'All Groups', pin:'0000', isAdmin:true },
+  // Connect Group Leaders (men only — couples listed by region)
+  { id:'cg_at', name:'Adrian',    group:'Selsdon, South Croydon',  pin:'1234', isAdmin:false },
+  { id:'cg_cd', name:'Chinedu',   group:'Wallington, Surrey (CD)', pin:'1234', isAdmin:false },
+  { id:'cg_cj', name:'Curtis',    group:'Gipsy Hill, SE19',        pin:'1234', isAdmin:false },
+  { id:'cg_jp', name:'Jahni',     group:'Colliers Wood, SW19',     pin:'1234', isAdmin:false },
+  { id:'cg_jd', name:'James D.',  group:'Wallington, Surrey (JD)', pin:'1234', isAdmin:false },
+  { id:'cg_js', name:'James S.',  group:'South Norwood, SE25',     pin:'1234', isAdmin:false },
+  { id:'cg_ji', name:'Jimmy',     group:'Wandsworth',              pin:'1234', isAdmin:false },
+  { id:'cg_jk', name:'John Kofi', group:'Battersea, SW11',         pin:'1234', isAdmin:false },
+  { id:'cg_jt', name:'John T.',   group:'Warlingham, Surrey',      pin:'1234', isAdmin:false },
+  { id:'cg_kb', name:'Kwasi',     group:'Streatham Common, SW16',  pin:'1234', isAdmin:false },
+  { id:'cg_lg', name:'Lloyd',     group:'Mitcham, CR4',            pin:'1234', isAdmin:false },
+  { id:'cg_ms', name:'Miles',     group:'Lower Morden, SM4',       pin:'1234', isAdmin:false },
+  { id:'cg_of', name:'Okeme',     group:'Kennington, SE11',        pin:'1234', isAdmin:false },
 ];
 
 /* ──────────────────────────────────────────────
@@ -818,6 +1219,7 @@ let useLocal    = false;
 let currentUser = null;
 let people      = [];
 let activeFilter = 'all';
+let peoplePage  = 0;
 let detailId    = null;
 let attSheetPid = null;
 
@@ -905,7 +1307,7 @@ function ringHTML(pct, size) {
       stroke-dasharray="${pct*c} ${c}" stroke-dashoffset="${c/4}" stroke-linecap="round"
       transform="rotate(0 ${size/2} ${size/2})"/>
     <text x="${size/2}" y="${size/2+1}" text-anchor="middle" dominant-baseline="middle"
-      font-family="Inter,system-ui,sans-serif" font-size="${fs}" font-weight="800" fill="${m.ring}">
+      font-family="Hanken Grotesk,system-ui,sans-serif" font-size="${fs}" font-weight="800" fill="${m.ring}">
       ${Math.round(pct*100)}%
     </text>
   </svg>`;
@@ -968,6 +1370,7 @@ async function checkPin() {
   if (pinStr === pinLeader.pin) {
     currentUser = pinLeader;
     people = await dbLoad();
+    document.getElementById('hdr-av-initials').textContent = initials(currentUser.name);
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app-shell').classList.remove('hidden');
     renderHome();
@@ -981,6 +1384,7 @@ async function checkPin() {
 
 function signOut() {
   currentUser = null; people = [];
+  document.getElementById('hdr-av-initials').textContent = '';
   document.getElementById('app-shell').classList.add('hidden');
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('login-panels').classList.remove('show-pin');
@@ -993,17 +1397,13 @@ function signOut() {
 function switchTab(tab) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
   document.querySelectorAll('.bnav-btn[data-tab]').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-'+tab).classList.add('v-active');
+  const view = document.getElementById('view-'+tab);
+  if (view) view.classList.add('v-active');
   document.querySelector(`.bnav-btn[data-tab="${tab}"]`)?.classList.add('active');
-  const titles = { home:'Real Disciple', people:'My Group', settings:'Settings' };
-  document.getElementById('hdr-title').textContent = titles[tab] || 'Real Disciple';
-  document.getElementById('hdr-back').classList.add('hidden');
-  document.getElementById('hdr-right').innerHTML = '';
   if (tab === 'home') renderHome();
   if (tab === 'people') renderPeople();
+  if (tab === 'settings') renderSettings();
 }
-
-function hdrBack() { switchTab('home'); }
 
 /* ──────────────────────────────────────────────
    HOME
@@ -1015,69 +1415,161 @@ function myPeople() {
 }
 
 function renderHome() {
-  const h = new Date().getHours();
-  document.getElementById('hm-time').textContent =
-    h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('hm-name').textContent = currentUser.name.split(' ')[0];
-  document.getElementById('hm-sub').textContent  = currentUser.group;
+  if (currentUser.isAdmin) { renderAdminHome(); return; }
 
-  const mp = myPeople();
+  const mp    = myPeople();
   const total = mp.length || 1;
-  const gn = mp.filter(p => score(p) >= 0.7).length;
-  const am = mp.filter(p => { const s=score(p); return s>=0.35&&s<0.7; }).length;
-  const rd = mp.filter(p => score(p) < 0.35).length;
+  const gn    = mp.filter(p => score(p) >= 0.7).length;
+  const rd    = mp.filter(p => score(p) < 0.35).length;
+  const vPct  = Math.round(gn / total * 100);
 
+  document.getElementById('hm-sub').textContent = currentUser.group;
+  document.getElementById('hs-vitality').textContent = vPct + '%';
+  document.getElementById('hb-vitality').style.width = vPct + '%';
   document.getElementById('hs-grn').textContent = gn;
-  document.getElementById('hs-amb').textContent = am;
   document.getElementById('hs-red').textContent = rd;
-  document.getElementById('hb-grn').style.width = (gn/total*100)+'%';
-  document.getElementById('hb-amb').style.width = (am/total*100)+'%';
-  document.getElementById('hb-red').style.width = (rd/total*100)+'%';
+  document.getElementById('home-section-btn').style.display = '';
 
-  const preview = mp.slice(0,5);
   const el = document.getElementById('home-preview');
-  if (!preview.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-state-icon">&#128100;</div>
-      <h3>No one in your group yet</h3>
-      <p>Tap the + button to add your first person</p>
+  const preview = mp.slice(0, 5);
+  el.innerHTML = preview.length
+    ? preview.map(personCardHTML).join('')
+    : `<div class="empty-state">
+        <div class="empty-state-icon">&#128100;</div>
+        <h3>No one in your group yet</h3>
+        <p>Go to People to add your first person</p>
+       </div>`;
+}
+
+function renderAdminHome() {
+  const cgLeaders = LEADERS.filter(l => !l.isAdmin);
+  const total = people.length || 1;
+  const gn    = people.filter(p => score(p) >= 0.7).length;
+  const rd    = people.filter(p => score(p) < 0.35).length;
+  const vPct  = Math.round(gn / total * 100);
+
+  document.getElementById('hm-sub').textContent =
+    `${people.length} people · ${cgLeaders.length} groups`;
+  document.getElementById('hs-vitality').textContent = vPct + '%';
+  document.getElementById('hb-vitality').style.width = vPct + '%';
+  document.getElementById('hs-grn').textContent = gn;
+  document.getElementById('hs-red').textContent = rd;
+  document.getElementById('home-section-title').textContent = 'CONNECT GROUPS';
+  document.getElementById('home-section-btn').style.display = 'none';
+
+  document.getElementById('home-preview').innerHTML = cgLeaders.map(l => {
+    const gp  = people.filter(p => p.leaderId === l.id);
+    const fl  = gp.filter(p => score(p) >= 0.7).length;
+    const gr  = gp.filter(p => { const s=score(p); return s>=0.35&&s<0.7; }).length;
+    const nc  = gp.filter(p => score(p) < 0.35).length;
+    const cnt = gp.length;
+    return `<div class="group-card">
+      <div class="group-card-top">
+        <div class="group-card-av">${initials(l.name)}</div>
+        <div>
+          <div class="group-card-name">${esc(l.name)}</div>
+          <div class="group-card-region">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+        </div>
+      </div>
+      ${cnt === 0
+        ? `<div class="group-no-members">No members yet</div>`
+        : `<div class="group-card-stats">
+            <span class="group-stat"><span class="group-stat-dot" style="background:var(--grn-ring)"></span>${fl} Flourishing</span>
+            <span class="group-stat"><span class="group-stat-dot" style="background:var(--amb-ring)"></span>${gr} Growing</span>
+            <span class="group-stat"><span class="group-stat-dot" style="background:var(--red-ring)"></span>${nc} Needs Care</span>
+          </div>`
+      }
     </div>`;
-  } else {
-    el.innerHTML = preview.map(personCardHTML).join('');
-  }
+  }).join('');
 }
 
 /* ──────────────────────────────────────────────
    PEOPLE LIST
    ────────────────────────────────────────────── */
+const PAGE_SIZE = 10;
+
 function setFilter(btn) {
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   activeFilter = btn.dataset.f;
+  peoplePage = 0;
   renderPeople();
 }
 
-function renderPeople() {
-  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+function filterByNeed(f) {
+  activeFilter = (activeFilter === f) ? 'all' : f;
+  document.querySelectorAll('.needs-cell').forEach(c =>
+    c.classList.toggle('needs-active', c.getAttribute('onclick').includes(`'${activeFilter}'`))
+  );
+  peoplePage = 0;
+  renderPeople();
+}
+
+function toggleSearch() {
+  const wrap = document.getElementById('search-wrap');
+  wrap.classList.toggle('hidden');
+  if (!wrap.classList.contains('hidden')) document.getElementById('search-input').focus();
+  else { document.getElementById('search-input').value = ''; renderPeople(); }
+}
+
+function toggleFilter() {
+  document.getElementById('filter-wrap').classList.toggle('hidden');
+}
+
+function prevPage() { if (peoplePage > 0) { peoplePage--; renderPeople(); } }
+function nextPage() {
+  const q    = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const list = filteredPeople(q);
+  if ((peoplePage + 1) * PAGE_SIZE < list.length) { peoplePage++; renderPeople(); }
+}
+
+function filteredPeople(q) {
   let list = myPeople();
   if (q) list = list.filter(p =>
     `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q) ||
     (p.ministryName||'').toLowerCase().includes(q)
   );
-  if (activeFilter === 'grn') list = list.filter(p => score(p) >= 0.7);
-  else if (activeFilter === 'amb') list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
-  else if (activeFilter === 'red') list = list.filter(p => score(p) < 0.35);
+  if      (activeFilter === 'grn')         list = list.filter(p => score(p) >= 0.7);
+  else if (activeFilter === 'amb')         list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
+  else if (activeFilter === 'red')         list = list.filter(p => score(p) < 0.35);
+  else if (activeFilter === 'marital')     list = list.filter(p => p.needsMarital);
+  else if (activeFilter === 'family')      list = list.filter(p => p.needsFamily);
+  else if (activeFilter === 'bereavement') list = list.filter(p => p.needsBereavement);
+  return list;
+}
 
-  const el = document.getElementById('people-list');
-  if (!list.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-state-icon">&#128269;</div>
-      <h3>No results</h3>
-      <p>Try a different search or filter</p>
-    </div>`;
-  } else {
-    el.innerHTML = list.map(personCardHTML).join('');
-  }
+function personRowHTML(p) {
+  const chk = `<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 200,'GRAD' 0,'opsz' 20;font-size:20px;color:var(--ink)">check_circle</span>`;
+  const mmt = `<span class="material-symbols-outlined" style="font-size:20px;color:var(--ink4)">radio_button_unchecked</span>`;
+  return `<tr onclick="openDetail('${p.id}')">
+    <td>${esc(p.firstName)} ${esc(p.lastInit)}.</td>
+    <td>${p.gospelClass              ? chk : mmt}</td>
+    <td>${p.attendance==='fellowship'? chk : mmt}</td>
+    <td>${p.baptised                 ? chk : mmt}</td>
+    <td>${p.beOneMakeOne             ? chk : mmt}</td>
+    <td>${mmt}</td>
+    <td>${p.inMinistry               ? chk : mmt}</td>
+  </tr>`;
+}
+
+function renderPeople() {
+  const q    = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const all  = myPeople();
+
+  const nM = all.filter(p => p.needsMarital).length;
+  const nF = all.filter(p => p.needsFamily).length;
+  const nB = all.filter(p => p.needsBereavement).length;
+  const r  = n => `${n} ${n===1?'REQUEST':'REQUESTS'}`;
+  document.getElementById('nc-marital')    ?.textContent = r(nM);
+  document.getElementById('nc-family')     ?.textContent = r(nF);
+  document.getElementById('nc-bereavement')?.textContent = r(nB);
+
+  const list  = filteredPeople(q);
+  const paged = list.slice(peoplePage * PAGE_SIZE, (peoplePage + 1) * PAGE_SIZE);
+  const el    = document.getElementById('people-list');
+  el.innerHTML = paged.length
+    ? paged.map(personRowHTML).join('')
+    : `<tr><td colspan="7" class="empty-td">No results</td></tr>`;
 }
 
 function personCardHTML(p) {
@@ -1118,47 +1610,124 @@ function closeDetail() {
 }
 
 function renderDetail(p) {
+  renderDetailHero(p);
+  renderDetailBody(p);
+}
+
+function renderDetailHero(p) {
   const pct = score(p);
   const m   = healthMeta(pct);
-
-  document.getElementById('d-hdr-title').textContent = `${p.firstName} ${p.lastInit}.`;
-
-  document.getElementById('d-hero').style.background = m.bg;
+  const ldr = LEADERS.find(l => l.id === p.leaderId);
+  const shortId = String(p.id).replace(/\D/g,'').slice(-5) || p.id.slice(-5).toUpperCase();
   document.getElementById('d-hero').innerHTML = `
-    ${ringHTML(pct, 84)}
-    <div class="detail-hero-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
-    <div class="detail-hero-status" style="color:${m.text}">${m.label}</div>
-  `;
-
-  document.getElementById('d-body').innerHTML = `
-    <!-- Discipleship Journey -->
-    <div class="card">
-      <div class="card-hdr">Discipleship Journey</div>
-      ${toggleRowHTML(p, 'newStart',    'New Start',          '')}
-      ${toggleRowHTML(p, 'baptised',    'Baptised',           '')}
-      ${attRowHTML(p)}
-      ${ministryRowHTML(p)}
-      ${toggleRowHTML(p, 'gospelClass', 'Gospel Class',       '')}
-      ${toggleRowHTML(p, 'beOneMakeOne','Be One, Make One',   '')}
-      ${toggleRowHTML(p, 'rdClass',     'RD Class',           '')}
+    <div class="detail-header">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+        <div class="detail-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+        <div class="detail-id-badge">ID: ${esc(shortId)}</div>
+      </div>
     </div>
-
-    <!-- Needs -->
-    <div class="card">
-      <div class="card-hdr">General Needs</div>
-      ${needRowHTML(p, 'needsMarital',      'Marital')}
-      ${needRowHTML(p, 'needsFamily',       'Family')}
-      ${needRowHTML(p, 'needsBereavement',  'Bereavement')}
+    <div class="detail-stats-grid">
+      <div class="detail-stat-cell">
+        <span class="detail-stat-label">BAPTISED</span>
+        <span class="detail-stat-val">${p.baptised ? 'YES' : 'NO'}</span>
+      </div>
+      <div class="detail-stat-cell">
+        <span class="detail-stat-label">MEMBERSHIP</span>
+        <span class="detail-stat-val">${p.membershipClass ? 'YES' : 'NO'}</span>
+      </div>
+      <div class="detail-stat-cell">
+        <span class="detail-stat-label">GROUP</span>
+        <span class="detail-stat-sub">LEADER</span>
+        <span class="detail-stat-val-sm">${ldr ? esc(ldr.name) : 'Unassigned'}</span>
+      </div>
+      <div class="detail-stat-cell stat-active">
+        <span class="detail-stat-label">STATUS</span>
+        <span class="detail-stat-val">${m.label.toUpperCase()}</span>
+      </div>
     </div>
   `;
 }
 
+function renderDetailBody(p) {
+  const scroll = document.getElementById('d-scroll');
+  const top    = scroll ? scroll.scrollTop : 0;
+  const body   = document.getElementById('d-body');
+  body.innerHTML = `
+    <div class="card">
+      <div class="card-hdr">DISCIPLESHIP PATHWAY</div>
+      ${toggleRowHTML(p, 'newStart',    'New Start',        '')}
+      ${toggleRowHTML(p, 'baptised',    'Baptised',         '')}
+      ${attRowHTML(p)}
+      ${ministryRowHTML(p)}
+      ${toggleRowHTML(p, 'gospelClass', 'Gospel Class',     '')}
+      ${toggleRowHTML(p, 'beOneMakeOne','Be One, Make One', '')}
+      ${toggleRowHTML(p, 'rdClass',     'RD Class',         '')}
+    </div>
+    <div class="card">
+      <div class="card-hdr">SUPPORT NEEDED</div>
+      ${needRowHTML(p, 'needsMarital',     'Marital')}
+      ${needRowHTML(p, 'needsFamily',      'Family')}
+      ${needRowHTML(p, 'needsBereavement', 'Bereavement')}
+    </div>
+    ${notesHTML(p)}
+  `;
+  if (scroll) scroll.scrollTop = top;
+}
+
+function notesHTML(p) {
+  const notes = (p.notes || []).slice().reverse();
+  const listHTML = notes.length
+    ? notes.map(n => `
+        <div class="note-item">
+          <div class="note-date">${fmtDate(n.date)}</div>
+          <div class="note-text">${esc(n.text)}</div>
+        </div>`).join('')
+    : `<div class="note-empty">No notes yet</div>`;
+  return `
+    <div class="card">
+      <div class="card-hdr-row">
+        <span class="card-hdr-label">Notes</span>
+        <button class="card-hdr-btn" onclick="toggleNoteInput('${p.id}')">+ Add</button>
+      </div>
+      ${listHTML}
+      <div id="note-input-${p.id}" class="note-add-wrap hidden">
+        <textarea class="note-textarea" id="note-ta-${p.id}"
+          placeholder="What did you observe or discuss?"></textarea>
+        <div class="note-footer">
+          <button class="note-cancel-btn" onclick="toggleNoteInput('${p.id}')">Cancel</button>
+          <button class="note-save-btn" onclick="saveNote('${p.id}')">Save</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleNoteInput(pid) {
+  const wrap = document.getElementById('note-input-' + pid);
+  wrap.classList.toggle('hidden');
+  if (!wrap.classList.contains('hidden'))
+    document.getElementById('note-ta-' + pid).focus();
+}
+
+async function saveNote(pid) {
+  const ta   = document.getElementById('note-ta-' + pid);
+  const text = ta.value.trim();
+  if (!text) { toast('Write something first'); return; }
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  if (!p.notes) p.notes = [];
+  p.notes.push({ date: new Date().toISOString(), text });
+  await dbSave(p);
+  renderDetailBody(p);
+  toast('Note saved');
+}
+
 function toggleRowHTML(p, field, title, sub) {
   const on = !!p[field];
+  const dateSub = (on && p[field + 'Date']) ? fmtDate(p[field + 'Date']) : sub;
   return `<div class="toggle-row">
     <div class="toggle-label">
       <div class="toggle-title">${title}</div>
-      ${sub ? `<div class="toggle-sub">${sub}</div>` : ''}
+      ${dateSub ? `<div class="toggle-sub">${dateSub}</div>` : ''}
     </div>
     <button class="toggle-sw ${on?'on':''}"
       onclick="toggleField('${p.id}','${field}',this)"></button>
@@ -1207,9 +1776,10 @@ async function toggleField(pid, field, btn) {
   const p = people.find(x => x.id === pid);
   if (!p) return;
   p[field] = !p[field];
-  btn.classList.toggle('on', p[field]);
+  if (p[field]) p[field + 'Date'] = new Date().toISOString();
+  else          delete p[field + 'Date'];
   await dbSave(p);
-  refreshHealth(pid);
+  renderDetail(p);
   toast('Saved');
 }
 
@@ -1217,11 +1787,8 @@ async function toggleMinistry(pid, btn) {
   const p = people.find(x => x.id === pid);
   if (!p) return;
   p.inMinistry = !p.inMinistry;
-  btn.classList.toggle('on', p.inMinistry);
-  const inp = document.getElementById('min-inp-'+pid);
-  if (inp) inp.classList.toggle('hidden', !p.inMinistry);
   await dbSave(p);
-  refreshHealth(pid);
+  renderDetail(p);
   toast('Saved');
 }
 
@@ -1243,15 +1810,7 @@ async function updateField(pid, field, value) {
 
 function refreshHealth(pid) {
   const p = people.find(x => x.id === pid);
-  if (!p) return;
-  const pct = score(p);
-  const m   = healthMeta(pct);
-  document.getElementById('d-hero').style.background = m.bg;
-  document.getElementById('d-hero').innerHTML = `
-    ${ringHTML(pct, 84)}
-    <div class="detail-hero-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
-    <div class="detail-hero-status" style="color:${m.text}">${m.label}</div>
-  `;
+  if (p) renderDetailHero(p);
 }
 
 /* Attendance sheet (from detail) */
@@ -1281,15 +1840,71 @@ function closeSheet(e) {
   attSheetPid = null;
 }
 
-/* Delete */
-async function confirmDelete() {
+/* Detail action menu */
+function openDetailMenu() {
   if (!detailId) return;
   const p = people.find(x => x.id === detailId);
-  if (!p || !confirm(`Remove ${p.firstName} ${p.lastInit}. from the group?`)) return;
+  if (!p) return;
+  document.getElementById('action-sheet-title').textContent = `${p.firstName} ${p.lastInit}.`;
+  document.getElementById('action-sheet').classList.add('open');
+}
+
+function closeActionSheet(e) {
+  if (e && e.target !== document.getElementById('action-sheet')) return;
+  document.getElementById('action-sheet').classList.remove('open');
+}
+
+function openDeleteConfirm() {
+  document.getElementById('action-sheet').classList.remove('open');
+  const p = people.find(x => x.id === detailId);
+  if (!p) return;
+  document.getElementById('delete-sheet-title').textContent =
+    `Remove ${p.firstName} ${p.lastInit}. from the group?`;
+  document.getElementById('delete-sheet').classList.add('open');
+}
+
+function closeDeleteSheet(e) {
+  if (e && e.target !== document.getElementById('delete-sheet')) return;
+  document.getElementById('delete-sheet').classList.remove('open');
+}
+
+async function executeDelete() {
+  document.getElementById('delete-sheet').classList.remove('open');
+  if (!detailId) return;
   await dbDelete(detailId);
   people = people.filter(x => x.id !== detailId);
   closeDetail();
   toast('Removed');
+}
+
+/* Edit name */
+function openEditName() {
+  document.getElementById('action-sheet').classList.remove('open');
+  const p = people.find(x => x.id === detailId);
+  if (!p) return;
+  document.getElementById('edit-fname').value = p.firstName;
+  document.getElementById('edit-init').value  = p.lastInit;
+  document.getElementById('editname-sheet').classList.add('open');
+  setTimeout(() => document.getElementById('edit-fname').focus(), 120);
+}
+
+function closeEditNameSheet(e) {
+  if (e && e.target !== document.getElementById('editname-sheet')) return;
+  document.getElementById('editname-sheet').classList.remove('open');
+}
+
+async function saveEditName() {
+  const fname = document.getElementById('edit-fname').value.trim();
+  const init  = document.getElementById('edit-init').value.trim().toUpperCase() || '?';
+  if (!fname) { toast('Enter a first name'); return; }
+  const p = people.find(x => x.id === detailId);
+  if (!p) return;
+  p.firstName = fname;
+  p.lastInit  = init;
+  await dbSave(p);
+  document.getElementById('editname-sheet').classList.remove('open');
+  renderDetail(p);
+  toast('Name updated');
 }
 
 /* ──────────────────────────────────────────────
@@ -1373,6 +1988,11 @@ function initials(name) {
   return name.trim().split(/\s+/).slice(0,2).map(w=>w[0].toUpperCase()).join('');
 }
 
+function fmtDate(iso) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+
 function esc(str) {
   return String(str||'')
     .replace(/&/g,'&amp;').replace(/</g,'&lt;')
@@ -1388,8 +2008,38 @@ function toast(msg) {
 }
 
 /* ──────────────────────────────────────────────
+   DEMO SEED DATA
+   Auto-populates localStorage on first load so
+   the app looks realistic without Firebase.
+   ────────────────────────────────────────────── */
+const SEED_PEOPLE = [
+  { id:'s1',  firstName:'Marcus',   lastInit:'T', leaderId:'cg_at', leaderName:'Adrian',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-11-01T10:00:00.000Z' },
+  { id:'s2',  firstName:'Priya',    lastInit:'A', leaderId:'cg_cd', leaderName:'Chinedu',   attendance:'sporadic',   newStart:true,  baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:true,  needsBereavement:false, createdAt:'2025-12-05T10:00:00.000Z' },
+  { id:'s3',  firstName:'Tomas',    lastInit:'R', leaderId:'cg_cj', leaderName:'Curtis',    attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:true,  ministryName:'Worship',   needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-10-15T10:00:00.000Z' },
+  { id:'s4',  firstName:'Kezia',    lastInit:'M', leaderId:'cg_jp', leaderName:'Jahni',     attendance:'unknown',    newStart:false, baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-01-20T10:00:00.000Z' },
+  { id:'s5',  firstName:'Daniel',   lastInit:'O', leaderId:'cg_jd', leaderName:'James D.',  attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:true,  rdClass:true,  inMinistry:true,  ministryName:'Media',     needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-09-01T10:00:00.000Z' },
+  { id:'s6',  firstName:'Aisha',    lastInit:'W', leaderId:'cg_js', leaderName:'James S.',  attendance:'sporadic',   newStart:true,  baptised:true,  gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:true,  needsFamily:false, needsBereavement:false, createdAt:'2025-11-10T10:00:00.000Z' },
+  { id:'s7',  firstName:'Callum',   lastInit:'B', leaderId:'cg_ji', leaderName:'Jimmy',     attendance:'unknown',    newStart:false, baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:true,  createdAt:'2026-02-14T10:00:00.000Z' },
+  { id:'s8',  firstName:'Simone',   lastInit:'J', leaderId:'cg_jk', leaderName:'John Kofi', attendance:'fellowship', newStart:true,  baptised:false, gospelClass:true,  beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-12-01T10:00:00.000Z' },
+  { id:'s9',  firstName:'Nathan',   lastInit:'E', leaderId:'cg_jt', leaderName:'John T.',   attendance:'sporadic',   newStart:false, baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:true,  needsBereavement:false, createdAt:'2026-01-05T10:00:00.000Z' },
+  { id:'s10', firstName:'Grace',    lastInit:'K', leaderId:'cg_kb', leaderName:'Kwasi',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:true,  rdClass:false, inMinistry:true,  ministryName:'Children',  needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-08-20T10:00:00.000Z' },
+  { id:'s11', firstName:'Emmanuel', lastInit:'A', leaderId:'cg_lg', leaderName:'Lloyd',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-10-30T10:00:00.000Z' },
+  { id:'s12', firstName:'Leah',     lastInit:'S', leaderId:'cg_ms', leaderName:'Miles',     attendance:'unknown',    newStart:true,  baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-03-01T10:00:00.000Z' },
+  { id:'s13', firstName:'Joshua',   lastInit:'N', leaderId:'cg_of', leaderName:'Okeme',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:false, rdClass:true,  inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-09-15T10:00:00.000Z' },
+  { id:'s14', firstName:'Chloe',    lastInit:'D', leaderId:'cg_at', leaderName:'Adrian',    attendance:'sporadic',   newStart:true,  baptised:false, gospelClass:false, beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2026-01-12T10:00:00.000Z' },
+  { id:'s15', firstName:'Isaac',    lastInit:'F', leaderId:'cg_kb', leaderName:'Kwasi',     attendance:'fellowship', newStart:true,  baptised:true,  gospelClass:true,  beOneMakeOne:false, rdClass:false, inMinistry:false, ministryName:'',          needsMarital:false, needsFamily:false, needsBereavement:false, createdAt:'2025-11-25T10:00:00.000Z' },
+];
+
+function seedDemoData() {
+  if (!useLocal) return;
+  if (localStorage.getItem('rd_people')) return;
+  localStorage.setItem('rd_people', JSON.stringify(SEED_PEOPLE));
+}
+
+/* ──────────────────────────────────────────────
    BOOT
    ────────────────────────────────────────────── */
+seedDemoData();
 renderLeaders();
 </script>
 </body>
