@@ -231,12 +231,16 @@ body {
 }
 .pin-key:active { background:var(--surface-container, #eeeeee); }
 .pin-key.del { font-size:20px; color:var(--ink3); }
-.pin-back-btn {
-  background:none; border:none; color:var(--ink3);
-  font-family:inherit; font-size:11px; font-weight:600;
-  letter-spacing:0.15em; text-transform:uppercase;
-  cursor:pointer; padding:20px 24px 32px; text-align:center; width:100%;
+.pin-step-hdr {
+  height:56px; display:flex; align-items:center; padding:0 8px;
+  border-bottom:1px solid var(--line); flex-shrink:0;
 }
+.pin-step-back {
+  background:none; border:none; cursor:pointer;
+  width:40px; height:40px; display:flex; align-items:center; justify-content:center;
+  color:var(--ink3);
+}
+.pin-step-back .material-symbols-outlined { font-size:24px; }
 
 /* HEADER */
 .app-hdr {
@@ -288,6 +292,137 @@ body {
 .bnav-btn.active .material-symbols-outlined {
   font-variation-settings:'FILL' 1,'wght' 200,'GRAD' 0,'opsz' 24;
 }
+
+/* HEALTH TAB */
+.health-header { padding:28px 24px 20px; border-bottom:1px solid var(--line); }
+.health-actions { padding:24px; border-bottom:1px solid var(--line); }
+.health-section-title {
+  font-size:11px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink3); margin-bottom:16px;
+}
+.health-action-card {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:14px 0; border-bottom:1px solid var(--line);
+  cursor:pointer; -webkit-tap-highlight-color:transparent;
+}
+.health-action-card:last-child { border-bottom:none; }
+.health-action-num {
+  min-width:24px; height:24px; border-radius:9999px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; flex-shrink:0; margin-top:2px;
+}
+.health-action-body { flex:1; min-width:0; }
+.health-action-verb { font-size:15px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+.health-action-ctx  { font-size:12px; font-weight:500; color:var(--ink3); }
+.health-action-chevron { color:var(--ink3); font-size:18px; flex-shrink:0; align-self:center; }
+.health-stats { padding:24px; border-bottom:1px solid var(--line); }
+.health-svi-row { display:flex; align-items:baseline; gap:10px; margin-bottom:16px; }
+.health-svi-num { font-size:40px; font-weight:700; color:var(--ink); line-height:1; }
+.health-svi-label { font-size:12px; font-weight:600; letter-spacing:0.1em; color:var(--ink3); text-transform:uppercase; margin-bottom:4px; }
+.health-svi-badge { font-size:11px; font-weight:700; letter-spacing:0.1em; padding:3px 8px; color:white; }
+.health-counts { display:flex; border:1px solid var(--line); }
+.health-count-cell { flex:1; padding:12px 10px; text-align:center; border-right:1px solid var(--line); }
+.health-count-cell:last-child { border-right:none; }
+.health-count-num { font-size:22px; font-weight:700; }
+.health-count-lbl { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink3); margin-top:2px; }
+.health-gaps { padding:24px; }
+.health-gap-row { margin-bottom:14px; }
+.health-gap-label { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:5px; }
+.health-gap-bar-wrap { display:flex; align-items:center; gap:10px; }
+.health-gap-track { flex:1; height:4px; background:var(--line); }
+.health-gap-fill { height:4px; background:var(--ink); }
+.health-gap-pct { font-size:12px; font-weight:600; color:var(--ink3); min-width:30px; text-align:right; }
+.health-empty { font-size:14px; color:var(--ink3); font-style:italic; padding:16px 0; }
+.health-spacer { height:24px; }
+.action-copy-btn {
+  display:inline-flex; align-items:center; gap:4px;
+  margin-top:8px; padding:4px 9px;
+  border:1px solid var(--line); background:none; cursor:pointer;
+  font-family:inherit; font-size:11px; font-weight:600;
+  letter-spacing:0.08em; text-transform:uppercase; color:var(--ink3);
+  -webkit-tap-highlight-color:transparent;
+}
+.action-copy-btn .material-symbols-outlined { font-size:13px; }
+.msg-preview-body {
+  background:var(--bg); border:1px solid var(--line);
+  padding:16px; font-size:15px; line-height:1.6;
+  color:var(--ink); white-space:pre-wrap; word-break:break-word;
+}
+.resource-link {
+  display:inline-block; margin-top:6px;
+  font-size:11px; font-weight:600; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--ink3); text-decoration:none;
+}
+.resource-link:active { color:var(--ink); }
+
+/* CONNECT GROUP TAB */
+.cg-tab-header { padding:28px 24px 20px; border-bottom:1px solid var(--line); }
+.cg-section { border-bottom:1px solid var(--line); }
+.cg-section-hdr {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 24px 10px;
+}
+.cg-section-title {
+  font-size:11px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.cg-att-badge { font-size:12px; font-weight:600; color:var(--ink3); }
+/* Season accordion */
+.cg-season-row {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 24px; cursor:pointer; border-bottom:1px solid var(--line);
+  user-select:none;
+}
+.cg-season-row:active { background:var(--bg); }
+.cg-season-info { flex:1; }
+.cg-season-label {
+  display:block; font-size:11px; font-weight:700;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--ink);
+}
+.cg-season-range { display:block; font-size:12px; color:var(--ink3); margin-top:2px; }
+.cg-season-avg { font-size:12px; font-weight:600; color:var(--ink3); white-space:nowrap; }
+.cg-season-chevron { font-size:20px; color:var(--ink3); flex-shrink:0; }
+.cg-season-body { display:none; }
+.cg-season-body.open { display:block; }
+.cg-month-group {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 24px; border-bottom:1px solid var(--line);
+}
+.cg-month-group:last-child { border-bottom:none; }
+.cg-month-label {
+  font-size:10px; font-weight:700; letter-spacing:0.15em;
+  color:var(--ink3); min-width:28px; text-transform:uppercase;
+}
+.cg-month-chips { display:flex; gap:6px; flex-wrap:wrap; }
+.cg-chip {
+  width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:600; border:1px solid var(--line);
+  cursor:pointer; color:var(--ink3); flex-shrink:0;
+}
+.cg-chip.has-data { border-color:var(--ink); color:var(--ink); }
+.cg-chip.sel { background:var(--ink); color:white; border-color:var(--ink); }
+.cg-chip.future { opacity:0.3; cursor:default; }
+.cg-season-upcoming {
+  font-size:9px; font-weight:700; letter-spacing:0.12em;
+  color:var(--amb); border:1px solid var(--amb);
+  padding:2px 6px; text-transform:uppercase; white-space:nowrap;
+}
+.cg-session-heading {
+  font-size:11px; font-weight:600; letter-spacing:0.1em;
+  color:var(--ink3); text-transform:uppercase;
+}
+.cg-archived-row {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 24px; border-bottom:1px solid var(--line);
+}
+.cg-archived-row:last-child { border-bottom:none; }
+.cg-archived-name { flex:1; font-size:15px; font-weight:600; color:var(--ink3); }
+.cg-unarchive-btn {
+  font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+  border:1px solid var(--line); background:none; cursor:pointer;
+  padding:5px 10px; color:var(--ink3); font-family:inherit;
+}
+.cg-empty { font-size:14px; color:var(--ink3); font-style:italic; padding:16px 24px; }
 
 /* HOME / DASHBOARD */
 .dash-header { padding:28px 24px 24px; border-bottom:1px solid var(--line); }
@@ -581,6 +716,47 @@ body {
 .cg-dot.attended .cg-day,
 .cg-dot.attended .cg-mon { color:white; }
 
+/* BULK ATTENDANCE */
+.bulk-session-bar {
+  display:flex; gap:8px; overflow-x:auto;
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  scrollbar-width:none; flex-shrink:0;
+}
+.bulk-session-bar::-webkit-scrollbar { display:none; }
+.bulk-session-chip {
+  flex-shrink:0; padding:7px 14px;
+  border:1px solid var(--line); background:var(--bg);
+  font-size:12px; font-weight:600; color:var(--ink3);
+  cursor:pointer; white-space:nowrap;
+}
+.bulk-session-chip.sel {
+  background:var(--ink); color:#fff; border-color:var(--ink);
+}
+.bulk-att-count {
+  padding:8px 20px; font-size:12px; font-weight:600;
+  color:var(--ink3); border-bottom:1px solid var(--line);
+  text-transform:uppercase; letter-spacing:0.1em; flex-shrink:0;
+}
+.bulk-person-row {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 20px; border-bottom:1px solid var(--line);
+  cursor:pointer; background:#fff;
+}
+.bulk-person-row:active { background:var(--bg); }
+.bulk-person-name { flex:1; font-size:15px; font-weight:600; color:var(--ink); }
+.bulk-person-sub  { font-size:12px; color:var(--ink3); margin-top:2px; }
+.bulk-check {
+  width:22px; height:22px; border:2px solid var(--line);
+  flex-shrink:0; display:flex; align-items:center; justify-content:center;
+}
+.bulk-check.on { background:var(--ink); border-color:var(--ink); }
+.bulk-check.on::after {
+  content:''; display:block;
+  width:11px; height:6px;
+  border-left:2px solid #fff; border-bottom:2px solid #fff;
+  transform:rotate(-45deg) translateY(-1px);
+}
+
 .need-row {
   display:flex; align-items:center; gap:12px;
   padding:13px 14px; border-bottom:1px solid var(--line);
@@ -610,6 +786,20 @@ body {
   -webkit-appearance:none; appearance:none;
 }
 .ministry-input::placeholder { color:var(--ink4); }
+.min-chips { display:flex; flex-wrap:wrap; gap:6px; padding:8px 0 6px; }
+.min-chip {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 6px 6px 10px;
+  border:1px solid var(--line); background:var(--surface);
+}
+.min-chip-body { display:flex; flex-direction:column; gap:1px; }
+.min-chip-name { font-size:13px; font-weight:600; color:var(--ink); line-height:1.2; }
+.min-chip-leader { font-size:11px; font-weight:500; color:var(--ink3); line-height:1.2; }
+.min-chip-rm {
+  border:none; background:none; cursor:pointer;
+  font-size:16px; line-height:1; color:var(--ink3);
+  padding:0 2px; align-self:flex-start;
+}
 
 /* ADD OVERLAY */
 .add-overlay {
@@ -851,6 +1041,179 @@ body {
 }
 .toggle-date-tap:active { color:var(--ink); }
 
+/* VITALITY REPORT OVERLAY */
+.report-overlay {
+  position:fixed; inset:0; z-index:55;
+  background:var(--bg);
+  display:flex; flex-direction:column;
+  transform:translateY(100%);
+  transition:transform .32s cubic-bezier(.4,0,.2,1);
+  max-width:430px; left:50%; margin-left:-215px;
+}
+@media (max-width:430px) { .report-overlay { left:0; margin-left:0; } }
+.report-overlay.open { transform:translateY(0); }
+.report-scroll { flex:1; overflow-y:auto; }
+.report-hero {
+  padding:24px 24px 20px; background:var(--surface);
+  border-bottom:1px solid var(--line);
+  display:flex; flex-direction:column; gap:4px;
+}
+.report-hero-score {
+  font-size:48px; font-weight:700; letter-spacing:-2px;
+  color:var(--ink); line-height:1;
+}
+.report-hero-label {
+  font-size:11px; font-weight:600; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.report-hero-group { font-size:13px; color:var(--ink3); margin-bottom:4px; }
+.report-status-badge {
+  display:inline-block; font-size:11px; font-weight:700;
+  letter-spacing:0.15em; text-transform:uppercase;
+  padding:4px 10px; margin-top:6px; align-self:flex-start;
+}
+.report-section { padding:20px 24px 0; }
+.report-section-title {
+  font-size:11px; font-weight:700; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink3);
+  padding-bottom:12px; border-bottom:1px solid var(--line);
+  margin-bottom:0;
+}
+.report-gap-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 0; border-bottom:1px solid var(--line);
+}
+.report-gap-row:last-child { border-bottom:none; }
+.report-gap-label { font-size:14px; font-weight:600; color:var(--ink); flex:1; min-width:0; }
+.report-gap-bar-wrap { width:80px; flex-shrink:0; }
+.report-gap-track { height:3px; background:var(--line); overflow:hidden; }
+.report-gap-fill { height:100%; background:var(--ink); }
+.report-gap-pct { font-size:11px; font-weight:600; color:var(--ink3); text-align:right; margin-top:3px; }
+.report-alert-row {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:13px 0; border-bottom:1px solid var(--line);
+}
+.report-alert-row:last-child { border-bottom:none; }
+.report-alert-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
+.report-alert-body { flex:1; min-width:0; }
+.report-alert-text { font-size:14px; font-weight:600; color:var(--ink); line-height:1.4; }
+.report-alert-names { font-size:12px; color:var(--ink3); margin-top:3px; line-height:1.5; }
+.report-step-row {
+  display:flex; gap:12px; align-items:flex-start;
+  padding:13px 0; border-bottom:1px solid var(--line);
+  cursor:pointer; transition:background .1s;
+}
+.report-step-row:last-child { border-bottom:none; }
+.report-step-row:active { background:var(--bg); margin:0 -24px; padding-left:24px; padding-right:24px; }
+.report-step-num {
+  width:24px; height:24px; background:var(--ink); color:white;
+  font-size:12px; font-weight:700; display:flex; align-items:center;
+  justify-content:center; flex-shrink:0; margin-top:1px;
+}
+.report-step-title { font-size:14px; font-weight:600; color:var(--ink); }
+.report-step-desc { font-size:12px; color:var(--ink3); margin-top:3px; line-height:1.5; }
+.report-person-row {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 0; border-bottom:1px solid var(--line);
+  cursor:pointer; transition:background .1s;
+}
+.report-person-row:last-child { border-bottom:none; }
+.report-person-row:active { background:var(--bg); margin:0 -24px; padding-left:24px; padding-right:24px; }
+.report-person-name { font-size:14px; font-weight:600; color:var(--ink); flex:1; }
+.report-person-sub { font-size:12px; color:var(--ink3); margin-top:2px; }
+.report-empty { padding:16px 0; font-size:13px; color:var(--ink4); }
+.report-spacer { height:32px; }
+
+/* DISCIPLER PICKER */
+.discipler-section-hdr {
+  padding:8px 14px; background:var(--bg);
+  font-size:10px; font-weight:700; color:var(--ink3);
+  text-transform:uppercase; letter-spacing:0.15em;
+  border-bottom:1px solid var(--line);
+}
+.discipler-opt {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 20px; border-bottom:1px solid var(--line);
+  cursor:pointer; background:var(--surface); transition:background .1s;
+}
+.discipler-opt:last-child { border-bottom:none; }
+.discipler-opt:active { background:var(--bg); }
+.discipler-opt.selected { background:var(--bg); }
+.discipler-opt-name { font-size:15px; font-weight:600; color:var(--ink); }
+.discipler-opt-sub { font-size:12px; color:var(--ink3); margin-top:2px; }
+.discipler-opt-clear { color:var(--red); font-size:15px; font-weight:600; flex:1; }
+
+/* NAV DRAWER */
+.nav-backdrop {
+  position:fixed; inset:0; z-index:149;
+  background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.nav-backdrop.open { opacity:1; pointer-events:all; }
+.nav-drawer {
+  position:fixed; top:0; left:0; bottom:0; width:280px; z-index:150;
+  background:var(--surface); border-right:1px solid var(--line);
+  display:flex; flex-direction:column;
+  transform:translateX(-100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-drawer.open { transform:translateX(0); }
+.nav-drawer-hdr {
+  padding:52px 24px 20px; border-bottom:1px solid var(--line);
+}
+.nav-drawer-logo {
+  width:44px; height:44px; background:var(--ink); color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; letter-spacing:0.1em; margin-bottom:14px;
+}
+.nav-drawer-app {
+  font-size:12px; font-weight:700; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--ink); margin-bottom:3px;
+}
+.nav-drawer-church { font-size:12px; color:var(--ink3); }
+.nav-drawer-list { flex:1; padding:8px 0; overflow-y:auto; }
+.nav-drawer-item {
+  width:100%; display:flex; align-items:center; gap:16px;
+  padding:15px 24px; border:none; background:none; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:600;
+  color:var(--ink); text-align:left; transition:background .1s;
+}
+.nav-drawer-item:active { background:var(--bg); }
+.nav-drawer-item .material-symbols-outlined { font-size:22px; color:var(--ink3); }
+
+/* PROFILE SHEET */
+.profile-av-lg {
+  width:64px; height:64px; background:var(--ink); color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; font-weight:700; letter-spacing:0.05em;
+  margin:0 auto 12px;
+}
+.profile-name { font-size:20px; font-weight:700; color:var(--ink); text-align:center; }
+.profile-group { font-size:13px; color:var(--ink3); text-align:center; margin-top:3px; }
+.profile-count {
+  font-size:12px; font-weight:600; color:var(--ink4);
+  text-align:center; margin-top:2px; letter-spacing:0.05em; text-transform:uppercase;
+}
+.profile-divider { height:1px; background:var(--line); margin:16px 0 4px; }
+.ps-health-row { display:flex; gap:0; margin:8px 0 4px; border:1px solid var(--line); }
+.ps-health-cell {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  padding:12px 8px; border-right:1px solid var(--line);
+}
+.ps-health-cell:last-child { border-right:none; }
+.ps-health-num { font-size:22px; font-weight:700; color:var(--ink); }
+.ps-health-lbl { font-size:10px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-top:2px; }
+.ps-grn .ps-health-lbl { color:var(--grn); }
+.ps-amb .ps-health-lbl { color:var(--amb); }
+.ps-red .ps-health-lbl { color:var(--red); }
+.ps-info-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 0; border-bottom:1px solid var(--line);
+}
+.ps-info-row:last-of-type { border-bottom:none; }
+.ps-info-label { font-size:13px; color:var(--ink3); }
+.ps-info-val { font-size:13px; font-weight:600; color:var(--ink); }
+
 /* MORE BUTTON in detail header — now uses .hdr-menu-btn */
 
 /* MILESTONES TAB */
@@ -920,6 +1283,11 @@ body {
     </div>
 
     <div id="step-pin">
+      <div class="pin-step-hdr">
+        <button class="pin-step-back" onclick="showSelect()">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
       <div class="pin-hero">
         <div class="pin-av-lg" id="pin-av"></div>
         <div class="pin-name" id="pin-name-label"></div>
@@ -945,7 +1313,6 @@ body {
         <button class="pin-key" onclick="pinKey('0')">0</button>
         <button class="pin-key" style="visibility:hidden"></button>
       </div>
-      <button class="pin-back-btn" onclick="showSelect()">Back</button>
     </div>
 
   </div>
@@ -955,11 +1322,11 @@ body {
 <div class="shell hidden" id="app-shell">
 
   <div class="app-hdr" id="app-hdr">
-    <button class="hdr-menu-btn">
+    <button class="hdr-menu-btn" onclick="openNavDrawer()">
       <span class="material-symbols-outlined">menu</span>
     </button>
-    <div class="hdr-title">REAL DISCIPLE</div>
-    <div class="hdr-avatar" id="hdr-avatar">
+    <div class="hdr-title" onclick="switchTab('home')" style="cursor:pointer">REAL DISCIPLE</div>
+    <div class="hdr-avatar" id="hdr-avatar" onclick="openProfileSheet()" style="cursor:pointer">
       <span class="hdr-av-text" id="hdr-av-initials"></span>
     </div>
   </div>
@@ -972,13 +1339,17 @@ body {
       <p class="dash-sub" id="hm-sub"></p>
     </section>
     <section class="dash-grid">
+      <div class="dash-cell" onclick="switchToMilestone('cgAttendance')">
+        <span class="material-symbols-outlined">groups</span>
+        <span class="dash-cell-label">CONNECT GROUP</span>
+      </div>
       <div class="dash-cell" onclick="switchToMilestone('gospelClass')">
         <span class="material-symbols-outlined">auto_stories</span>
         <span class="dash-cell-label">GOSPEL CLASS</span>
       </div>
-      <div class="dash-cell" onclick="switchToMilestone('cgAttendance')">
-        <span class="material-symbols-outlined">groups</span>
-        <span class="dash-cell-label">CONNECT GROUP</span>
+      <div class="dash-cell" onclick="switchToMilestone('newStart')">
+        <span class="material-symbols-outlined">school</span>
+        <span class="dash-cell-label">NEW START CLASS</span>
       </div>
       <div class="dash-cell" onclick="switchToMilestone('baptised')">
         <span class="material-symbols-outlined">water_drop</span>
@@ -992,10 +1363,6 @@ body {
         <span class="material-symbols-outlined">workspace_premium</span>
         <span class="dash-cell-label">MEMBERSHIP CLASS</span>
       </div>
-      <div class="dash-cell" onclick="switchToMilestone('inMinistry')">
-        <span class="material-symbols-outlined">school</span>
-        <span class="dash-cell-label">MINISTRY</span>
-      </div>
     </section>
     <section class="dash-metrics">
       <div class="dash-metrics-hdr">
@@ -1005,9 +1372,10 @@ body {
         </div>
       </div>
       <div class="dash-bento">
-        <div class="dash-bento-wide">
+        <div class="dash-bento-wide" onclick="switchTab('health')" style="cursor:pointer">
           <div class="dash-bento-top">
             <span class="material-symbols-outlined">monitoring</span>
+            <span style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:0.1em">VIEW REPORT →</span>
           </div>
           <div class="dash-big-num" id="hs-vitality">—</div>
           <p class="dash-bento-label">SPIRITUAL VITALITY INDEX</p>
@@ -1106,44 +1474,40 @@ body {
     </div>
     <div class="tracker-footer">
       <button class="tracker-add-btn" onclick="openAdd()">ADD NEW DISCIPLE</button>
-      <div style="display:flex">
-        <button class="tracker-pag-btn" onclick="prevPage()">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        <button class="tracker-pag-btn" onclick="nextPage()">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-      </div>
     </div>
   </div>
 
-  <!-- SETTINGS -->
-  <div class="view" id="view-settings">
-    <div class="settings-section" style="margin-top:20px">
-      <div class="settings-row">
-        <span class="settings-row-label">Logged in as</span>
-        <span class="settings-row-val" id="s-name"></span>
-      </div>
-      <div class="settings-row">
-        <span class="settings-row-label">Group</span>
-        <span class="settings-row-val" id="s-group"></span>
-      </div>
-      <div class="settings-row">
-        <span class="settings-row-label">People in group</span>
-        <span class="settings-row-val" id="s-count"></span>
-      </div>
+  <!-- CONNECT GROUP -->
+  <div class="view" id="view-cg">
+    <div class="cg-tab-header">
+      <p class="dash-overline">GROUP MANAGEMENT</p>
+      <h2 class="dash-headline">Connect Group.</h2>
     </div>
-    <div class="settings-section">
-      <div class="settings-row">
-        <span class="settings-row-label">App version</span>
-        <span class="settings-row-val">1.0</span>
+
+    <!-- Season accordion -->
+    <div class="cg-section">
+      <div class="cg-section-hdr">
+        <span class="cg-section-title">SELECT SESSION</span>
       </div>
-      <div class="settings-row">
-        <span class="settings-row-label">Church</span>
-        <span class="settings-row-val">PHC Wandsworth</span>
-      </div>
+      <div id="cg-season-accordion"></div>
     </div>
-    <button class="settings-signout" onclick="signOut()">Sign out</button>
+
+    <!-- Attendance checklist for selected session -->
+    <div class="cg-section">
+      <div class="cg-section-hdr">
+        <span class="cg-section-title">ATTENDANCE</span>
+        <span class="cg-att-badge" id="cg-att-badge"></span>
+      </div>
+      <div id="cg-people-list"></div>
+    </div>
+
+    <!-- Archived disciples -->
+    <div class="cg-section" style="border-bottom:none">
+      <div class="cg-section-hdr">
+        <span class="cg-section-title">ARCHIVED</span>
+      </div>
+      <div id="cg-archived-list"></div>
+    </div>
   </div>
 
   <!-- MILESTONES -->
@@ -1154,6 +1518,14 @@ body {
       <p class="dash-sub" id="ms-sub"></p>
     </section>
     <div id="ms-list"></div>
+  </div>
+
+  <div class="view" id="view-health">
+    <div class="health-header">
+      <p class="dash-overline">ACTIONS &amp; INSIGHTS</p>
+      <h2 class="dash-headline">Health Check-up.</h2>
+    </div>
+    <div id="health-content"></div>
   </div>
 
   <!-- BOTTOM NAV -->
@@ -1170,9 +1542,13 @@ body {
       <span class="material-symbols-outlined">group</span>
       <span>PEOPLE</span>
     </button>
-    <button class="bnav-btn" data-tab="settings" onclick="switchTab('settings')">
-      <span class="material-symbols-outlined">settings</span>
-      <span>SETTINGS</span>
+    <button class="bnav-btn" data-tab="health" onclick="switchTab('health')">
+      <span class="material-symbols-outlined">monitoring</span>
+      <span>HEALTH</span>
+    </button>
+    <button class="bnav-btn" data-tab="cg" onclick="switchTab('cg')">
+      <span class="material-symbols-outlined">hub</span>
+      <span>GROUP</span>
     </button>
   </nav>
 </div>
@@ -1251,8 +1627,19 @@ body {
   <div class="sheet-inner">
     <div class="sheet-title" id="action-sheet-title"></div>
     <button class="sheet-opt" onclick="openEditName()">Edit name</button>
+    <button class="sheet-opt" onclick="archiveFromSheet()">Archive disciple</button>
     <button class="sheet-opt" style="color:var(--red)" onclick="openDeleteConfirm()">Remove from group</button>
     <button class="sheet-cancel" onclick="closeActionSheet()">Cancel</button>
+  </div>
+</div>
+
+<!-- ─── MESSAGE PREVIEW SHEET ────────────────── -->
+<div class="sheet" id="msg-preview-sheet" onclick="closeMsgPreview(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title">MESSAGE PREVIEW</div>
+    <div class="msg-preview-body" id="msg-preview-text"></div>
+    <button class="submit-btn" onclick="copyMsgFromPreview()" style="margin-top:16px">Copy to clipboard</button>
+    <button class="sheet-cancel" onclick="closeMsgPreview()">Cancel</button>
   </div>
 </div>
 
@@ -1277,6 +1664,92 @@ body {
   </div>
 </div>
 
+<!-- ─── VITALITY REPORT OVERLAY ────────────────── -->
+<div class="report-overlay" id="vitality-report">
+  <div class="app-hdr">
+    <button class="hdr-menu-btn" onclick="closeVitalityReport()">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <div class="hdr-title">VITALITY REPORT</div>
+    <div style="width:34px"></div>
+  </div>
+  <div class="report-scroll" id="report-scroll"></div>
+</div>
+
+<!-- ─── NAV DRAWER ─────────────────────────────── -->
+<div class="nav-backdrop" id="nav-backdrop" onclick="closeNavDrawer()"></div>
+<div class="nav-drawer" id="nav-drawer">
+  <div class="nav-drawer-hdr">
+    <div class="nav-drawer-logo">RD</div>
+    <div class="nav-drawer-app">Real Disciple</div>
+    <div class="nav-drawer-church">PHC Wandsworth</div>
+  </div>
+  <div class="nav-drawer-list">
+    <button class="nav-drawer-item" onclick="drawerNav('home')">
+      <span class="material-symbols-outlined">space_dashboard</span>
+      Dashboard
+    </button>
+    <button class="nav-drawer-item" onclick="drawerNav('milestones')">
+      <span class="material-symbols-outlined">checklist_rtl</span>
+      Milestones
+    </button>
+    <button class="nav-drawer-item" onclick="drawerNav('people')">
+      <span class="material-symbols-outlined">group</span>
+      People
+    </button>
+    <button class="nav-drawer-item" onclick="drawerNav('health')">
+      <span class="material-symbols-outlined">monitoring</span>
+      Health
+    </button>
+    <button class="nav-drawer-item" onclick="drawerNav('cg')">
+      <span class="material-symbols-outlined">hub</span>
+      Connect Group
+    </button>
+  </div>
+</div>
+
+<!-- ─── PROFILE SHEET ───────────────────────────── -->
+<div class="sheet" id="profile-sheet" onclick="closeProfileSheet(event)">
+  <div class="sheet-inner">
+    <div class="profile-av-lg" id="ps-av"></div>
+    <div class="profile-name" id="ps-name"></div>
+    <div class="profile-group" id="ps-group"></div>
+    <div class="profile-count" id="ps-count"></div>
+
+    <!-- Group health snapshot -->
+    <div class="profile-divider"></div>
+    <div class="ps-health-row" id="ps-health-row">
+      <div class="ps-health-cell ps-grn">
+        <span class="ps-health-num" id="ps-grn-n">0</span>
+        <span class="ps-health-lbl">Flourishing</span>
+      </div>
+      <div class="ps-health-cell ps-amb">
+        <span class="ps-health-num" id="ps-amb-n">0</span>
+        <span class="ps-health-lbl">Growing</span>
+      </div>
+      <div class="ps-health-cell ps-red">
+        <span class="ps-health-num" id="ps-red-n">0</span>
+        <span class="ps-health-lbl">Needs Care</span>
+      </div>
+    </div>
+
+    <!-- App info -->
+    <div class="profile-divider"></div>
+    <div class="ps-info-row">
+      <span class="ps-info-label">Church</span>
+      <span class="ps-info-val">PHC Wandsworth</span>
+    </div>
+    <div class="ps-info-row">
+      <span class="ps-info-label">App version</span>
+      <span class="ps-info-val">1.0</span>
+    </div>
+
+    <div class="profile-divider"></div>
+    <button class="sheet-opt" style="color:var(--red)" onclick="signOut()">Sign out</button>
+    <button class="sheet-cancel" onclick="closeProfileSheet()">Close</button>
+  </div>
+</div>
+
 <!-- ─── MILESTONE DATE SHEET ──────────────────── -->
 <div class="sheet" id="msdate-sheet" onclick="closeMilestoneDateSheet(event)">
   <div class="sheet-inner">
@@ -1285,6 +1758,37 @@ body {
     <input class="form-input" id="msdate-input" type="date" style="margin-bottom:10px">
     <button class="submit-btn" onclick="saveMilestoneDate()">Save</button>
     <button class="sheet-cancel" onclick="closeMilestoneDateSheet()">Cancel</button>
+  </div>
+</div>
+
+<!-- ─── BULK ATTENDANCE ────────────────────────── -->
+<div class="add-overlay" id="bulk-att-overlay">
+  <div class="add-header">
+    <button class="add-back" onclick="closeBulkAttendance()">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <span class="add-title">Mark Attendance</span>
+  </div>
+  <div id="bulk-session-bar" class="bulk-session-bar"></div>
+  <div id="bulk-att-count" class="bulk-att-count"></div>
+  <div id="bulk-people-list" style="flex:1;overflow-y:auto;"></div>
+</div>
+
+<!-- ─── DISCIPLER PICKER ───────────────────────── -->
+<div class="add-overlay" id="discipler-picker">
+  <div class="add-header">
+    <button class="add-back" onclick="closeDisciplerPicker()">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <span class="add-title" id="discipler-picker-title">Who is discipling them?</span>
+  </div>
+  <div style="padding:24px">
+    <label class="form-label" id="discipler-picker-label">Name</label>
+    <input class="form-input" id="discipler-name-input" type="text"
+      placeholder="Enter their name…" autocomplete="off">
+    <button class="submit-btn" onclick="saveDisciplerName()" style="margin-top:16px">Save</button>
+    <button id="discipler-clear-btn" class="submit-btn" onclick="clearDiscipler()"
+      style="margin-top:8px;background:none;color:var(--red);border:1px solid var(--red);">Remove discipler</button>
   </div>
 </div>
 
@@ -1392,8 +1896,7 @@ let db          = null;
 let useLocal    = false;
 let currentUser = null;
 let people      = [];
-let activeFilter       = 'all';
-let peoplePage         = 0;
+let activeFilter        = 'all';
 let activeMilestoneView = null;
 
 const MS_VIEW_INFO = {
@@ -1593,7 +2096,7 @@ async function checkPin() {
     document.getElementById('app-shell').classList.remove('hidden');
     renderHome();
     renderPeople();
-    renderSettings();
+    renderHealth();
   } else {
     for (let i=0;i<4;i++) document.getElementById('pd'+i).classList.add('error');
     setTimeout(() => { pinStr=''; updateDots(); }, 700);
@@ -1612,6 +2115,46 @@ function signOut() {
 /* ──────────────────────────────────────────────
    NAVIGATION
    ────────────────────────────────────────────── */
+function openNavDrawer() {
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-backdrop').classList.add('open');
+}
+
+function closeNavDrawer() {
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-backdrop').classList.remove('open');
+}
+
+function drawerNav(tab) {
+  closeNavDrawer();
+  if (tab === 'people') navPeople();
+  else switchTab(tab);
+}
+
+function openProfileSheet() {
+  const mp  = myPeople();
+  const n   = mp.length;
+  const grn = mp.filter(p => score(p) >= 0.7).length;
+  const amb = mp.filter(p => { const s = score(p); return s >= 0.35 && s < 0.7; }).length;
+  const red = mp.filter(p => score(p) < 0.35).length;
+  document.getElementById('ps-av').textContent    = initials(currentUser.name);
+  document.getElementById('ps-name').textContent  = currentUser.name;
+  document.getElementById('ps-group').textContent = currentUser.group;
+  document.getElementById('ps-count').textContent = currentUser.isAdmin
+    ? `${n} people · ${LEADERS.filter(l => !l.isAdmin).length} groups`
+    : `${n} ${n === 1 ? 'person' : 'people'} in your group`;
+  document.getElementById('ps-grn-n').textContent = grn;
+  document.getElementById('ps-amb-n').textContent = amb;
+  document.getElementById('ps-red-n').textContent = red;
+  document.getElementById('ps-health-row').style.display = currentUser.isAdmin ? 'none' : '';
+  document.getElementById('profile-sheet').classList.add('open');
+}
+
+function closeProfileSheet(e) {
+  if (e && e.target !== document.getElementById('profile-sheet')) return;
+  document.getElementById('profile-sheet').classList.remove('open');
+}
+
 function switchTab(tab) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
   document.querySelectorAll('.bnav-btn[data-tab]').forEach(b => b.classList.remove('active'));
@@ -1621,7 +2164,8 @@ function switchTab(tab) {
   if (tab === 'home') renderHome();
   if (tab === 'milestones') renderMilestones();
   if (tab === 'people') renderPeople();
-  if (tab === 'settings') renderSettings();
+  if (tab === 'health') renderHealth();
+  if (tab === 'cg') renderCGTab();
 }
 
 /* ──────────────────────────────────────────────
@@ -1629,8 +2173,14 @@ function switchTab(tab) {
    ────────────────────────────────────────────── */
 function myPeople() {
   if (!currentUser) return [];
-  if (currentUser.isAdmin) return people;
-  return people.filter(p => p.leaderId === currentUser.id);
+  if (currentUser.isAdmin) return people.filter(p => !p.archived);
+  return people.filter(p => p.leaderId === currentUser.id && !p.archived);
+}
+
+function archivedPeople() {
+  if (!currentUser) return [];
+  if (currentUser.isAdmin) return people.filter(p => p.archived);
+  return people.filter(p => p.leaderId === currentUser.id && p.archived);
 }
 
 function renderHome() {
@@ -1700,6 +2250,375 @@ function renderAdminHome() {
       }
     </div>`;
   }).join('');
+}
+
+/* ──────────────────────────────────────────────
+   VITALITY REPORT
+   ────────────────────────────────────────────── */
+function openVitalityReport() {
+  document.getElementById('vitality-report').classList.add('open');
+  renderVitalityReport();
+}
+
+function closeVitalityReport() {
+  document.getElementById('vitality-report').classList.remove('open');
+}
+
+function nextMilestone(p) {
+  if (!p.gospelClass)   return 'Gospel Class';
+  if (!p.newStart)      return 'New Start Class';
+  if (!p.baptised)      return 'Baptism';
+  if (!p.beOneMakeOne)  return 'Be One, Make One';
+  if (!p.rdClass)       return 'Membership Class';
+  if (!p.inMinistry)    return 'In Ministry';
+  return null;
+}
+
+function renderVitalityReport() {
+  const mp    = myPeople();
+  const total = mp.length || 1;
+  const gn    = mp.filter(p => score(p) >= 0.7).length;
+  const vPct  = Math.round(gn / total * 100);
+  const m     = healthMeta(gn / total);
+
+  /* ── GAP ANALYSIS ── */
+  const gaps = [
+    { label:'CG Attendance',   pct: mp.filter(p => cgAttendanceRate(p) >= 0.5).length / total },
+    { label:'Gospel Class',    pct: mp.filter(p => p.gospelClass).length  / total },
+    { label:'New Start Class', pct: mp.filter(p => p.newStart).length     / total },
+    { label:'Baptism',         pct: mp.filter(p => p.baptised).length     / total },
+    { label:'Be One, Make One',pct: mp.filter(p => p.beOneMakeOne).length / total },
+    { label:'Membership Class',pct: mp.filter(p => p.rdClass).length      / total },
+    { label:'In Ministry',     pct: mp.filter(p => p.inMinistry).length   / total },
+  ].sort((a, b) => a.pct - b.pct);
+
+  const gapRows = gaps.map(g => {
+    const pct = Math.round(g.pct * 100);
+    return `<div class="report-gap-row">
+      <span class="report-gap-label">${g.label}</span>
+      <div class="report-gap-bar-wrap">
+        <div class="report-gap-track"><div class="report-gap-fill" style="width:${pct}%"></div></div>
+        <div class="report-gap-pct">${pct}%</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  /* ── ALERTS ── */
+  const alerts = [];
+  const withNeeds = mp.filter(p => p.needsMarital || p.needsFamily || p.needsBereavement);
+  if (withNeeds.length) alerts.push({
+    icon:'favorite_border', color:'var(--red)',
+    text: `${withNeeds.length} ${withNeeds.length === 1 ? 'person has' : 'people have'} support needs flagged`,
+    names: withNeeds.map(p => {
+      const ns = [p.needsMarital && 'Marital', p.needsFamily && 'Family', p.needsBereavement && 'Bereavement'].filter(Boolean);
+      return `${p.firstName} ${p.lastInit}. (${ns.join(', ')})`;
+    }).join(' · ')
+  });
+
+  const lowAtt = mp.filter(p => cgAttendanceRate(p) < 0.5);
+  if (lowAtt.length) alerts.push({
+    icon:'event_busy', color:'var(--amb)',
+    text: `${lowAtt.length} ${lowAtt.length === 1 ? 'person is' : 'people are'} attending irregularly or not at all`,
+    names: lowAtt.map(p => `${p.firstName} ${p.lastInit}.`).join(' · ')
+  });
+
+  const noProgress = mp.filter(p => score(p) === 0);
+  if (noProgress.length) alerts.push({
+    icon:'person_off', color:'var(--ink3)',
+    text: `${noProgress.length} ${noProgress.length === 1 ? 'person has' : 'people have'} no milestones recorded yet`,
+    names: noProgress.map(p => `${p.firstName} ${p.lastInit}.`).join(' · ')
+  });
+
+  const alertRows = alerts.length
+    ? alerts.map(a => `<div class="report-alert-row">
+        <span class="material-symbols-outlined report-alert-icon" style="color:${a.color}">${a.icon}</span>
+        <div class="report-alert-body">
+          <div class="report-alert-text">${a.text}</div>
+          ${a.names ? `<div class="report-alert-names">${a.names}</div>` : ''}
+        </div>
+      </div>`).join('')
+    : `<div class="report-empty">No immediate alerts — keep it up.</div>`;
+
+  /* ── NEXT STEPS ── */
+  const pipeline = [
+    { milestone:'Gospel Class',    ready: mp.filter(p => !p.gospelClass && cgAttendanceRate(p) >= 0.5) },
+    { milestone:'New Start Class', ready: mp.filter(p => !p.newStart && p.gospelClass) },
+    { milestone:'Baptism',         ready: mp.filter(p => !p.baptised && p.newStart) },
+    { milestone:'Be One, Make One',ready: mp.filter(p => !p.beOneMakeOne && p.baptised) },
+    { milestone:'Membership Class',ready: mp.filter(p => !p.rdClass && p.beOneMakeOne) },
+    { milestone:'In Ministry',     ready: mp.filter(p => !p.inMinistry && p.rdClass) },
+  ].filter(s => s.ready.length > 0);
+
+  let stepNum = 0;
+  const stepRows = pipeline.length
+    ? pipeline.map(s => {
+        stepNum++;
+        const names = s.ready.map(p => `${p.firstName} ${p.lastInit}.`).join(', ');
+        return `<div class="report-step-row">
+          <div class="report-step-num">${stepNum}</div>
+          <div>
+            <div class="report-step-title">${s.milestone}</div>
+            <div class="report-step-desc">${s.ready.length} ${s.ready.length === 1 ? 'person is' : 'people are'} ready — ${names}</div>
+          </div>
+        </div>`;
+      }).join('')
+    : `<div class="report-empty">Everyone is on track — no clear next steps identified.</div>`;
+
+  /* ── LOWEST SCORERS ── */
+  const lowest = mp.slice().sort((a, b) => score(a) - score(b)).slice(0, 5);
+  const lowestRows = lowest.map(p => {
+    const pct = Math.round(score(p) * 100);
+    const hm  = healthMeta(score(p));
+    const next = nextMilestone(p);
+    return `<div class="report-person-row" onclick="openDetail('${p.id}'); closeVitalityReport()">
+      <div style="flex:1;min-width:0">
+        <div class="report-person-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+        <div class="report-person-sub">${next ? `Next: ${next}` : 'Pathway complete'} · ${pct}% vitality</div>
+      </div>
+      <span style="font-size:12px;font-weight:700;color:${hm.text}">${hm.label.toUpperCase()}</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('report-scroll').innerHTML = `
+    <div class="report-hero">
+      <div class="report-hero-group">${esc(currentUser.isAdmin ? 'All groups' : currentUser.group)}</div>
+      <div class="report-hero-score">${vPct}%</div>
+      <div class="report-hero-label">Spiritual Vitality Index</div>
+      <div class="report-status-badge" style="background:${m.text};color:white">${m.label.toUpperCase()}</div>
+    </div>
+    <div class="report-section">
+      <div class="report-section-title">WHERE POINTS ARE LOST</div>
+      ${gapRows}
+    </div>
+    <div class="report-section" style="padding-top:20px">
+      <div class="report-section-title">ALERTS</div>
+      ${alertRows}
+    </div>
+    <div class="report-section" style="padding-top:20px">
+      <div class="report-section-title">WHO'S READY FOR THE NEXT STEP</div>
+      ${stepRows}
+    </div>
+    <div class="report-section" style="padding-top:20px">
+      <div class="report-section-title">NEEDS THE MOST SUPPORT</div>
+      ${lowestRows}
+    </div>
+    <div class="report-spacer"></div>`;
+}
+
+/* ──────────────────────────────────────────────
+   HEALTH TAB
+   ────────────────────────────────────────────── */
+function generateActions(mp) {
+  const today = new Date().toISOString().slice(0, 10);
+  const actions = [];
+
+  for (const p of mp) {
+    const cgRate = cgAttendanceRate(p);
+    const needs = [
+      p.needsMarital    && 'Marital',
+      p.needsFamily     && 'Family',
+      p.needsBereavement && 'Bereavement',
+    ].filter(Boolean);
+
+    if (needs.length) {
+      actions.push({ priority: 1, type: 'need', msgKey: 'need', pid: p.id,
+        verb: `Check in with ${esc(p.firstName)} ${esc(p.lastInit)}.`,
+        ctx: `${needs.join(' & ')} support flagged` });
+      continue;
+    }
+
+    const applicable = sessionsSince(p).filter(d => d <= today);
+    if (applicable.length && cgRate < 0.25) {
+      actions.push({ priority: 2, type: 'lapsed', msgKey: 'lapsed', pid: p.id,
+        verb: `Reach out to ${esc(p.firstName)} ${esc(p.lastInit)}.`,
+        ctx: "Hasn't been attending CG recently" });
+      continue;
+    }
+
+    if (!p.gospelClass && cgRate >= 0.5) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'gospel', pid: p.id,
+        verb: `Invite ${esc(p.firstName)} ${esc(p.lastInit)}. to Gospel Class`,
+        ctx: 'Attending CG regularly — ready for the next step',
+        resourceUrl: 'https://realdisciples.co.uk/gospel-study-series',
+        resourceLabel: 'VIEW STUDY SERIES' });
+      continue;
+    }
+    if (!p.newStart && p.gospelClass) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'newStart', pid: p.id,
+        verb: `Invite ${esc(p.firstName)} ${esc(p.lastInit)}. to New Start Class`,
+        ctx: 'Completed Gospel Class' });
+      continue;
+    }
+    if (!p.baptised && p.newStart) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'baptism', pid: p.id,
+        verb: `Have the baptism conversation with ${esc(p.firstName)} ${esc(p.lastInit)}.`,
+        ctx: 'Completed New Start Class' });
+      continue;
+    }
+    if (!p.beOneMakeOne && p.baptised) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'beOneMakeOne', pid: p.id,
+        verb: `Enrol ${esc(p.firstName)} ${esc(p.lastInit)}. in Be One, Make One`,
+        ctx: 'Baptised',
+        resourceUrl: 'https://realdisciples.co.uk/be-one-make-one',
+        resourceLabel: 'VIEW STUDY' });
+      continue;
+    }
+    if (!p.rdClass && p.beOneMakeOne) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'rdClass', pid: p.id,
+        verb: `Invite ${esc(p.firstName)} ${esc(p.lastInit)}. to Membership Class`,
+        ctx: 'Completed Be One, Make One' });
+      continue;
+    }
+    if (!p.inMinistry && p.rdClass) {
+      actions.push({ priority: 3, type: 'milestone', msgKey: 'ministry', pid: p.id,
+        verb: `Connect ${esc(p.firstName)} ${esc(p.lastInit)}. with a ministry`,
+        ctx: 'Completed Membership Class' });
+      continue;
+    }
+
+    if (applicable.length && cgRate < 0.5) {
+      actions.push({ priority: 4, type: 'sporadic', msgKey: 'sporadic', pid: p.id,
+        verb: `Encourage ${esc(p.firstName)} ${esc(p.lastInit)}. to attend more regularly`,
+        ctx: 'Attending CG occasionally' });
+      continue;
+    }
+
+    if (score(p) === 0) {
+      actions.push({ priority: 5, type: 'new', msgKey: 'new', pid: p.id,
+        verb: `Connect with ${esc(p.firstName)} ${esc(p.lastInit)}.`,
+        ctx: 'No discipleship pathway started yet' });
+    }
+  }
+
+  return actions.sort((a, b) => a.priority - b.priority || a.verb.localeCompare(b.verb));
+}
+
+const ACTION_MESSAGES = {
+  need:        n => `Hey ${n}, just wanted to reach out and check in on you. You're in my thoughts and prayers — please let me know if there's anything I can do to support you 🙏`,
+  lapsed:      n => `Hey ${n}! We've missed you at Connect Group lately — hope everything is OK. Would love to see you at the next one 😊`,
+  sporadic:    n => `Hey ${n}! Just wanted to encourage you to keep coming to Connect Group — it's such a great time together and we really value having you there 🙌`,
+  new:         n => `Hey ${n}! So great having you in the group. Would love to catch up soon and hear how you're getting on — let me know when you're free for a chat ☕`,
+  gospel:      n => `Hey ${n}! We've got Gospel Class starting soon — it's a great 4-week study on the foundations of the faith and I think you'd really love it. Would you like to join? 📖`,
+  newStart:    n => `Hey ${n}! Now that you've done Gospel Class, the next step is New Start Class — 5 sessions going deeper into living out your faith. Would love for you to be part of it! 🙌`,
+  baptism:     n => `Hey ${n}! I'd love to have a chat with you about baptism — it's such a meaningful step in your faith journey and I think you're ready. Let me know when you're free to talk 💬`,
+  beOneMakeOne:n => `Hey ${n}! We're starting Be One, Make One soon — an amazing 12-part discipleship study. Given where you are in your faith journey, I'd love for you to join. Interested? 🌱`,
+  rdClass:     n => `Hey ${n}! You've come so far in your faith — I'd love to invite you to Membership Class, the next step in your journey here at PHC. Let me know if you'd like to find out more ✨`,
+  ministry:    n => `Hey ${n}! I'd love to connect you with a ministry at church where you can use your gifts to serve. Would be great to chat about what might suit you — let me know when you're free 🙏`,
+};
+
+let _previewMsg = '';
+
+function openMsgPreview(msgKey, pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  const tpl = ACTION_MESSAGES[msgKey];
+  if (!tpl) return;
+  _previewMsg = tpl(p.firstName);
+  document.getElementById('msg-preview-text').textContent = _previewMsg;
+  document.getElementById('msg-preview-sheet').classList.add('open');
+}
+
+function closeMsgPreview(e) {
+  if (e && e.target !== document.getElementById('msg-preview-sheet')) return;
+  document.getElementById('msg-preview-sheet').classList.remove('open');
+  _previewMsg = '';
+}
+
+function copyMsgFromPreview() {
+  if (!_previewMsg) return;
+  navigator.clipboard.writeText(_previewMsg)
+    .then(() => { document.getElementById('msg-preview-sheet').classList.remove('open'); toast('Message copied!'); })
+    .catch(() => { prompt('Copy this message:', _previewMsg); });
+}
+
+function renderHealth() {
+  const el = document.getElementById('health-content');
+  if (!el) return;
+  const mp    = myPeople();
+  const total = mp.length || 1;
+  const gn    = mp.filter(p => score(p) >= 0.7).length;
+  const gr    = mp.filter(p => { const s = score(p); return s >= 0.35 && s < 0.7; }).length;
+  const rd    = mp.filter(p => score(p) < 0.35).length;
+  const vPct  = Math.round(gn / total * 100);
+  const m     = healthMeta(gn / total);
+
+  const actions = generateActions(mp);
+  const typeColor = {
+    need: 'var(--red)', lapsed: 'var(--amb)', sporadic: 'var(--amb)',
+    milestone: 'var(--ink)', new: 'var(--ink3)',
+  };
+
+  const actionHTML = actions.length
+    ? actions.map((a, i) => `
+        <div class="health-action-card" onclick="openDetail('${a.pid}')">
+          <div class="health-action-num" style="background:${typeColor[a.type]};color:white">${i + 1}</div>
+          <div class="health-action-body">
+            <div class="health-action-verb">${a.verb}</div>
+            <div class="health-action-ctx">${a.ctx}</div>
+            ${a.resourceUrl ? `<a class="resource-link" href="${a.resourceUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${a.resourceLabel || 'VIEW STUDY'} →</a>` : ''}
+            <button class="action-copy-btn" onclick="event.stopPropagation();openMsgPreview('${a.msgKey}','${a.pid}')">
+              <span class="material-symbols-outlined">chat_bubble_outline</span>View message
+            </button>
+          </div>
+          <span class="material-symbols-outlined health-action-chevron">chevron_right</span>
+        </div>`).join('')
+    : `<div class="health-empty">All disciples are progressing — no immediate actions needed.</div>`;
+
+  const gaps = [
+    { label:'CG Attendance',    pct: mp.filter(p => cgAttendanceRate(p) >= 0.5).length / total },
+    { label:'Gospel Class',     pct: mp.filter(p => p.gospelClass).length  / total },
+    { label:'New Start Class',  pct: mp.filter(p => p.newStart).length     / total },
+    { label:'Baptism',          pct: mp.filter(p => p.baptised).length     / total },
+    { label:'Be One, Make One', pct: mp.filter(p => p.beOneMakeOne).length / total },
+    { label:'Membership Class', pct: mp.filter(p => p.rdClass).length      / total },
+    { label:'In Ministry',      pct: mp.filter(p => p.inMinistry).length   / total },
+  ].sort((a, b) => a.pct - b.pct);
+
+  const gapHTML = gaps.map(g => {
+    const pct = Math.round(g.pct * 100);
+    return `<div class="health-gap-row">
+      <div class="health-gap-label">${g.label}</div>
+      <div class="health-gap-bar-wrap">
+        <div class="health-gap-track"><div class="health-gap-fill" style="width:${pct}%"></div></div>
+        <div class="health-gap-pct">${pct}%</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="health-actions">
+      <div class="health-section-title">PRIORITY ACTIONS</div>
+      ${actionHTML}
+    </div>
+    <div class="health-stats">
+      <div class="health-section-title">GROUP HEALTH</div>
+      <div class="health-svi-row">
+        <div class="health-svi-num">${vPct}%</div>
+        <div>
+          <div class="health-svi-label">Spiritual Vitality Index</div>
+          <span class="health-svi-badge" style="background:${m.text}">${m.label.toUpperCase()}</span>
+        </div>
+      </div>
+      <div class="health-counts">
+        <div class="health-count-cell">
+          <div class="health-count-num" style="color:var(--grn)">${gn}</div>
+          <div class="health-count-lbl">Flourishing</div>
+        </div>
+        <div class="health-count-cell">
+          <div class="health-count-num" style="color:var(--amb)">${gr}</div>
+          <div class="health-count-lbl">Growing</div>
+        </div>
+        <div class="health-count-cell">
+          <div class="health-count-num" style="color:var(--red)">${rd}</div>
+          <div class="health-count-lbl">Needs Care</div>
+        </div>
+      </div>
+    </div>
+    <div class="health-gaps">
+      <div class="health-section-title">WHERE POINTS ARE LOST</div>
+      ${gapHTML}
+    </div>
+    <div class="health-spacer"></div>`;
 }
 
 /* ──────────────────────────────────────────────
@@ -1804,13 +2723,10 @@ function setMsTab(key, tab) {
 /* ──────────────────────────────────────────────
    PEOPLE LIST
    ────────────────────────────────────────────── */
-const PAGE_SIZE = 10;
-
 function setFilter(btn) {
   document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   activeFilter = btn.dataset.f;
-  peoplePage = 0;
   renderPeople();
 }
 
@@ -1819,7 +2735,6 @@ function filterByNeed(f) {
   document.querySelectorAll('.needs-cell').forEach(c =>
     c.classList.toggle('needs-active', c.getAttribute('onclick').includes(`'${activeFilter}'`))
   );
-  peoplePage = 0;
   renderPeople();
 }
 
@@ -1834,18 +2749,12 @@ function toggleFilter() {
   document.getElementById('filter-wrap').classList.toggle('hidden');
 }
 
-function prevPage() { if (peoplePage > 0) { peoplePage--; renderPeople(); } }
-function nextPage() {
-  const q    = (document.getElementById('search-input')?.value || '').toLowerCase();
-  const list = filteredPeople(q);
-  if ((peoplePage + 1) * PAGE_SIZE < list.length) { peoplePage++; renderPeople(); }
-}
 
 function filteredPeople(q) {
   let list = myPeople();
   if (q) list = list.filter(p =>
     `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q) ||
-    (p.ministryName||'').toLowerCase().includes(q)
+    getMinistryNames(p).join(' ').toLowerCase().includes(q)
   );
   if      (activeFilter === 'grn')         list = list.filter(p => score(p) >= 0.7);
   else if (activeFilter === 'amb')         list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
@@ -1873,19 +2782,16 @@ function personRowHTML(p) {
 
 function switchToMilestone(key) {
   activeMilestoneView = key;
-  peoplePage = 0;
   switchTab('people');
 }
 
 function navPeople() {
   activeMilestoneView = null;
-  peoplePage = 0;
   switchTab('people');
 }
 
 function clearMilestoneView() {
   activeMilestoneView = null;
-  peoplePage = 0;
   renderPeople();
 }
 
@@ -1922,10 +2828,9 @@ function renderPeople() {
     document.getElementById(MS_COL[activeMilestoneView])?.classList.add('th-ms-active');
   }
 
-  const paged = list.slice(peoplePage * PAGE_SIZE, (peoplePage + 1) * PAGE_SIZE);
-  const el    = document.getElementById('people-list');
-  el.innerHTML = paged.length
-    ? paged.map(personRowHTML).join('')
+  const el = document.getElementById('people-list');
+  el.innerHTML = list.length
+    ? list.map(personRowHTML).join('')
     : `<tr><td colspan="8" class="empty-td">No results</td></tr>`;
 }
 
@@ -1935,7 +2840,10 @@ function personCardHTML(p) {
   const ring = ringHTML(pct, 44);
   const badges = [];
   if (p.baptised)   badges.push('Baptised');
-  if (p.inMinistry) badges.push(p.ministryName || 'Ministry');
+  if (p.inMinistry) {
+    const mn = getMinistryNames(p);
+    badges.push(mn.length > 1 ? `${mn[0]} +${mn.length - 1}` : mn[0] || 'Ministry');
+  }
   if (p.rdClass)    badges.push('Membership Class');
   return `<div class="person-card" onclick="openDetail('${p.id}')">
     ${ring}
@@ -1964,6 +2872,7 @@ function closeDetail() {
   detailId = null;
   renderHome();
   renderPeople();
+  renderHealth();
 }
 
 function renderDetail(p) {
@@ -2014,13 +2923,14 @@ function renderDetailBody(p) {
     <div class="card">
       <div class="card-hdr">DISCIPLESHIP PATHWAY</div>
       ${cgSessionRowHTML(p)}
-      ${classProgressRowHTML(p, 'gospelClass',  'Gospel Class',    4)}
+      ${classProgressRowHTML(p, 'gospelClass',  'Gospel Class',    4,  'https://realdisciples.co.uk/gospel-study-series')}
       ${classProgressRowHTML(p, 'newStart',     'New Start Class', 5)}
       ${toggleRowHTML(p, 'baptised',    'Baptised',          '')}
-      ${classProgressRowHTML(p, 'beOneMakeOne', 'Be One, Make One',12)}
+      ${classProgressRowHTML(p, 'beOneMakeOne', 'Be One, Make One',12, 'https://realdisciples.co.uk/be-one-make-one')}
       ${toggleRowHTML(p, 'rdClass',     'Membership Class',  '')}
       ${ministryRowHTML(p)}
     </div>
+    ${discipleshipCardHTML(p)}
     <div class="card">
       <div class="card-hdr">SUPPORT NEEDED</div>
       ${needRowHTML(p, 'needsMarital',     'Marital')}
@@ -2079,7 +2989,7 @@ async function saveNote(pid) {
   toast('Note saved');
 }
 
-function classProgressRowHTML(p, field, title, total) {
+function classProgressRowHTML(p, field, title, total, resourceUrl) {
   const count = p[field + 'Count'] || 0;
   const done  = !!p[field];
   let statusHTML, statusColor;
@@ -2097,6 +3007,9 @@ function classProgressRowHTML(p, field, title, total) {
   const pips = Array.from({ length: total }, (_, i) =>
     `<span class="cls-pip ${i < count ? (done ? 'on' : 'on-partial') : ''}"></span>`
   ).join('');
+  const link = resourceUrl
+    ? `<a class="resource-link" href="${resourceUrl}" target="_blank" rel="noopener">VIEW STUDY →</a>`
+    : '';
   return `<div class="toggle-row cg-row">
     <div class="cg-row-top">
       <div class="toggle-label">
@@ -2110,6 +3023,7 @@ function classProgressRowHTML(p, field, title, total) {
       </div>
     </div>
     <div class="cls-pips">${pips}</div>
+    ${link}
   </div>`;
 }
 
@@ -2197,19 +3111,43 @@ async function toggleSession(pid, date, dotEl) {
   renderHome();
 }
 
+function getMinistryNames(p) {
+  if (Array.isArray(p.ministryNames) && p.ministryNames.length) return p.ministryNames;
+  if (p.ministryName) return [p.ministryName];
+  return [];
+}
+
 function ministryRowHTML(p) {
-  const on = !!p.inMinistry;
+  const on      = !!p.inMinistry;
+  const current = getMinistryNames(p);
+  const chips   = current.map(n => {
+    const leader = (MINISTRIES.find(m => m.name === n) || {}).leader || '';
+    return `<span class="min-chip">
+      <span class="min-chip-body">
+        <span class="min-chip-name">${esc(n)}</span>
+        ${leader ? `<span class="min-chip-leader">${esc(leader)}</span>` : ''}
+      </span>
+      <button class="min-chip-rm" onclick="removeMinistry('${p.id}','${esc(n)}')">×</button>
+    </span>`;
+  }).join('');
+  const available = MINISTRIES.filter(m => !current.includes(m.name));
+  const opts = available.map(m =>
+    `<option value="${esc(m.name)}">${esc(m.name)} — ${esc(m.leader)}</option>`
+  ).join('');
   return `<div class="ministry-row">
     <div class="ministry-row-top">
       <div class="toggle-label"><div class="toggle-title">In Ministry</div></div>
       <button class="toggle-sw ${on?'on':''}"
         onclick="toggleMinistry('${p.id}',this)"></button>
     </div>
-    <select class="ministry-input ${on?'':'hidden'}" id="min-inp-${p.id}"
-      onchange="updateField('${p.id}','ministryName',this.value)">
-      <option value="">Select ministry...</option>
-      ${MINISTRIES.map(m=>`<option value="${esc(m.name)}"${p.ministryName===m.name?' selected':''}>${esc(m.name)} — ${esc(m.leader)}</option>`).join('')}
-    </select>
+    <div id="min-area-${p.id}" ${on?'':'style="display:none"'}>
+      ${current.length ? `<div class="min-chips">${chips}</div>` : ''}
+      ${available.length ? `<select class="ministry-input" id="min-inp-${p.id}"
+        onchange="addMinistry('${p.id}',this)">
+        <option value="">+ Add ministry...</option>
+        ${opts}
+      </select>` : ''}
+    </div>
   </div>`;
 }
 
@@ -2282,10 +3220,247 @@ function closeMilestoneDateSheet(e) {
   msDatePid = null; msDateField = null;
 }
 
+// ── Bulk attendance ───────────────────────────────────────────────────────
+let bulkSessionDate = null;
+
+function openBulkAttendance() {
+  const today = new Date().toISOString().slice(0, 10);
+  const past  = CG_SESSIONS.filter(d => d <= today);
+  if (!past.length) { toast('No sessions yet'); return; }
+  bulkSessionDate = past[past.length - 1];
+  renderBulkSessionBar();
+  renderBulkPeopleList();
+  document.getElementById('bulk-att-overlay').classList.add('open');
+}
+
+function closeBulkAttendance() {
+  document.getElementById('bulk-att-overlay').classList.remove('open');
+  bulkSessionDate = null;
+}
+
+function renderBulkSessionBar() {
+  const today = new Date().toISOString().slice(0, 10);
+  const past  = CG_SESSIONS.filter(d => d <= today).slice(-10).reverse();
+  document.getElementById('bulk-session-bar').innerHTML = past.map(d => {
+    const dt  = new Date(d + 'T00:00:00');
+    const lbl = dt.toLocaleString('en-GB', { day:'numeric', month:'short' });
+    return `<div class="bulk-session-chip${d === bulkSessionDate ? ' sel' : ''}" onclick="selectBulkSession('${d}')">${lbl}</div>`;
+  }).join('');
+}
+
+function selectBulkSession(date) {
+  bulkSessionDate = date;
+  renderBulkSessionBar();
+  renderBulkPeopleList();
+}
+
+function renderBulkPeopleList() {
+  const eligible = myPeople().filter(p => {
+    const joined = p.createdAt ? p.createdAt.slice(0, 10) : null;
+    return !joined || joined <= bulkSessionDate;
+  });
+  const markedCount = eligible.filter(p =>
+    (p.attendedSessions || []).includes(bulkSessionDate)
+  ).length;
+  document.getElementById('bulk-att-count').textContent =
+    `${markedCount} of ${eligible.length} marked`;
+  document.getElementById('bulk-people-list').innerHTML = eligible.length
+    ? eligible.map(p => {
+        const on = (p.attendedSessions || []).includes(bulkSessionDate);
+        return `<div class="bulk-person-row" onclick="toggleBulkAttendance('${p.id}')">
+          <div style="flex:1;">
+            <div class="bulk-person-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+            <div class="bulk-person-sub">${cgAttendanceLabel(p)}</div>
+          </div>
+          <div class="bulk-check${on ? ' on' : ''}" id="bchk-${p.id}"></div>
+        </div>`;
+      }).join('')
+    : `<div style="padding:32px;text-align:center;color:var(--ink3);">No members for this session</div>`;
+}
+
+async function toggleBulkAttendance(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p || !bulkSessionDate) return;
+  if (!p.attendedSessions) p.attendedSessions = [];
+  const idx = p.attendedSessions.indexOf(bulkSessionDate);
+  if (idx === -1) p.attendedSessions.push(bulkSessionDate);
+  else            p.attendedSessions.splice(idx, 1);
+  const on = p.attendedSessions.includes(bulkSessionDate);
+  await dbSave(p);
+  const chk = document.getElementById('bchk-' + pid);
+  if (chk) chk.classList.toggle('on', on);
+  // update count line
+  const eligible = myPeople().filter(x => {
+    const joined = x.createdAt ? x.createdAt.slice(0, 10) : null;
+    return !joined || joined <= bulkSessionDate;
+  });
+  const marked = eligible.filter(x => (x.attendedSessions || []).includes(bulkSessionDate)).length;
+  document.getElementById('bulk-att-count').textContent =
+    `${marked} of ${eligible.length} marked`;
+}
+
+// ── Discipler picker ──────────────────────────────────────────────────────
+let disciplerPickerPid  = null;
+let disciplerPickerMode = 'be-one'; // 'be-one' | 'make-one'
+
+function openDisciplerPicker(pid) {
+  disciplerPickerMode = 'be-one';
+  disciplerPickerPid  = pid;
+  const p = people.find(x => x.id === pid);
+  const input = document.getElementById('discipler-name-input');
+  input.value = (p && p.discipledByName) || '';
+  document.getElementById('discipler-picker-title').textContent = 'Who is discipling them?';
+  document.getElementById('discipler-picker-label').textContent = 'Name';
+  document.getElementById('discipler-clear-btn').style.display = p && p.discipledByName ? '' : 'none';
+  document.getElementById('discipler-picker').classList.add('open');
+  setTimeout(() => input.focus(), 200);
+}
+
+function openDiscipleePicker(pid) {
+  disciplerPickerMode = 'make-one';
+  disciplerPickerPid  = pid;
+  const input = document.getElementById('discipler-name-input');
+  input.value = '';
+  document.getElementById('discipler-picker-title').textContent = 'Who are they discipling?';
+  document.getElementById('discipler-picker-label').textContent = 'Name';
+  document.getElementById('discipler-clear-btn').style.display = 'none';
+  document.getElementById('discipler-picker').classList.add('open');
+  setTimeout(() => input.focus(), 200);
+}
+
+function closeDisciplerPicker() {
+  document.getElementById('discipler-picker').classList.remove('open');
+  disciplerPickerPid = null;
+}
+
+async function saveDisciplerName() {
+  const p = people.find(x => x.id === disciplerPickerPid);
+  if (!p) return;
+  const name = document.getElementById('discipler-name-input').value.trim();
+  if (disciplerPickerMode === 'be-one') {
+    p.discipledByName = name || null;
+    p.discipledById   = null;
+  } else {
+    if (!name) { closeDisciplerPicker(); return; }
+    const existing = Array.isArray(p.disciplingNames) ? p.disciplingNames : [];
+    if (!existing.includes(name)) p.disciplingNames = [...existing, name];
+  }
+  await dbSave(p);
+  closeDisciplerPicker();
+  renderDetail(p);
+  toast('Saved');
+}
+
+async function clearDiscipler() {
+  const p = people.find(x => x.id === disciplerPickerPid);
+  if (!p) return;
+  p.discipledByName = null;
+  p.discipledById   = null;
+  await dbSave(p);
+  closeDisciplerPicker();
+  renderDetail(p);
+  toast('Saved');
+}
+
+async function removeDisciplee(pid, name) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.disciplingNames = (p.disciplingNames || []).filter(n => n !== name);
+  await dbSave(p);
+  renderDetail(p);
+  toast('Saved');
+}
+
+function discipleshipCardHTML(p) {
+  const disciplerName = p.discipledByName || null;
+  const beOneHTML = `
+    <div class="toggle-row" onclick="openDisciplerPicker('${p.id}')" style="cursor:pointer;">
+      <div class="toggle-left">
+        <span class="material-symbols-outlined toggle-icon" style="font-variation-settings:'FILL' 0,'wght' 200;">person</span>
+        <div>
+          <div class="toggle-label">Being discipled by</div>
+          ${disciplerName
+            ? `<div class="toggle-sub" style="color:var(--ink);">${esc(disciplerName)}</div>`
+            : `<div class="toggle-sub">Tap to assign</div>`}
+        </div>
+      </div>
+      <span class="material-symbols-outlined" style="color:var(--ink3);font-size:20px;">chevron_right</span>
+    </div>`;
+
+  const disciplingNames = Array.isArray(p.disciplingNames) ? p.disciplingNames : [];
+  const discipleeRows = disciplingNames.map(n => `
+    <div class="toggle-row">
+      <div class="toggle-left">
+        <span class="material-symbols-outlined toggle-icon" style="font-variation-settings:'FILL' 1,'wght' 200;color:var(--grn);">person</span>
+        <div>
+          <div class="toggle-label">${esc(n)}</div>
+          <div class="toggle-sub" style="color:var(--grn);">Being discipled</div>
+        </div>
+      </div>
+      <button onclick="removeDisciplee('${p.id}','${esc(n)}')"
+        style="border:none;background:none;cursor:pointer;font-size:20px;color:var(--ink3);padding:0 4px;line-height:1;">×</button>
+    </div>`).join('');
+
+  const addRow = `
+    <div class="toggle-row" onclick="openDiscipleePicker('${p.id}')" style="cursor:pointer;">
+      <div class="toggle-left">
+        <span class="material-symbols-outlined toggle-icon">person_add</span>
+        <div>
+          <div class="toggle-label" style="color:var(--ink3);">
+            ${disciplingNames.length ? 'Add another person' : 'Add person they\'re discipling'}
+          </div>
+        </div>
+      </div>
+      <span class="material-symbols-outlined" style="color:var(--ink3);font-size:20px;">chevron_right</span>
+    </div>`;
+
+  return `
+    <div class="card">
+      <div class="card-hdr">DISCIPLESHIP RELATIONSHIPS</div>
+      ${beOneHTML}
+      <div style="height:1px;background:var(--line);margin:0;"></div>
+      ${discipleeRows}
+      ${addRow}
+    </div>`;
+}
+
 async function toggleMinistry(pid, btn) {
   const p = people.find(x => x.id === pid);
   if (!p) return;
   p.inMinistry = !p.inMinistry;
+  if (!p.inMinistry) {
+    p.ministryNames = [];
+    p.ministryName  = '';
+  }
+  await dbSave(p);
+  renderDetail(p);
+  toast('Saved');
+}
+
+async function addMinistry(pid, sel) {
+  const name = sel.value;
+  if (!name) return;
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  const current = getMinistryNames(p);
+  if (!current.includes(name)) {
+    p.ministryNames = [...current, name];
+    p.ministryName  = p.ministryNames[0];
+    p.inMinistry    = true;
+    await dbSave(p);
+    renderDetail(p);
+    toast('Saved');
+  }
+  sel.value = '';
+}
+
+async function removeMinistry(pid, name) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  const updated = getMinistryNames(p).filter(n => n !== name);
+  p.ministryNames = updated;
+  p.ministryName  = updated[0] || '';
+  p.inMinistry    = updated.length > 0;
   await dbSave(p);
   renderDetail(p);
   toast('Saved');
@@ -2317,6 +3492,7 @@ function openDetailMenu() {
   if (!detailId) return;
   const p = people.find(x => x.id === detailId);
   if (!p) return;
+  _actionSheetPid = detailId;
   document.getElementById('action-sheet-title').textContent = `${p.firstName} ${p.lastInit}.`;
   document.getElementById('action-sheet').classList.add('open');
 }
@@ -2420,6 +3596,8 @@ async function submitAdd() {
     rdClass:       document.getElementById('a-rdclass').classList.contains('on'),
     inMinistry:    document.getElementById('a-ministry').classList.contains('on'),
     ministryName:  document.getElementById('a-min-name').value.trim(),
+    ministryNames: document.getElementById('a-ministry').classList.contains('on') && document.getElementById('a-min-name').value.trim()
+      ? [document.getElementById('a-min-name').value.trim()] : [],
     needsMarital:      false,
     needsFamily:       false,
     needsBereavement:  false,
@@ -2435,12 +3613,228 @@ async function submitAdd() {
 }
 
 /* ──────────────────────────────────────────────
-   SETTINGS
+   CONNECT GROUP TAB
    ────────────────────────────────────────────── */
-function renderSettings() {
-  document.getElementById('s-name').textContent  = currentUser?.name  || '';
-  document.getElementById('s-group').textContent = currentUser?.group || '';
-  document.getElementById('s-count').textContent = myPeople().length;
+let cgSessionDate    = null;
+let cgOpenSeasonKey  = null;
+
+function sessionSeason(dateStr) {
+  const m = parseInt(dateStr.slice(5, 7), 10);
+  if (m >= 1 && m <= 3)  return 1;
+  if (m >= 6 && m <= 7)  return 2;
+  if (m >= 9 && m <= 11) return 3;
+  return 0;
+}
+
+function getCGSeasons(sessions) {
+  const RANGES = ['', 'Jan – Mar', 'Jun – Jul', 'Sep – Nov'];
+  const map = new Map();
+  for (const d of sessions) {
+    const year = d.slice(0, 4);
+    const sn   = sessionSeason(d);
+    if (!sn) continue;
+    const key = `${year}-s${sn}`;
+    if (!map.has(key)) map.set(key, { key, year, sn, label:`SEASON ${sn} · ${year}`, range:RANGES[sn], sessions:[] });
+    map.get(key).sessions.push(d);
+  }
+  return Array.from(map.values()).reverse(); // most-recent first
+}
+
+function getAccordionSessions() {
+  const today   = new Date().toISOString().slice(0, 10);
+  const past    = CG_SESSIONS.filter(d => d <= today);
+  const pastSet = new Set(past);
+  const todaySn = sessionSeason(today);
+  const todayYr = today.slice(0, 4);
+  let upcoming  = [];
+  if (todaySn !== 0) {
+    // mid-season: add remaining sessions of the current season
+    upcoming = CG_SESSIONS.filter(d => d > today && d.slice(0,4) === todayYr && sessionSeason(d) === todaySn);
+  } else {
+    // between seasons: add all sessions of the next upcoming season
+    const next = CG_SESSIONS.find(d => d > today);
+    if (next) {
+      const nSn = sessionSeason(next), nYr = next.slice(0, 4);
+      upcoming = CG_SESSIONS.filter(d => d > today && d.slice(0,4) === nYr && sessionSeason(d) === nSn);
+    }
+  }
+  return { all: [...past, ...upcoming], pastSet };
+}
+
+function renderCGTab() {
+  const today = new Date().toISOString().slice(0, 10);
+  const past  = CG_SESSIONS.filter(d => d <= today);
+  if (!cgSessionDate || !past.includes(cgSessionDate)) {
+    cgSessionDate = past.length ? past[past.length - 1] : null;
+  }
+  if (!cgOpenSeasonKey) {
+    const ref = cgSessionDate || CG_SESSIONS.find(d => d > today);
+    if (ref) cgOpenSeasonKey = `${ref.slice(0,4)}-s${sessionSeason(ref)}`;
+  }
+  renderCGAccordion();
+  renderCGPeopleList();
+  renderCGArchived();
+}
+
+function renderCGAccordion() {
+  const { all, pastSet } = getAccordionSessions();
+  const mp      = myPeople();
+  const seasons = getCGSeasons(all);
+  const el      = document.getElementById('cg-season-accordion');
+  if (!el) return;
+  if (!seasons.length) { el.innerHTML = '<div class="cg-empty">No sessions yet</div>'; return; }
+
+  el.innerHTML = seasons.map(s => {
+    const open = s.key === cgOpenSeasonKey;
+
+    // avg attendance % — past sessions only
+    let sumPct = 0, cnt = 0;
+    for (const d of s.sessions.filter(d => pastSet.has(d))) {
+      const eligible = mp.filter(p => !p.createdAt || p.createdAt.slice(0,10) <= d);
+      if (!eligible.length) continue;
+      const attended = eligible.filter(p => (p.attendedSessions||[]).includes(d)).length;
+      sumPct += attended / eligible.length;
+      cnt++;
+    }
+    const avgStr = cnt ? Math.round(sumPct / cnt * 100) + '%' : '';
+
+    // group sessions by month
+    const monthMap = new Map();
+    for (const d of s.sessions) {
+      const mo = d.slice(0, 7);
+      if (!monthMap.has(mo)) monthMap.set(mo, []);
+      monthMap.get(mo).push(d);
+    }
+
+    const bodyHtml = Array.from(monthMap.entries()).map(([mo, dates]) => {
+      const moLabel = new Date(mo + '-01T00:00:00').toLocaleString('en-GB', { month:'short' }).toUpperCase();
+      const chips = dates.map(d => {
+        const day      = parseInt(d.slice(8), 10);
+        const isPast   = pastSet.has(d);
+        const isSel    = d === cgSessionDate;
+        const eligible = mp.filter(p => !p.createdAt || p.createdAt.slice(0,10) <= d);
+        const hasData  = isPast && eligible.some(p => (p.attendedSessions||[]).includes(d));
+        const cls      = isSel ? ' sel' : hasData ? ' has-data' : !isPast ? ' future' : '';
+        return `<div class="cg-chip${cls}"${isPast ? ` onclick="selectCGSession('${d}')"` : ''}>${day}</div>`;
+      }).join('');
+      return `<div class="cg-month-group">
+        <span class="cg-month-label">${moLabel}</span>
+        <div class="cg-month-chips">${chips}</div>
+      </div>`;
+    }).join('');
+
+    const upcomingTag = !s.sessions.every(d => pastSet.has(d))
+      ? `<span class="cg-season-upcoming">UPCOMING</span>` : '';
+
+    return `<div class="cg-season-row${open ? ' open' : ''}" onclick="toggleCGSeason('${s.key}')">
+      <div class="cg-season-info">
+        <span class="cg-season-label">${s.label}</span>
+        <span class="cg-season-range">${s.range}</span>
+      </div>
+      ${upcomingTag || (avgStr ? `<span class="cg-season-avg">${avgStr}</span>` : '')}
+      <span class="material-symbols-outlined cg-season-chevron">${open ? 'expand_less' : 'expand_more'}</span>
+    </div>
+    <div class="cg-season-body${open ? ' open' : ''}">${bodyHtml}</div>`;
+  }).join('');
+}
+
+function toggleCGSeason(key) {
+  cgOpenSeasonKey = cgOpenSeasonKey === key ? null : key;
+  renderCGAccordion();
+}
+
+function selectCGSession(date) {
+  cgSessionDate   = date;
+  const year = date.slice(0, 4);
+  const sn   = sessionSeason(date);
+  if (sn) cgOpenSeasonKey = `${year}-s${sn}`;
+  renderCGAccordion();
+  renderCGPeopleList();
+}
+
+function renderCGPeopleList() {
+  if (!cgSessionDate) {
+    document.getElementById('cg-people-list').innerHTML = '<div class="cg-empty">No sessions yet</div>';
+    document.getElementById('cg-att-badge').textContent = '';
+    return;
+  }
+  const eligible = myPeople().filter(p => {
+    const joined = p.createdAt ? p.createdAt.slice(0, 10) : null;
+    return !joined || joined <= cgSessionDate;
+  });
+  const marked = eligible.filter(p => (p.attendedSessions || []).includes(cgSessionDate)).length;
+  document.getElementById('cg-att-badge').textContent = eligible.length ? `${marked}/${eligible.length}` : '';
+  document.getElementById('cg-people-list').innerHTML = eligible.length
+    ? eligible.map(p => {
+        const on = (p.attendedSessions || []).includes(cgSessionDate);
+        return `<div class="bulk-person-row" onclick="toggleCGAttendance('${p.id}')">
+          <div style="flex:1;">
+            <div class="bulk-person-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+            <div class="bulk-person-sub">${cgAttendanceLabel(p)}</div>
+          </div>
+          <div class="bulk-check${on ? ' on' : ''}" id="cgchk-${p.id}"></div>
+        </div>`;
+      }).join('')
+    : `<div class="cg-empty">No members for this session</div>`;
+}
+
+async function toggleCGAttendance(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p || !cgSessionDate) return;
+  if (!p.attendedSessions) p.attendedSessions = [];
+  const idx = p.attendedSessions.indexOf(cgSessionDate);
+  if (idx === -1) p.attendedSessions.push(cgSessionDate);
+  else            p.attendedSessions.splice(idx, 1);
+  const on = p.attendedSessions.includes(cgSessionDate);
+  await dbSave(p);
+  const chk = document.getElementById('cgchk-' + pid);
+  if (chk) chk.classList.toggle('on', on);
+  const eligible = myPeople().filter(x => {
+    const joined = x.createdAt ? x.createdAt.slice(0, 10) : null;
+    return !joined || joined <= cgSessionDate;
+  });
+  const marked = eligible.filter(x => (x.attendedSessions || []).includes(cgSessionDate)).length;
+  document.getElementById('cg-att-badge').textContent = `${marked}/${eligible.length}`;
+}
+
+
+function renderCGArchived() {
+  const ap = archivedPeople();
+  const el = document.getElementById('cg-archived-list');
+  if (!el) return;
+  el.innerHTML = ap.length
+    ? ap.map(p => `<div class="cg-archived-row">
+        <span class="cg-archived-name">${esc(p.firstName)} ${esc(p.lastInit)}.</span>
+        <button class="cg-unarchive-btn" onclick="unarchivePerson('${p.id}')">Restore</button>
+      </div>`).join('')
+    : `<div class="cg-empty">No archived disciples</div>`;
+}
+
+async function archivePerson(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.archived = true;
+  await dbSave(p);
+  closeDetail();
+  renderHome();
+  renderPeople();
+  toast(`${p.firstName} archived`);
+}
+
+async function unarchivePerson(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.archived = false;
+  await dbSave(p);
+  renderCGArchived();
+  toast(`${p.firstName} restored`);
+}
+
+let _actionSheetPid = null;
+function archiveFromSheet() {
+  const pid = _actionSheetPid;
+  closeActionSheet();
+  if (pid) archivePerson(pid);
 }
 
 /* ──────────────────────────────────────────────
