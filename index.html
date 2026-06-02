@@ -334,6 +334,160 @@ body {
 .health-gap-pct { font-size:12px; font-weight:600; color:var(--ink3); min-width:30px; text-align:right; }
 .health-empty { font-size:14px; color:var(--ink3); font-style:italic; padding:16px 0; }
 .health-spacer { height:24px; }
+/* Admin health */
+.adm-leader-row {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 0; border-bottom:1px solid var(--line); cursor:pointer;
+}
+.adm-leader-row:last-child { border-bottom:none; }
+.adm-leader-row:active { opacity:0.7; }
+.adm-leader-info { flex:1; min-width:0; }
+.adm-leader-name { font-size:15px; font-weight:600; color:var(--ink); }
+.adm-leader-group { font-size:12px; color:var(--ink3); margin-top:1px; margin-bottom:6px; }
+.adm-leader-bar-track { height:3px; background:var(--line); }
+.adm-leader-bar-fill { height:3px; transition:width .4s; }
+.adm-leader-stats { display:flex; align-items:center; gap:2px; font-size:13px; font-weight:600; }
+.adm-stat-sep { color:var(--ink4); font-weight:400; margin:0 1px; }
+.ml-leader-row {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 0; border-bottom:1px solid var(--line);
+}
+.ml-leader-row:last-child { border-bottom:none; }
+.ml-leader-av {
+  width:34px; height:34px; border-radius:50%; background:var(--ink);
+  color:#fff; font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.ml-leader-info { flex:1; min-width:0; }
+.ml-leader-name { font-size:14px; font-weight:600; color:var(--ink); }
+.ml-leader-group { font-size:12px; color:var(--ink3); margin-top:1px; }
+.ml-delete-btn {
+  background:none; border:none; cursor:pointer; padding:6px;
+  color:var(--ink4); font-family:inherit; font-size:13px; font-weight:600;
+  flex-shrink:0;
+}
+.ml-delete-btn:hover { color:var(--red); }
+.ml-locked { font-size:10px; color:var(--ink4); letter-spacing:.06em; text-transform:uppercase; flex-shrink:0; }
+.adm-back-btn {
+  display:flex; align-items:center; gap:6px; background:none; border:none;
+  font-family:inherit; font-size:13px; font-weight:600; color:var(--ink3);
+  cursor:pointer; padding:0; margin-bottom:4px;
+}
+.adm-back-btn .material-symbols-outlined { font-size:18px; }
+.adm-group-list-hdr { padding:20px 24px 12px; border-bottom:1px solid var(--line); }
+.adm-group-list-title { font-size:12px; font-weight:600; letter-spacing:0.15em; color:var(--ink3); margin-bottom:2px; }
+.adm-group-list-sub { font-size:13px; color:var(--ink4); }
+.adm-group-list-rows { padding:0 24px; }
+
+/* ADMIN OVERVIEW & GROUPS */
+.adm-ov-pad { padding:20px 16px 100px; }
+.adm-ov-tier-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; }
+.adm-ov-tier-chip {
+  border:1px solid var(--line); border-radius:10px; padding:14px 12px;
+  display:flex; flex-direction:column; gap:4px;
+}
+.adm-ov-tier-num { font-size:28px; font-weight:700; line-height:1; }
+.adm-ov-tier-lbl { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); }
+.adm-ov-at-risk-bar {
+  display:flex; align-items:center; gap:8px;
+  background:#ba1a1a0d; border:1px solid #ba1a1a22; border-radius:8px;
+  padding:10px 14px; margin-bottom:16px;
+}
+.adm-ov-section-hdr {
+  font-size:11px; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink3); margin-bottom:10px; margin-top:20px;
+}
+.adm-ov-group-card {
+  display:flex; align-items:center; gap:10px;
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:14px; margin-bottom:8px; cursor:pointer;
+}
+.adm-ov-group-card:active { background:var(--bg); }
+.adm-ov-group-info { flex:1; min-width:0; }
+.adm-ov-group-name { font-size:14px; font-weight:600; color:var(--ink); }
+.adm-ov-group-sub { font-size:12px; color:var(--ink3); margin-top:1px; }
+.adm-ov-group-signals { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+.adm-ov-sig { font-size:11px; font-weight:600; padding:2px 8px; border-radius:20px; }
+.adm-ov-empty { font-size:13px; color:var(--ink4); padding:16px 0; }
+/* ADMIN MEMBERS */
+.adm-members-hdr {
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:10px;
+  background:var(--surface); position:sticky; top:0; z-index:2;
+}
+.adm-members-search {
+  flex:1; border:none; background:none; font-size:14px;
+  color:var(--ink); outline:none; font-family:inherit;
+}
+.adm-members-search::placeholder { color:var(--ink4); }
+.adm-members-count {
+  font-size:11px; font-weight:700; letter-spacing:.12em;
+  color:var(--ink3); padding:6px 16px 2px;
+}
+.adm-member-card {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 16px; border-bottom:1px solid var(--line);
+  cursor:pointer; background:var(--surface);
+}
+.adm-member-card:active { background:var(--bg); }
+.adm-member-av {
+  width:42px; height:42px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; color:white; letter-spacing:.02em;
+}
+.adm-member-info { flex:1; min-width:0; }
+.adm-member-name { font-size:14px; font-weight:600; color:var(--ink); }
+.adm-member-sub { font-size:12px; color:var(--ink3); margin-top:2px; }
+
+.adm-grp-card {
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:14px; margin-bottom:10px; cursor:pointer;
+}
+.adm-grp-card:active { background:var(--bg); }
+.adm-grp-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; margin-bottom:10px; }
+.adm-grp-card-name { font-size:15px; font-weight:600; color:var(--ink); }
+.adm-grp-card-leader { font-size:12px; color:var(--ink3); margin-top:2px; }
+.adm-grp-tier-bar { display:flex; height:4px; border-radius:2px; overflow:hidden; background:var(--line); margin-bottom:8px; }
+.adm-grp-signals { display:flex; flex-wrap:wrap; gap:4px; }
+.people-tracker-breadcrumb {
+  display:flex; align-items:center; gap:8px;
+  padding:12px 24px 0;
+}
+/* Admin global search */
+.adm-search-wrap {
+  position:relative; padding:12px 24px; border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:8px;
+}
+.adm-search-input {
+  flex:1; padding:10px 12px; border:1.5px solid var(--line); background:var(--bg);
+  font-family:inherit; font-size:14px; color:var(--ink); outline:none; min-width:0;
+}
+.adm-search-input:focus { border-color:var(--ink); }
+.adm-search-clear {
+  background:none; border:none; cursor:pointer; color:var(--ink3);
+  display:flex; align-items:center; padding:4px; flex-shrink:0;
+}
+.adm-search-result-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 24px; border-bottom:1px solid var(--line); cursor:pointer;
+}
+.adm-search-result-row:last-child { border-bottom:none; }
+.adm-search-result-row:active { opacity:0.7; }
+.adm-search-result-name { font-size:15px; font-weight:600; color:var(--ink); }
+.adm-search-result-sub  { font-size:12px; color:var(--ink3); margin-top:1px; }
+/* Reassign sheet — scrollable leader list */
+.reassign-list { max-height:55vh; overflow-y:auto; }
+.sheet-opt-current { color:var(--ink3) !important; cursor:default; font-size:13px; }
+.adm-needs-row {
+  display:flex; align-items:center; gap:10px;
+  padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer;
+}
+.adm-needs-row:last-child { border-bottom:none; }
+.adm-needs-name { flex:1; font-size:14px; font-weight:600; color:var(--ink); }
+.adm-needs-badge {
+  font-size:10px; font-weight:700; letter-spacing:0.08em;
+  color:white; padding:2px 8px; text-transform:uppercase;
+}
 .action-copy-btn {
   display:inline-flex; align-items:center; gap:4px;
   margin-top:8px; padding:4px 9px;
@@ -568,6 +722,11 @@ body {
   color:var(--ink3); cursor:pointer; flex-shrink:0;
 }
 .filter-chip.active { background:var(--ink); border-color:var(--ink); color:white; }
+.filter-section-lbl {
+  font-size:10px; font-weight:600; letter-spacing:0.12em; color:var(--ink4);
+  align-self:center; flex-shrink:0; padding-right:2px; white-space:nowrap;
+}
+.person-row-sub { font-size:10px; color:var(--ink4); font-weight:400; margin-top:2px; }
 .tracker-table-wrap { overflow-x:auto; flex:1; }
 .tracker-table { width:100%; border-collapse:collapse; min-width:340px; }
 .tracker-table thead th {
@@ -575,7 +734,11 @@ body {
   letter-spacing:0.15em; text-transform:uppercase; color:var(--ink3);
   border-bottom:1px solid var(--line); white-space:nowrap; text-align:center;
 }
-.tracker-table thead th:first-child { text-align:left; padding-left:24px; min-width:90px; }
+.tracker-table thead th:first-child {
+  text-align:left; padding-left:24px; min-width:100px;
+  position:sticky; left:0; z-index:2;
+  background:var(--surface); box-shadow:2px 0 5px -2px rgba(0,0,0,0.08);
+}
 .tracker-table tbody tr {
   border-bottom:1px solid var(--line); cursor:pointer; transition:background .1s;
 }
@@ -584,7 +747,10 @@ body {
 .tracker-table tbody td:first-child {
   text-align:left; padding-left:24px;
   font-size:15px; font-weight:600; color:var(--ink); white-space:nowrap;
+  position:sticky; left:0; z-index:1;
+  background:var(--surface); box-shadow:2px 0 5px -2px rgba(0,0,0,0.08);
 }
+.tracker-table tbody tr:active td:first-child { background:var(--bg); }
 .empty-td {
   padding:40px 24px; text-align:center;
   color:var(--ink3); font-size:14px;
@@ -700,7 +866,14 @@ body {
 /* CONNECT GROUP SESSION DOTS */
 .cg-row { flex-direction:column; align-items:stretch; }
 .cg-row-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.cg-session-grid { display:flex; flex-wrap:wrap; gap:5px; padding-top:10px; margin-top:2px; }
+.cg-seasons-wrap { display:flex; flex-direction:column; gap:14px; padding-top:12px; }
+.cg-season-block-label {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:6px;
+  font-size:10px; font-weight:600; letter-spacing:0.12em; color:var(--ink3);
+}
+.cg-season-block-att { font-weight:500; color:var(--ink4); letter-spacing:0; }
+.cg-session-grid { display:flex; flex-wrap:wrap; gap:5px; }
 .cg-dot {
   width:34px; padding:5px 0 4px;
   border:1.5px solid var(--line); background:var(--bg);
@@ -715,6 +888,22 @@ body {
 .cg-mon { font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink3); }
 .cg-dot.attended .cg-day,
 .cg-dot.attended .cg-mon { color:white; }
+
+/* CARE STAGE */
+.care-stage-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:10px 0 4px;
+}
+.cs-btn {
+  padding:9px 10px; border:1.5px solid var(--line); background:var(--bg);
+  font-family:inherit; font-size:12px; font-weight:600; letter-spacing:0.04em;
+  color:var(--ink3); cursor:pointer; text-align:left; transition:all .12s;
+}
+.cs-btn:active { opacity:0.7; }
+.cs-btn.active { color:#fff; border-color:transparent; }
+.cs-badge {
+  display:inline-block; font-size:10px; font-weight:600; letter-spacing:0.08em;
+  padding:2px 7px; text-transform:uppercase; vertical-align:middle;
+}
 
 /* BULK ATTENDANCE */
 .bulk-session-bar {
@@ -771,6 +960,19 @@ body {
 }
 .need-check.on { background:var(--ink); border-color:var(--ink); }
 .need-title { font-size:15px; font-weight:500; flex:1; }
+
+.profile-row {
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px; border-bottom:1px solid var(--line);
+  cursor:pointer;
+}
+.profile-row:last-child { border-bottom:none; }
+.profile-row-icon { font-size:20px; flex-shrink:0; }
+.profile-row-body { flex:1; min-width:0; }
+.profile-row-label { font-size:11px; font-weight:600; color:var(--ink3); letter-spacing:.5px; text-transform:uppercase; margin-bottom:2px; }
+.profile-row-val { font-size:15px; font-weight:500; }
+.profile-row-sub { font-size:12px; color:var(--ink3); margin-top:2px; }
+.profile-row-action { font-size:12px; font-weight:600; color:var(--red); flex-shrink:0; }
 
 .ministry-row {
   display:flex; flex-direction:column;
@@ -1015,6 +1217,89 @@ body {
 .cls-pip.on { background:var(--ink); }
 .cls-pip.on-partial { background:var(--amb); }
 
+/* THIS WEEK */
+.tw-header { padding:28px 24px 20px; }
+.tw-greeting { font-size:22px; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:4px; }
+.tw-group-name { font-size:13px; color:var(--ink3); font-weight:500; }
+.tw-section { margin:0 0 4px; }
+.tw-section-hdr {
+  display:flex; align-items:center; gap:8px;
+  padding:14px 24px 8px;
+  font-size:11px; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink3);
+}
+.tw-section-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.tw-all-good {
+  margin:32px 24px; padding:24px;
+  background:var(--surface); border:1px solid var(--line);
+  text-align:center;
+}
+.tw-all-good-icon { font-size:28px; margin-bottom:8px; }
+.tw-all-good-title { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.tw-all-good-sub { font-size:13px; color:var(--ink3); line-height:1.5; }
+.tw-spacer { height:80px; }
+
+/* MEETING MODE */
+.meeting-header { padding:28px 24px 16px; border-bottom:1px solid var(--line); }
+.meeting-panel {
+  margin:16px; background:var(--surface);
+  border:1px solid var(--line); padding:16px;
+}
+.meeting-panel-label { font-size:12px; font-weight:600; color:var(--ink3); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px; }
+.meeting-select {
+  width:100%; padding:10px 12px; border:1px solid var(--line);
+  background:var(--bg); font-family:inherit; font-size:14px;
+  font-weight:600; color:var(--ink); appearance:none; cursor:pointer;
+}
+.meeting-active-hdr { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:14px; }
+.meeting-active-title { font-size:13px; font-weight:700; color:var(--ink); letter-spacing:.04em; text-transform:uppercase; }
+.meeting-active-sub { font-size:12px; color:var(--ink3); margin-top:3px; }
+.meeting-select-sm {
+  padding:6px 10px; border:1px solid var(--line);
+  background:var(--bg); font-family:inherit; font-size:13px;
+  font-weight:600; color:var(--ink); appearance:none; cursor:pointer; flex-shrink:0;
+}
+.meeting-sub-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+.meeting-sub-tab {
+  padding:6px 12px; border:1px solid var(--line);
+  background:var(--bg); font-family:inherit; font-size:11px;
+  font-weight:700; color:var(--ink3); letter-spacing:.06em;
+  text-transform:uppercase; cursor:pointer;
+}
+.meeting-sub-tab.active { background:var(--ink); color:#fff; border-color:var(--ink); }
+.meeting-body { padding:0 0 80px; }
+.meeting-tier-section { margin:0 16px 20px; }
+.meeting-tier-hdr {
+  display:flex; align-items:center; gap:8px;
+  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  padding:14px 0 8px;
+}
+.meeting-tier-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.meeting-tier-count {
+  margin-left:4px; font-size:11px; font-weight:600;
+  color:var(--ink4); letter-spacing:0;
+}
+.meeting-card {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 14px; background:var(--surface);
+  border:1px solid var(--line); border-bottom:none; cursor:pointer;
+}
+.meeting-card:last-child { border-bottom:1px solid var(--line); }
+.meeting-card:active { background:var(--bg); }
+.meeting-card-av {
+  width:36px; height:36px; border-radius:50%; background:var(--ink);
+  color:#fff; font-size:12px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.meeting-card-info { flex:1; min-width:0; }
+.meeting-card-name { font-size:14px; font-weight:600; color:var(--ink); }
+.meeting-tier-badge {
+  display:inline-block; padding:2px 8px; margin-top:3px;
+  font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+}
+.meeting-card-score { font-size:13px; font-weight:700; flex-shrink:0; }
+.meeting-empty { padding:32px 24px; text-align:center; font-size:14px; color:var(--ink3); }
+
 /* MILESTONE VIEW BANNER (People tab) */
 .ms-view-bar {
   display:flex; align-items:center; gap:10px;
@@ -1218,6 +1503,12 @@ body {
 
 /* MILESTONES TAB */
 .ms-header { padding:28px 24px 24px; border-bottom:1px solid var(--line); }
+.ms-stage-hdr {
+  display:flex; align-items:center; gap:8px;
+  padding:16px 16px 8px; margin-top:4px;
+}
+.ms-stage-label { font-size:13px; font-weight:700; letter-spacing:.04em; }
+.ms-stage-line { flex:1; height:1px; background:var(--line); }
 .ms-row { border-bottom:1px solid var(--line); }
 .ms-row-hdr {
   display:flex; align-items:center; gap:14px;
@@ -1331,182 +1622,120 @@ body {
     </div>
   </div>
 
-  <!-- HOME / DASHBOARD -->
+  <!-- THIS WEEK -->
   <div class="view v-active" id="view-home">
-    <section class="dash-header">
-      <p class="dash-overline">DASHBOARD OVERVIEW</p>
-      <h2 class="dash-headline">Equipping the Saints.</h2>
-      <p class="dash-sub" id="hm-sub"></p>
-    </section>
-    <section class="dash-grid">
-      <div class="dash-cell" onclick="switchToMilestone('cgAttendance')">
-        <span class="material-symbols-outlined">groups</span>
-        <span class="dash-cell-label">CONNECT GROUP</span>
-      </div>
-      <div class="dash-cell" onclick="switchToMilestone('gospelClass')">
-        <span class="material-symbols-outlined">auto_stories</span>
-        <span class="dash-cell-label">GOSPEL CLASS</span>
-      </div>
-      <div class="dash-cell" onclick="switchToMilestone('newStart')">
-        <span class="material-symbols-outlined">school</span>
-        <span class="dash-cell-label">NEW START CLASS</span>
-      </div>
-      <div class="dash-cell" onclick="switchToMilestone('baptised')">
-        <span class="material-symbols-outlined">water_drop</span>
-        <span class="dash-cell-label">BAPTISED</span>
-      </div>
-      <div class="dash-cell" onclick="switchToMilestone('beOneMakeOne')">
-        <span class="material-symbols-outlined">diversity_3</span>
-        <span class="dash-cell-label">BE ONE MAKE ONE</span>
-      </div>
-      <div class="dash-cell" onclick="switchToMilestone('rdClass')">
-        <span class="material-symbols-outlined">workspace_premium</span>
-        <span class="dash-cell-label">MEMBERSHIP CLASS</span>
-      </div>
-    </section>
-    <section class="dash-metrics">
-      <div class="dash-metrics-hdr">
-        <div>
-          <p class="dash-overline">METRICS &amp; GROWTH</p>
-          <h3 class="dash-metrics-title">Health Check-up Overview</h3>
-        </div>
-      </div>
-      <div class="dash-bento">
-        <div class="dash-bento-wide" onclick="switchTab('health')" style="cursor:pointer">
-          <div class="dash-bento-top">
-            <span class="material-symbols-outlined">monitoring</span>
-            <span style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:0.1em">VIEW REPORT →</span>
-          </div>
-          <div class="dash-big-num" id="hs-vitality">—</div>
-          <p class="dash-bento-label">SPIRITUAL VITALITY INDEX</p>
-          <div class="dash-bar-track"><div class="dash-bar-fill" id="hb-vitality" style="width:0"></div></div>
-        </div>
-        <div class="dash-bento-cell">
-          <span class="material-symbols-outlined">trending_up</span>
-          <div class="dash-mid-num" id="hs-grn">0</div>
-          <p class="dash-bento-label">FLOURISHING</p>
-        </div>
-        <div class="dash-bento-cell">
-          <span class="material-symbols-outlined">favorite_border</span>
-          <div class="dash-mid-num" id="hs-red">0</div>
-          <p class="dash-bento-label">NEEDS CARE</p>
-        </div>
-      </div>
-    </section>
-    <section class="dash-preview">
-      <div class="section-row">
-        <h2 id="home-section-title">YOUR GROUP</h2>
-        <button id="home-section-btn" onclick="switchTab('people')">SEE ALL</button>
-      </div>
-      <div id="home-preview"></div>
-    </section>
+    <div id="tw-content"></div>
   </div>
+
+  <!-- ADMIN OVERVIEW -->
+  <div class="view" id="view-admin-overview"></div>
+
+  <!-- ADMIN GROUPS -->
+  <div class="view" id="view-admin-groups"></div>
 
   <!-- PEOPLE -->
   <div class="view" id="view-people">
-    <section class="needs-section">
-      <p class="dash-overline" style="text-align:center;padding:20px 24px 12px;">NEEDS ATTENTION</p>
-      <div class="needs-grid">
-        <div class="needs-cell" onclick="filterByNeed('marital')">
-          <span class="material-symbols-outlined" style="color:var(--red)">favorite_border</span>
-          <span class="needs-label">MARITAL</span>
-          <span class="needs-count" id="nc-marital">0 REQUESTS</span>
-        </div>
-        <div class="needs-cell" onclick="filterByNeed('family')">
-          <span class="material-symbols-outlined">family_history</span>
-          <span class="needs-label">FAMILY</span>
-          <span class="needs-count" id="nc-family">0 REQUESTS</span>
-        </div>
-        <div class="needs-cell" onclick="filterByNeed('bereavement')">
-          <span class="material-symbols-outlined">sentiment_dissatisfied</span>
-          <span class="needs-label">BEREAVEMENT</span>
-          <span class="needs-count" id="nc-bereavement">0 REQUESTS</span>
+    <!-- Admin group list (shown for admin when no group selected) -->
+    <div id="people-admin-list" class="hidden"></div>
+
+    <!-- Tracker content (shown for leaders, and admin when group selected) -->
+    <div id="people-tracker-wrap">
+      <div class="tracker-hdr" id="people-tracker-hdr">
+        <h3 class="tracker-title" id="people-tracker-title">My Group</h3>
+        <div class="tracker-actions">
+          <button class="tracker-icon-btn" onclick="toggleSearch()">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+          <button class="tracker-icon-btn" onclick="toggleFilter()">
+            <span class="material-symbols-outlined">filter_list</span>
+          </button>
         </div>
       </div>
-    </section>
-    <div class="tracker-hdr">
-      <h3 class="tracker-title">Discipleship Tracker</h3>
-      <div class="tracker-actions">
-        <button class="tracker-icon-btn" onclick="toggleSearch()">
-          <span class="material-symbols-outlined">search</span>
+      <div id="search-wrap" class="search-bar-wrap hidden">
+        <div class="search-inner">
+          <input class="search-input" id="search-input" placeholder="Search..." oninput="renderPeople()">
+        </div>
+      </div>
+      <div id="filter-wrap" class="hidden">
+        <div class="filter-row">
+          <button class="filter-chip active" data-f="all" onclick="setFilter(this)">All</button>
+          <button class="filter-chip" data-f="cs-crowd"        onclick="setFilter(this)">Crowd</button>
+          <button class="filter-chip" data-f="cs-community"    onclick="setFilter(this)">Community</button>
+          <button class="filter-chip" data-f="cs-congregation" onclick="setFilter(this)">Congregation</button>
+          <button class="filter-chip" data-f="cs-core"         onclick="setFilter(this)">Core</button>
+        </div>
+      </div>
+      <div id="ms-view-bar" class="ms-view-bar hidden">
+        <span class="material-symbols-outlined ms-view-icon" id="ms-view-icon"></span>
+        <span class="ms-view-label" id="ms-view-label"></span>
+        <button class="ms-view-clear" onclick="clearMilestoneView()">
+          <span class="material-symbols-outlined">close</span>
         </button>
-        <button class="tracker-icon-btn" onclick="toggleFilter()">
-          <span class="material-symbols-outlined">filter_list</span>
-        </button>
       </div>
-    </div>
-    <div id="search-wrap" class="search-bar-wrap hidden">
-      <div class="search-inner">
-        <input class="search-input" id="search-input" placeholder="Search..." oninput="renderPeople()">
+      <div class="tracker-table-wrap">
+        <table class="tracker-table">
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th id="th-connect">CONNECT</th>
+              <th id="th-gospel">GOSPEL</th>
+              <th id="th-newstart">NEW START</th>
+              <th id="th-baptism">BAPTISM</th>
+              <th id="th-b1m1">B1M1</th>
+              <th id="th-member">MEMBER</th>
+              <th id="th-ministry">MINISTRY</th>
+            </tr>
+          </thead>
+          <tbody id="people-list"></tbody>
+        </table>
       </div>
-    </div>
-    <div id="filter-wrap" class="hidden">
-      <div class="filter-row">
-        <button class="filter-chip active" data-f="all" onclick="setFilter(this)">All</button>
-        <button class="filter-chip" data-f="grn" onclick="setFilter(this)">Flourishing</button>
-        <button class="filter-chip" data-f="amb" onclick="setFilter(this)">Growing</button>
-        <button class="filter-chip" data-f="red" onclick="setFilter(this)">Needs Care</button>
+      <div class="tracker-footer" id="people-tracker-footer">
+        <button class="tracker-add-btn" onclick="openAdd()">ADD NEW DISCIPLE</button>
       </div>
-    </div>
-    <div id="ms-view-bar" class="ms-view-bar hidden">
-      <span class="material-symbols-outlined ms-view-icon" id="ms-view-icon"></span>
-      <span class="ms-view-label" id="ms-view-label"></span>
-      <button class="ms-view-clear" onclick="clearMilestoneView()">
-        <span class="material-symbols-outlined">close</span>
-      </button>
-    </div>
-    <div class="tracker-table-wrap">
-      <table class="tracker-table">
-        <thead>
-          <tr>
-            <th>NAME</th>
-            <th id="th-connect">CONNECT</th>
-            <th id="th-gospel">GOSPEL</th>
-            <th id="th-newstart">NEW START</th>
-            <th id="th-baptism">BAPTISM</th>
-            <th id="th-b1m1">B1M1</th>
-            <th id="th-member">MEMBER</th>
-            <th id="th-ministry">MINISTRY</th>
-          </tr>
-        </thead>
-        <tbody id="people-list"></tbody>
-      </table>
-    </div>
-    <div class="tracker-footer">
-      <button class="tracker-add-btn" onclick="openAdd()">ADD NEW DISCIPLE</button>
     </div>
   </div>
 
   <!-- CONNECT GROUP -->
   <div class="view" id="view-cg">
-    <div class="cg-tab-header">
-      <p class="dash-overline">GROUP MANAGEMENT</p>
-      <h2 class="dash-headline">Connect Group.</h2>
-    </div>
+    <!-- Admin group list (shown for admin when no group selected) -->
+    <div id="cg-admin-list" class="hidden"></div>
 
-    <!-- Season accordion -->
-    <div class="cg-section">
-      <div class="cg-section-hdr">
-        <span class="cg-section-title">SELECT SESSION</span>
+    <!-- Normal CG content -->
+    <div id="cg-normal-wrap">
+      <div class="cg-tab-header" id="cg-tab-header">
+        <div id="cg-admin-back" class="hidden" style="margin-bottom:8px">
+          <button class="adm-back-btn" onclick="adminCGGroupId=null;renderCGTab()">
+            <span class="material-symbols-outlined">arrow_back</span> All groups
+          </button>
+        </div>
+        <p class="dash-overline">GROUP MANAGEMENT</p>
+        <h2 class="dash-headline" id="cg-headline">Connect Group.</h2>
       </div>
-      <div id="cg-season-accordion"></div>
-    </div>
 
-    <!-- Attendance checklist for selected session -->
-    <div class="cg-section">
-      <div class="cg-section-hdr">
-        <span class="cg-section-title">ATTENDANCE</span>
-        <span class="cg-att-badge" id="cg-att-badge"></span>
+      <!-- Season accordion -->
+      <div class="cg-section">
+        <div class="cg-section-hdr">
+          <span class="cg-section-title">SELECT SESSION</span>
+        </div>
+        <div id="cg-season-accordion"></div>
       </div>
-      <div id="cg-people-list"></div>
-    </div>
 
-    <!-- Archived disciples -->
-    <div class="cg-section" style="border-bottom:none">
-      <div class="cg-section-hdr">
-        <span class="cg-section-title">ARCHIVED</span>
+      <!-- Attendance checklist for selected session -->
+      <div class="cg-section">
+        <div class="cg-section-hdr">
+          <span class="cg-section-title">ATTENDANCE</span>
+          <span class="cg-att-badge" id="cg-att-badge"></span>
+        </div>
+        <div id="cg-people-list"></div>
       </div>
-      <div id="cg-archived-list"></div>
+
+      <!-- Archived disciples -->
+      <div class="cg-section" style="border-bottom:none">
+        <div class="cg-section-hdr">
+          <span class="cg-section-title">ARCHIVED</span>
+        </div>
+        <div id="cg-archived-list"></div>
+      </div>
     </div>
   </div>
 
@@ -1517,38 +1746,66 @@ body {
       <h2 class="dash-headline">Pathway Overview.</h2>
       <p class="dash-sub" id="ms-sub"></p>
     </section>
+    <!-- Admin group list (shown for admin when no group selected) -->
+    <div id="ms-admin-list" class="hidden"></div>
     <div id="ms-list"></div>
   </div>
 
   <div class="view" id="view-health">
     <div class="health-header">
-      <p class="dash-overline">ACTIONS &amp; INSIGHTS</p>
-      <h2 class="dash-headline">Health Check-up.</h2>
+      <p class="dash-overline" id="health-overline">ACTIONS &amp; INSIGHTS</p>
+      <h2 class="dash-headline" id="health-headline">Health Check-up.</h2>
     </div>
     <div id="health-content"></div>
   </div>
 
-  <!-- BOTTOM NAV -->
-  <nav class="bnav">
+  <!-- MEETING MODE (admin only) -->
+  <div class="view" id="view-meeting">
+    <section class="meeting-header">
+      <p class="dash-overline">ADMIN · PASTORAL REVIEW</p>
+      <h2 class="dash-headline">Leadership Review.</h2>
+      <p class="dash-sub">Select a leader to begin the group review</p>
+    </section>
+    <div id="meeting-content"></div>
+  </div>
+
+  <!-- LEADER BOTTOM NAV -->
+  <nav class="bnav" id="leader-bnav">
     <button class="bnav-btn active" data-tab="home" onclick="switchTab('home')">
-      <span class="material-symbols-outlined">space_dashboard</span>
-      <span>DASHBOARD</span>
+      <span class="material-symbols-outlined">today</span>
+      <span>THIS WEEK</span>
+    </button>
+    <button class="bnav-btn" data-tab="people" onclick="navPeople()">
+      <span class="material-symbols-outlined">group</span>
+      <span>MY GROUP</span>
+    </button>
+    <button class="bnav-btn" data-tab="cg" onclick="switchTab('cg')">
+      <span class="material-symbols-outlined">fact_check</span>
+      <span>ATTENDANCE</span>
     </button>
     <button class="bnav-btn" data-tab="milestones" onclick="switchTab('milestones')">
       <span class="material-symbols-outlined">checklist_rtl</span>
       <span>MILESTONES</span>
     </button>
-    <button class="bnav-btn" data-tab="people" onclick="navPeople()">
+  </nav>
+
+  <!-- ADMIN BOTTOM NAV -->
+  <nav class="bnav" id="admin-bnav" style="display:none">
+    <button class="bnav-btn" data-tab="admin-overview" onclick="switchAdminTab('admin-overview')">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>OVERVIEW</span>
+    </button>
+    <button class="bnav-btn" data-tab="meeting" onclick="switchAdminTab('meeting')">
+      <span class="material-symbols-outlined">handshake</span>
+      <span>MEETING</span>
+    </button>
+    <button class="bnav-btn" data-tab="admin-members" onclick="switchAdminTab('admin-members')">
       <span class="material-symbols-outlined">group</span>
-      <span>PEOPLE</span>
+      <span>MEMBERS</span>
     </button>
-    <button class="bnav-btn" data-tab="health" onclick="switchTab('health')">
-      <span class="material-symbols-outlined">monitoring</span>
-      <span>HEALTH</span>
-    </button>
-    <button class="bnav-btn" data-tab="cg" onclick="switchTab('cg')">
-      <span class="material-symbols-outlined">hub</span>
-      <span>GROUP</span>
+    <button class="bnav-btn" data-tab="admin-analytics" onclick="switchAdminTab('admin-analytics')">
+      <span class="material-symbols-outlined">bar_chart</span>
+      <span>ANALYTICS</span>
     </button>
   </nav>
 </div>
@@ -1627,6 +1884,7 @@ body {
   <div class="sheet-inner">
     <div class="sheet-title" id="action-sheet-title"></div>
     <button class="sheet-opt" onclick="openEditName()">Edit name</button>
+    <button class="sheet-opt hidden" id="action-reassign-btn" onclick="openReassignSheet()">Move to group</button>
     <button class="sheet-opt" onclick="archiveFromSheet()">Archive disciple</button>
     <button class="sheet-opt" style="color:var(--red)" onclick="openDeleteConfirm()">Remove from group</button>
     <button class="sheet-cancel" onclick="closeActionSheet()">Cancel</button>
@@ -1652,6 +1910,15 @@ body {
   </div>
 </div>
 
+<!-- ─── REASSIGN GROUP SHEET ──────────────────── -->
+<div class="sheet" id="reassign-sheet" onclick="closeReassignSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title">MOVE TO GROUP</div>
+    <div class="reassign-list" id="reassign-leader-list"></div>
+    <button class="sheet-cancel" onclick="closeReassignSheet()">Cancel</button>
+  </div>
+</div>
+
 <!-- ─── EDIT NAME SHEET ────────────────────────── -->
 <div class="sheet" id="editname-sheet" onclick="closeEditNameSheet(event)">
   <div class="sheet-inner">
@@ -1661,6 +1928,25 @@ body {
       <input class="form-input initial-input" id="edit-init" type="text" placeholder="A" maxlength="1" autocomplete="off" style="text-transform:uppercase;margin-bottom:0">
     </div>
     <button class="submit-btn" onclick="saveEditName()">Save</button>
+  </div>
+</div>
+
+<!-- ─── FOLLOW-UP SHEET ─────────────────────────── -->
+<div class="sheet" id="followup-sheet" onclick="closeFollowUpSheet(event)">
+  <div class="sheet-inner">
+    <div class="sheet-title">SET FOLLOW-UP</div>
+    <input type="hidden" id="fu-pid">
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.5px;margin-bottom:6px">DATE</div>
+      <input class="form-input" type="date" id="fu-date" style="margin-bottom:0">
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.5px;margin-bottom:6px">NOTE (optional)</div>
+      <input class="form-input" type="text" id="fu-note" placeholder="What do you want to follow up on?" autocomplete="off" style="margin-bottom:0">
+    </div>
+    <button class="submit-btn" onclick="saveFollowUp()">Save</button>
+    <button class="sheet-opt" style="color:var(--ink3);margin-top:8px" onclick="clearFollowUp()">Clear follow-up</button>
+    <button class="sheet-cancel" onclick="closeFollowUpSheet()">Cancel</button>
   </div>
 </div>
 
@@ -1686,24 +1972,32 @@ body {
   </div>
   <div class="nav-drawer-list">
     <button class="nav-drawer-item" onclick="drawerNav('home')">
-      <span class="material-symbols-outlined">space_dashboard</span>
-      Dashboard
+      <span class="material-symbols-outlined">today</span>
+      This Week
+    </button>
+    <button class="nav-drawer-item" onclick="drawerNav('people')">
+      <span class="material-symbols-outlined">group</span>
+      My Group
     </button>
     <button class="nav-drawer-item" onclick="drawerNav('milestones')">
       <span class="material-symbols-outlined">checklist_rtl</span>
       Milestones
     </button>
-    <button class="nav-drawer-item" onclick="drawerNav('people')">
-      <span class="material-symbols-outlined">group</span>
-      People
-    </button>
-    <button class="nav-drawer-item" onclick="drawerNav('health')">
-      <span class="material-symbols-outlined">monitoring</span>
-      Health
-    </button>
     <button class="nav-drawer-item" onclick="drawerNav('cg')">
-      <span class="material-symbols-outlined">hub</span>
-      Connect Group
+      <span class="material-symbols-outlined">fact_check</span>
+      Attendance
+    </button>
+    <button class="nav-drawer-item" id="drawer-manage-leaders" onclick="closeNavDrawer();openManageLeaders()" style="display:none">
+      <span class="material-symbols-outlined">manage_accounts</span>
+      Manage Leaders
+    </button>
+    <button class="nav-drawer-item" id="drawer-seed-data" onclick="closeNavDrawer();seedDummyData()" style="display:none">
+      <span class="material-symbols-outlined">dataset</span>
+      Seed Demo Data
+    </button>
+    <button class="nav-drawer-item" id="drawer-unlock-year" onclick="toggleUnlockNextYear()" style="display:none">
+      <span class="material-symbols-outlined">calendar_month</span>
+      <span id="drawer-unlock-year-label">Unlock 2027 Sessions</span>
     </button>
   </div>
 </div>
@@ -1792,6 +2086,34 @@ body {
   </div>
 </div>
 
+<!-- ─── MANAGE LEADERS OVERLAY ────────────────── -->
+<div class="add-overlay" id="manage-leaders-overlay">
+  <div class="app-hdr">
+    <button class="hdr-menu-btn" onclick="closeManageLeaders()">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="hdr-title">MANAGE LEADERS</div>
+    <div style="width:34px"></div>
+  </div>
+  <div class="add-body" style="padding-top:8px">
+    <label class="form-label">Current Leaders</label>
+    <div id="ml-leader-list" style="margin-bottom:20px"></div>
+    <label class="form-label">Add New Leader</label>
+    <div class="card" style="padding:14px;margin-bottom:14px">
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="form-input" id="ml-name" type="text" placeholder="Full name" autocomplete="off">
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="form-input" id="ml-group" type="text" placeholder="Area / location (e.g. Tooting, SW17)" autocomplete="off">
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <input class="form-input" id="ml-pin" type="text" inputmode="numeric" maxlength="4" placeholder="4-digit PIN" autocomplete="off">
+      </div>
+    </div>
+    <button class="submit-btn" onclick="addLeader()">Add Leader</button>
+  </div>
+</div>
+
 <!-- ─── TOAST ─────────────────────────────────── -->
 <div class="toast" id="toast"></div>
 
@@ -1815,12 +2137,14 @@ const FIREBASE_CONFIG = {
 
 /* ──────────────────────────────────────────────
    LEADERS
-   Add or rename leaders here. isAdmin = sees all groups.
+   Admins and base leaders are hardcoded. Additional leaders
+   added via Manage Leaders are stored in Firebase.
    ────────────────────────────────────────────── */
-const LEADERS = [
+let LEADERS = [
   // Admins
   { id:'admin_royston',  name:'Pastor Royston',  group:'All Groups', pin:'0000', isAdmin:true },
   { id:'admin_courtney', name:'Pastor Courtney', group:'All Groups', pin:'0000', isAdmin:true },
+  { id:'admin_jorge',    name:'Jorge',           group:'All Groups', pin:'0000', isAdmin:true },
   // Connect Group Leaders (men only — couples listed by region)
   { id:'cg_at', name:'Adrian',    group:'Selsdon, South Croydon',  pin:'1234', isAdmin:false },
   { id:'cg_cd', name:'Chinedu',   group:'Wallington, Surrey (CD)', pin:'1234', isAdmin:false },
@@ -1835,6 +2159,16 @@ const LEADERS = [
   { id:'cg_lg', name:'Lloyd',     group:'Mitcham, CR4',            pin:'1234', isAdmin:false },
   { id:'cg_ms', name:'Miles',     group:'Lower Morden, SM4',       pin:'1234', isAdmin:false },
   { id:'cg_of', name:'Okeme',     group:'Kennington, SE11',        pin:'1234', isAdmin:false },
+];
+
+/* ──────────────────────────────────────────────
+   TIERS (discipleship journey position — set by leader)
+   ────────────────────────────────────────────── */
+const TIERS = [
+  { key:'crowd',        label:'Crowd',        color:'#6b7280' },
+  { key:'community',    label:'Community',    color:'#2563eb' },
+  { key:'congregation', label:'Congregation', color:'#d97706' },
+  { key:'core',         label:'Core',         color:'#C41230' },
 ];
 
 const MINISTRIES = [
@@ -1888,6 +2222,13 @@ const CG_SESSIONS = [
   '2027-11-06', '2027-11-20',
   /* Dec break */
 ];
+
+let unlockNextYear = false;
+
+function getYearGatedSessions() {
+  const thisYear = new Date().getFullYear().toString();
+  return unlockNextYear ? CG_SESSIONS : CG_SESSIONS.filter(d => d.startsWith(thisYear));
+}
 
 /* ──────────────────────────────────────────────
    STATE
@@ -1968,6 +2309,40 @@ async function dbDelete(id) {
   await db.collection('people').doc(id).delete();
 }
 
+async function dbLoadLeaders() {
+  if (useLocal) {
+    return JSON.parse(localStorage.getItem('rd_leaders') || '[]');
+  }
+  const snap = await db.collection('leaders').get();
+  return snap.docs.map(d => ({ ...d.data(), id: d.id, fromDb: true }));
+}
+
+async function dbSaveLeader(leader) {
+  if (useLocal) {
+    if (!leader.id) leader.id = 'cg_' + Date.now();
+    const stored = JSON.parse(localStorage.getItem('rd_leaders') || '[]');
+    stored.push(leader);
+    localStorage.setItem('rd_leaders', JSON.stringify(stored));
+    return leader;
+  }
+  if (leader.id) {
+    const { id, fromDb, ...data } = leader;
+    await db.collection('leaders').doc(id).set(data);
+    return { ...leader, fromDb: true };
+  }
+  const ref = await db.collection('leaders').add(leader);
+  return { ...leader, id: ref.id, fromDb: true };
+}
+
+async function dbDeleteLeader(id) {
+  if (useLocal) {
+    const stored = JSON.parse(localStorage.getItem('rd_leaders') || '[]').filter(l => l.id !== id);
+    localStorage.setItem('rd_leaders', JSON.stringify(stored));
+    return;
+  }
+  await db.collection('leaders').doc(id).delete();
+}
+
 /* ──────────────────────────────────────────────
    HEALTH SCORE
    Max 7 points:
@@ -2027,6 +2402,32 @@ function cgAttendanceRate(p) {
   }
   const attended = p.attendedSessions || [];
   return applicable.filter(d => attended.includes(d)).length / applicable.length;
+}
+
+function journeySignal(p) {
+  const today      = new Date().toISOString().slice(0,10);
+  const applicable = sessionsSince(p).filter(d => d <= today);
+  const attended   = p.attendedSessions || [];
+  if (!applicable.length) return { key:'new',         label:'New',         color:'#6b7280' };
+  const recent  = applicable.slice(-3);
+  const earlier = applicable.slice(0, -3);
+  const recentRate  = recent.filter(d => attended.includes(d)).length / recent.length;
+  if (!earlier.length) {
+    if (recentRate >= 0.5) return { key:'steady',      label:'Steady',      color:'#2563eb' };
+    return                        { key:'disengaged',  label:'Out of Touch',  color:'#ba1a1a' };
+  }
+  const earlierRate = earlier.filter(d => attended.includes(d)).length / earlier.length;
+  const diff = recentRate - earlierRate;
+  if (recentRate >= 0.67) {
+    if (diff >= 0.25) return { key:'growing',    label:'Growing',    color:'#16a34a' };
+    return                   { key:'steady',     label:'Steady',     color:'#2563eb' };
+  }
+  if (recentRate >= 0.34) {
+    if (diff < -0.3)  return { key:'drifting',   label:'Drifting',   color:'#d97706' };
+    return                   { key:'steady',     label:'Steady',     color:'#2563eb' };
+  }
+  if (earlierRate >= 0.5)   return { key:'drifting',   label:'Drifting',   color:'#d97706' };
+  return                           { key:'disengaged', label:'Out of Touch', color:'#ba1a1a' };
 }
 
 function cgAttendanceLabel(p) {
@@ -2091,12 +2492,31 @@ async function checkPin() {
   if (pinStr === pinLeader.pin) {
     currentUser = pinLeader;
     people = await dbLoad();
+    const dbLeaders = await dbLoadLeaders();
+    const baseIds = new Set(LEADERS.map(l => l.id));
+    dbLeaders.forEach(l => { if (!baseIds.has(l.id)) LEADERS.push(l); });
+    renderLeaders();
     document.getElementById('hdr-av-initials').textContent = initials(currentUser.name);
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app-shell').classList.remove('hidden');
-    renderHome();
-    renderPeople();
-    renderHealth();
+    document.getElementById('drawer-manage-leaders').style.display = currentUser.isAdmin ? '' : 'none';
+    document.getElementById('drawer-seed-data').style.display = currentUser.isAdmin ? '' : 'none';
+    document.getElementById('drawer-unlock-year').style.display = currentUser.isAdmin ? '' : 'none';
+    // Route to the correct nav and initial view
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
+    if (currentUser.isAdmin) {
+      document.getElementById('leader-bnav').style.display = 'none';
+      document.getElementById('admin-bnav').style.display = '';
+      switchAdminTab('admin-overview');
+    } else {
+      document.getElementById('leader-bnav').style.display = '';
+      document.getElementById('admin-bnav').style.display = 'none';
+      document.querySelectorAll('#leader-bnav .bnav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('#leader-bnav .bnav-btn[data-tab="home"]')?.classList.add('active');
+      document.getElementById('view-home').classList.add('v-active');
+      renderHome();
+      renderPeople();
+    }
   } else {
     for (let i=0;i<4;i++) document.getElementById('pd'+i).classList.add('error');
     setTimeout(() => { pinStr=''; updateDots(); }, 700);
@@ -2105,11 +2525,96 @@ async function checkPin() {
 
 function signOut() {
   currentUser = null; people = [];
+  adminPeopleGroupId = null;
+  adminMsGroupId     = null;
+  adminCGGroupId     = null;
+  adminPeopleSearch  = '';
+  meetingLeaderId    = null;
+  meetingSubTab      = 'bytier';
+  document.getElementById('admin-bnav').style.display = 'none';
+  document.getElementById('leader-bnav').style.display = '';
+  document.getElementById('drawer-manage-leaders').style.display = 'none';
+  document.getElementById('drawer-seed-data').style.display = 'none';
+  document.getElementById('drawer-unlock-year').style.display = 'none';
+  unlockNextYear = false;
+  // Reset leader nav to home
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-home').classList.add('v-active');
+  document.querySelector('#leader-bnav .bnav-btn[data-tab="home"]')?.classList.add('active');
   document.getElementById('hdr-av-initials').textContent = '';
   document.getElementById('app-shell').classList.add('hidden');
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('login-panels').classList.remove('show-pin');
   pinStr = '';
+}
+
+/* ──────────────────────────────────────────────
+   MANAGE LEADERS
+   ────────────────────────────────────────────── */
+function openManageLeaders() {
+  renderManageLeaders();
+  document.getElementById('manage-leaders-overlay').classList.add('open');
+}
+
+function closeManageLeaders() {
+  document.getElementById('manage-leaders-overlay').classList.remove('open');
+  document.getElementById('ml-name').value  = '';
+  document.getElementById('ml-group').value = '';
+  document.getElementById('ml-pin').value   = '';
+}
+
+function renderManageLeaders() {
+  const nonAdmins = LEADERS.filter(l => !l.isAdmin);
+  const el = document.getElementById('ml-leader-list');
+  if (!nonAdmins.length) {
+    el.innerHTML = `<p style="font-size:13px;color:var(--ink3);padding:8px 0">No leaders added yet.</p>`;
+    return;
+  }
+  el.innerHTML = `<div class="card" style="padding:0 14px">
+    ${nonAdmins.map(l => `
+      <div class="ml-leader-row">
+        <div class="ml-leader-av">${esc(initials(l.name))}</div>
+        <div class="ml-leader-info">
+          <div class="ml-leader-name">${esc(l.name)}</div>
+          <div class="ml-leader-group">${esc(l.group)}</div>
+        </div>
+        ${l.fromDb
+          ? `<button class="ml-delete-btn" onclick="deleteLeader('${l.id}')">
+               <span class="material-symbols-outlined" style="font-size:18px">delete</span>
+             </button>`
+          : `<span class="ml-locked">Default</span>`
+        }
+      </div>`).join('')}
+  </div>`;
+}
+
+async function addLeader() {
+  const name  = document.getElementById('ml-name').value.trim();
+  const group = document.getElementById('ml-group').value.trim();
+  const pin   = document.getElementById('ml-pin').value.trim();
+  if (!name)            return toast('Enter a name');
+  if (!pin || pin.length !== 4 || !/^\d{4}$/.test(pin))
+                        return toast('PIN must be 4 digits');
+  const leader = { name, group: group || 'Connect Group', pin, isAdmin: false };
+  const saved  = await dbSaveLeader(leader);
+  LEADERS.push(saved);
+  renderLeaders();
+  document.getElementById('ml-name').value  = '';
+  document.getElementById('ml-group').value = '';
+  document.getElementById('ml-pin').value   = '';
+  renderManageLeaders();
+  toast(`${name} added`);
+}
+
+async function deleteLeader(id) {
+  const l = LEADERS.find(x => x.id === id);
+  if (!l || !l.fromDb) return;
+  await dbDeleteLeader(id);
+  LEADERS = LEADERS.filter(x => x.id !== id);
+  renderLeaders();
+  renderManageLeaders();
+  toast(`${l.name} removed`);
 }
 
 /* ──────────────────────────────────────────────
@@ -2125,10 +2630,24 @@ function closeNavDrawer() {
   document.getElementById('nav-backdrop').classList.remove('open');
 }
 
+function toggleUnlockNextYear() {
+  unlockNextYear = !unlockNextYear;
+  const yr = new Date().getFullYear() + 1;
+  document.getElementById('drawer-unlock-year-label').textContent =
+    unlockNextYear ? `Lock ${yr} Sessions` : `Unlock ${yr} Sessions`;
+  closeNavDrawer();
+  renderCGTab();
+}
+
 function drawerNav(tab) {
   closeNavDrawer();
-  if (tab === 'people') navPeople();
-  else switchTab(tab);
+  if (currentUser?.isAdmin) {
+    const adminMap = { home: 'admin-overview', people: 'admin-members', milestones: 'admin-analytics', cg: 'meeting' };
+    switchAdminTab(adminMap[tab] || tab);
+  } else {
+    if (tab === 'people') navPeople();
+    else switchTab(tab);
+  }
 }
 
 function openProfileSheet() {
@@ -2161,11 +2680,228 @@ function switchTab(tab) {
   const view = document.getElementById('view-'+tab);
   if (view) view.classList.add('v-active');
   document.querySelector(`.bnav-btn[data-tab="${tab}"]`)?.classList.add('active');
+  // Reset admin drill-downs when switching tabs
+  if (currentUser && currentUser.isAdmin) {
+    if (tab === 'people')     { adminPeopleGroupId = null; adminPeopleSearch = ''; }
+    if (tab === 'milestones') adminMsGroupId     = null;
+    if (tab === 'cg')         adminCGGroupId     = null;
+  }
   if (tab === 'home') renderHome();
   if (tab === 'milestones') renderMilestones();
   if (tab === 'people') renderPeople();
   if (tab === 'health') renderHealth();
   if (tab === 'cg') renderCGTab();
+  if (tab === 'meeting') renderMeeting();
+}
+
+/* ──────────────────────────────────────────────
+   ADMIN NAVIGATION
+   ────────────────────────────────────────────── */
+function switchAdminTab(tab) {
+  const viewMap = {
+    'admin-overview':  'admin-overview',
+    'admin-groups':    'admin-groups',
+    'meeting':         'meeting',
+    'admin-members':   'people',
+    'admin-analytics': 'health',
+  };
+  const viewId = viewMap[tab] || tab;
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('v-active'));
+  document.querySelectorAll('#admin-bnav .bnav-btn').forEach(b => b.classList.remove('active'));
+  const view = document.getElementById('view-' + viewId);
+  if (view) view.classList.add('v-active');
+  document.querySelector(`#admin-bnav .bnav-btn[data-tab="${tab}"]`)?.classList.add('active');
+  if (tab === 'admin-overview')  renderAdminOverview();
+  if (tab === 'meeting')         renderMeeting();
+  if (tab === 'admin-members')   renderAdminMembers();
+  if (tab === 'admin-analytics') renderHealth();
+}
+
+function openGroupMeeting(leaderId) {
+  meetingLeaderId = leaderId;
+  switchAdminTab('meeting');
+}
+
+function renderAdminOverview() {
+  const el = document.getElementById('view-admin-overview');
+  if (!el) return;
+
+  const all    = myPeople();
+  const leaders = LEADERS.filter(l => !l.isAdmin);
+
+  const tierCounts = {};
+  TIERS.forEach(t => { tierCounts[t.key] = all.filter(p => p.careStage === t.key).length; });
+
+  const groupData = leaders.map(l => {
+    const gp = all.filter(p => p.leaderId === l.id);
+    if (!gp.length) return null;
+    const sigs = gp.map(p => journeySignal(p).key);
+    const growing    = sigs.filter(s => s === 'growing').length;
+    const drifting   = sigs.filter(s => s === 'drifting').length;
+    const disengaged = sigs.filter(s => s === 'disengaged').length;
+    return { l, total: gp.length, growing, drifting, disengaged, atRisk: drifting + disengaged };
+  }).filter(Boolean);
+
+  const totalAtRisk  = groupData.reduce((s, g) => s + g.atRisk, 0);
+  const needsAttn    = groupData.filter(g => g.atRisk > 0).sort((a, b) => b.atRisk - a.atRisk);
+  const movingWell   = groupData.filter(g => g.growing > 0 && g.growing >= g.atRisk).sort((a, b) => b.growing - a.growing).slice(0, 4);
+
+  const h = new Date().getHours();
+  const greeting = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  const firstName = (currentUser?.name || '').split(' ')[0];
+
+  const tierChips = TIERS.map(t => `
+    <div class="adm-ov-tier-chip" style="border-color:${t.color}30">
+      <span class="adm-ov-tier-num" style="color:${t.color}">${tierCounts[t.key]}</span>
+      <span class="adm-ov-tier-lbl">${t.label}</span>
+    </div>`).join('');
+
+  const groupCard = g => `
+    <div class="adm-ov-group-card" onclick="openGroupMeeting('${g.l.id}')">
+      <div class="adm-ov-group-info">
+        <div class="adm-ov-group-name">${esc(g.l.group || g.l.name)}</div>
+        <div class="adm-ov-group-sub">${esc(g.l.name)} · ${g.total} members</div>
+        <div class="adm-ov-group-signals">
+          ${g.drifting   ? `<span class="adm-ov-sig" style="color:#d97706;background:#d9770614">${g.drifting} drifting</span>` : ''}
+          ${g.disengaged ? `<span class="adm-ov-sig" style="color:#ba1a1a;background:#ba1a1a14">${g.disengaged} out of touch</span>` : ''}
+          ${g.growing    ? `<span class="adm-ov-sig" style="color:#16a34a;background:#16a34a14">${g.growing} growing</span>` : ''}
+        </div>
+      </div>
+      <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px;flex-shrink:0">chevron_right</span>
+    </div>`;
+
+  el.innerHTML = `<div class="adm-ov-pad">
+    <div class="tw-greeting">${esc(greeting)}, ${esc(firstName)}.</div>
+    <p style="font-size:13px;color:var(--ink3);margin:0 0 20px">PHC Wandsworth · ${all.length} members</p>
+    <div class="adm-ov-tier-row">${tierChips}</div>
+    ${totalAtRisk > 0 ? `
+    <div class="adm-ov-at-risk-bar">
+      <span class="material-symbols-outlined" style="font-size:16px;color:#ba1a1a">warning</span>
+      <span style="font-size:13px;font-weight:600;color:#ba1a1a">${totalAtRisk} members need attention across ${needsAttn.length} group${needsAttn.length !== 1 ? 's' : ''}</span>
+    </div>` : `
+    <div class="adm-ov-at-risk-bar" style="background:#16a34a0d;border-color:#16a34a22">
+      <span class="material-symbols-outlined" style="font-size:16px;color:#16a34a">check_circle</span>
+      <span style="font-size:13px;font-weight:600;color:#16a34a">All groups looking healthy</span>
+    </div>`}
+    ${needsAttn.length ? `<div class="adm-ov-section-hdr">NEEDS ATTENTION</div>${needsAttn.map(groupCard).join('')}` : ''}
+    ${movingWell.length ? `<div class="adm-ov-section-hdr">MOVING WELL</div>${movingWell.map(groupCard).join('')}` : ''}
+  </div>`;
+}
+
+function renderAdminGroups() {
+  const el = document.getElementById('view-admin-groups');
+  if (!el) return;
+
+  const all     = myPeople();
+  const leaders = LEADERS.filter(l => !l.isAdmin);
+
+  const groups = leaders.map(l => {
+    const gp = all.filter(p => p.leaderId === l.id);
+    if (!gp.length) return null;
+    const sigs = gp.map(p => journeySignal(p).key);
+    return {
+      l, gp,
+      growing:    sigs.filter(s => s === 'growing').length,
+      steady:     sigs.filter(s => s === 'steady').length,
+      drifting:   sigs.filter(s => s === 'drifting').length,
+      disengaged: sigs.filter(s => s === 'disengaged').length,
+      newSig:     sigs.filter(s => s === 'new').length,
+    };
+  }).filter(Boolean).sort((a, b) => (b.drifting + b.disengaged) - (a.drifting + a.disengaged));
+
+  const cards = groups.map(({ l, gp, growing, steady, drifting, disengaged, newSig }) => {
+    const tierSegs = TIERS.map(t => {
+      const count = gp.filter(p => p.careStage === t.key).length;
+      return count ? `<div style="flex:${count};background:${t.color}"></div>` : '';
+    }).join('');
+    const sigPills = [
+      growing    ? `<span class="adm-ov-sig" style="color:#16a34a;background:#16a34a14">${growing} growing</span>` : '',
+      steady     ? `<span class="adm-ov-sig" style="color:#2563eb;background:#2563eb14">${steady} steady</span>` : '',
+      drifting   ? `<span class="adm-ov-sig" style="color:#d97706;background:#d9770614">${drifting} drifting</span>` : '',
+      disengaged ? `<span class="adm-ov-sig" style="color:#ba1a1a;background:#ba1a1a14">${disengaged} out of touch</span>` : '',
+      newSig     ? `<span class="adm-ov-sig" style="color:#6b7280;background:#6b728014">${newSig} new</span>` : '',
+    ].filter(Boolean).join('');
+    return `
+      <div class="adm-grp-card" onclick="openGroupMeeting('${l.id}')">
+        <div class="adm-grp-card-top">
+          <div>
+            <div class="adm-grp-card-name">${esc(l.group || l.name)}</div>
+            <div class="adm-grp-card-leader">${esc(l.name)} · ${gp.length} members</div>
+          </div>
+          <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px">chevron_right</span>
+        </div>
+        <div class="adm-grp-tier-bar">${tierSegs || '<div style="flex:1;background:var(--line)"></div>'}</div>
+        <div class="adm-grp-signals">${sigPills || '<span class="adm-ov-sig" style="color:var(--ink4);background:var(--bg)">No signal yet</span>'}</div>
+      </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="adm-ov-pad">
+    <div style="font-size:11px;font-weight:700;color:var(--ink3);letter-spacing:.12em;margin-bottom:14px">CONNECT GROUPS · ${groups.length}</div>
+    ${cards || '<div class="adm-ov-empty">No groups yet. Seed demo data or add people.</div>'}
+  </div>`;
+}
+
+function renderAdminMembers() {
+  // Show people-admin-list, hide tracker
+  document.getElementById('people-tracker-wrap').classList.add('hidden');
+  const el = document.getElementById('people-admin-list');
+  el.classList.remove('hidden');
+
+  const all = myPeople();
+  const q   = adminPeopleSearch.trim().toLowerCase();
+
+  const SIG_RISK = { disengaged: 0, drifting: 1, new: 2, steady: 3, growing: 4 };
+
+  let list = q
+    ? all.filter(p => {
+        const ldr = LEADERS.find(l => l.id === p.leaderId);
+        return `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q)
+          || (ldr?.group || '').toLowerCase().includes(q)
+          || (ldr?.name  || '').toLowerCase().includes(q);
+      })
+    : all.slice();
+
+  list.sort((a, b) => {
+    const ra = SIG_RISK[journeySignal(a).key] ?? 5;
+    const rb = SIG_RISK[journeySignal(b).key] ?? 5;
+    return ra !== rb ? ra - rb : a.firstName.localeCompare(b.firstName);
+  });
+
+  const cards = list.map(p => {
+    const tier = TIERS.find(t => t.key === p.careStage);
+    const sig  = journeySignal(p);
+    const ldr  = LEADERS.find(l => l.id === p.leaderId);
+    const avBg = tier ? tier.color : '#9ca3af';
+    return `
+      <div class="adm-member-card" onclick="openDetail('${p.id}')">
+        <div class="adm-member-av" style="background:${avBg}">${esc(initials(p.firstName + ' ' + p.lastInit))}</div>
+        <div class="adm-member-info">
+          <div class="adm-member-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+          <div class="adm-member-sub">${esc(ldr?.group || 'Unassigned')}${ldr ? ` · ${esc(ldr.name)}` : ''}</div>
+        </div>
+        <span class="meeting-tier-badge" style="background:${sig.color}14;color:${sig.color};flex-shrink:0">${esc(sig.label)}</span>
+        <span class="material-symbols-outlined" style="color:var(--ink4);font-size:18px;flex-shrink:0;margin-left:2px">chevron_right</span>
+      </div>`;
+  }).join('') || `<div style="padding:32px 24px;font-size:14px;color:var(--ink4);text-align:center">${q ? `No results for "${esc(adminPeopleSearch)}"` : 'No members yet.'}</div>`;
+
+  el.innerHTML = `
+    <div class="adm-members-hdr">
+      <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px;flex-shrink:0">search</span>
+      <input class="adm-members-search" id="adm-people-search"
+        placeholder="Search by name, group or leader…"
+        value="${esc(adminPeopleSearch)}"
+        oninput="adminPeopleSearch=this.value;renderAdminMembers()">
+      ${q ? `<button onclick="adminPeopleSearch='';renderAdminMembers()" style="border:none;background:none;cursor:pointer;padding:0;display:flex;align-items:center">
+        <span class="material-symbols-outlined" style="font-size:18px;color:var(--ink4)">close</span>
+      </button>` : ''}
+    </div>
+    <div class="adm-members-count">${list.length} MEMBER${list.length !== 1 ? 'S' : ''}</div>
+    ${cards}`;
+
+  if (q) {
+    const inp = document.getElementById('adm-people-search');
+    if (inp) { inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length); }
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -2183,73 +2919,186 @@ function archivedPeople() {
   return people.filter(p => p.leaderId === currentUser.id && p.archived);
 }
 
+function cgPeople() {
+  if (currentUser.isAdmin && adminCGGroupId) {
+    return people.filter(p => p.leaderId === adminCGGroupId && !p.archived);
+  }
+  return myPeople();
+}
+
+function cgArchivedPeople() {
+  if (currentUser.isAdmin && adminCGGroupId) {
+    return people.filter(p => p.leaderId === adminCGGroupId && p.archived);
+  }
+  return archivedPeople();
+}
+
 function renderHome() {
   if (currentUser.isAdmin) { renderAdminHome(); return; }
-
   const mp    = myPeople();
-  const total = mp.length || 1;
-  const gn    = mp.filter(p => score(p) >= 0.7).length;
-  const rd    = mp.filter(p => score(p) < 0.35).length;
-  const vPct  = Math.round(gn / total * 100);
+  const today = new Date().toISOString().slice(0,10);
+  const past  = CG_SESSIONS.filter(d => d <= today);
+  const last2 = past.slice(-2);
+  const sevenDays = new Date(); sevenDays.setDate(sevenDays.getDate() + 7);
+  const sevenDaysStr = sevenDays.toISOString().slice(0,10);
 
-  document.getElementById('hm-sub').textContent = currentUser.group;
-  document.getElementById('hs-vitality').textContent = vPct + '%';
-  document.getElementById('hb-vitality').style.width = vPct + '%';
-  document.getElementById('hs-grn').textContent = gn;
-  document.getElementById('hs-red').textContent = rd;
-  document.getElementById('home-section-btn').style.display = '';
+  // Section 0 — needs pastoral care (active support flags)
+  const needsCare = mp.filter(p => p.needsMarital || p.needsFamily || p.needsBereavement);
+  const needsCareIds = new Set(needsCare.map(p => p.id));
 
-  const el = document.getElementById('home-preview');
-  const preview = mp.slice(0, 5);
-  el.innerHTML = preview.length
-    ? preview.map(personCardHTML).join('')
-    : `<div class="empty-state">
-        <div class="empty-state-icon">&#128100;</div>
-        <h3>No one in your group yet</h3>
-        <p>Go to People to add your first person</p>
-       </div>`;
+  // Section 0b — follow-up due this week
+  const followUpDue = mp.filter(p => {
+    if (!p.followUpDate) return false;
+    return p.followUpDate <= sevenDaysStr;
+  });
+  const followUpIds = new Set(followUpDue.map(p => p.id));
+
+  // Section 1 — needs a conversation (drifting or out of touch, not already shown above)
+  const needsConvo = mp.filter(p => {
+    if (needsCareIds.has(p.id) || followUpIds.has(p.id)) return false;
+    const k = journeySignal(p).key;
+    return k === 'drifting' || k === 'disengaged';
+  });
+  const needsConvoIds = new Set(needsConvo.map(p => p.id));
+
+  // Section 2 — hasn't been at group (missed both of last 2 sessions)
+  const absent = mp.filter(p => {
+    if (needsCareIds.has(p.id) || followUpIds.has(p.id) || needsConvoIds.has(p.id)) return false;
+    if (!last2.length) return false;
+    const attended = p.attendedSessions || [];
+    return last2.every(d => !attended.includes(d));
+  });
+  const absentIds = new Set(absent.map(p => p.id));
+
+  // Section 3 — ready for next step (growing signal, not already shown)
+  const readyNext = mp.filter(p => {
+    if (needsCareIds.has(p.id) || followUpIds.has(p.id) || needsConvoIds.has(p.id) || absentIds.has(p.id)) return false;
+    return journeySignal(p).key === 'growing';
+  });
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  const firstName = currentUser.name.split(' ')[0];
+
+  let html = `<div class="tw-header">
+    <div class="tw-greeting">${esc(greeting)}, ${esc(firstName)}.</div>
+    <div class="tw-group-name">${esc(currentUser.group)}</div>
+  </div>`;
+
+  const allClear = !needsCare.length && !followUpDue.length && !needsConvo.length && !absent.length && !readyNext.length;
+
+  if (allClear) {
+    html += `<div class="tw-all-good">
+      <div class="tw-all-good-icon">🙏</div>
+      <div class="tw-all-good-title">Your group looks good this week.</div>
+      <div class="tw-all-good-sub">Keep praying, keep showing up, keep loving people well.</div>
+    </div>`;
+  } else {
+    if (needsCare.length) {
+      html += `<div class="tw-section">
+        <div class="tw-section-hdr">
+          <span class="tw-section-dot" style="background:#C41230"></span>
+          NEEDS CARE
+        </div>
+        ${needsCare.map(p => {
+          const flags = [p.needsMarital && 'Marital', p.needsFamily && 'Family', p.needsBereavement && 'Bereavement'].filter(Boolean);
+          return meetingCardHTML(p, flags.join(' · ') + ' support');
+        }).join('')}
+      </div>`;
+    }
+    if (followUpDue.length) {
+      html += `<div class="tw-section">
+        <div class="tw-section-hdr">
+          <span class="tw-section-dot" style="background:#7c3aed"></span>
+          FOLLOW UP
+        </div>
+        ${followUpDue.map(p => {
+          const due = p.followUpDate === today ? 'Due today' : p.followUpDate < today ? 'Overdue' : `Due ${fmtDate(p.followUpDate)}`;
+          const ctx = p.followUpNote ? `${due} · ${p.followUpNote}` : due;
+          return meetingCardHTML(p, ctx);
+        }).join('')}
+      </div>`;
+    }
+    if (needsConvo.length) {
+      html += `<div class="tw-section">
+        <div class="tw-section-hdr">
+          <span class="tw-section-dot" style="background:#ba1a1a"></span>
+          NEEDS A CONVERSATION
+        </div>
+        ${needsConvo.map(p => meetingCardHTML(p)).join('')}
+      </div>`;
+    }
+    if (absent.length) {
+      html += `<div class="tw-section">
+        <div class="tw-section-hdr">
+          <span class="tw-section-dot" style="background:#d97706"></span>
+          HASN'T BEEN AT GROUP
+        </div>
+        ${absent.map(p => meetingCardHTML(p)).join('')}
+      </div>`;
+    }
+    if (readyNext.length) {
+      html += `<div class="tw-section">
+        <div class="tw-section-hdr">
+          <span class="tw-section-dot" style="background:#16a34a"></span>
+          READY FOR NEXT STEP
+        </div>
+        ${readyNext.map(p => meetingCardHTML(p)).join('')}
+      </div>`;
+    }
+  }
+
+  html += `<div class="tw-spacer"></div>`;
+  document.getElementById('tw-content').innerHTML = html;
 }
 
 function renderAdminHome() {
   const cgLeaders = LEADERS.filter(l => !l.isAdmin);
-  const total = people.length || 1;
-  const gn    = people.filter(p => score(p) >= 0.7).length;
-  const rd    = people.filter(p => score(p) < 0.35).length;
-  const vPct  = Math.round(gn / total * 100);
+  const firstName = currentUser.name.split(' ')[0];
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
 
-  document.getElementById('hm-sub').textContent =
-    `${people.length} people · ${cgLeaders.length} groups`;
-  document.getElementById('hs-vitality').textContent = vPct + '%';
-  document.getElementById('hb-vitality').style.width = vPct + '%';
-  document.getElementById('hs-grn').textContent = gn;
-  document.getElementById('hs-red').textContent = rd;
-  document.getElementById('home-section-title').textContent = 'CONNECT GROUPS';
-  document.getElementById('home-section-btn').style.display = 'none';
+  const driftCount = people.filter(p => {
+    const k = journeySignal(p).key;
+    return k === 'drifting' || k === 'disengaged';
+  }).length;
 
-  document.getElementById('home-preview').innerHTML = cgLeaders.map(l => {
-    const gp  = people.filter(p => p.leaderId === l.id);
-    const fl  = gp.filter(p => score(p) >= 0.7).length;
-    const gr  = gp.filter(p => { const s=score(p); return s>=0.35&&s<0.7; }).length;
-    const nc  = gp.filter(p => score(p) < 0.35).length;
-    const cnt = gp.length;
-    return `<div class="group-card">
-      <div class="group-card-top">
-        <div class="group-card-av">${initials(l.name)}</div>
-        <div>
-          <div class="group-card-name">${esc(l.name)}</div>
-          <div class="group-card-region">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+  let html = `<div class="tw-header">
+    <div class="tw-greeting">${esc(greeting)}, ${esc(firstName)}.</div>
+    <div class="tw-group-name">${people.length} people · ${cgLeaders.length} groups${driftCount ? ` · ${driftCount} need attention` : ''}</div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-section-hdr">
+      <span class="tw-section-dot" style="background:var(--ink3)"></span>
+      CONNECT GROUPS
+    </div>
+    ${cgLeaders.map(l => {
+      const gp   = people.filter(p => p.leaderId === l.id);
+      const cnt  = gp.length;
+      const drift = gp.filter(p => { const k=journeySignal(p).key; return k==='drifting'||k==='disengaged'; }).length;
+      const grow  = gp.filter(p => journeySignal(p).key === 'growing').length;
+      return `<div class="group-card" onclick="meetingLeaderId='${l.id}';meetingSubTab='bytier';switchTab('meeting')">
+        <div class="group-card-top">
+          <div class="group-card-av">${esc(initials(l.name))}</div>
+          <div>
+            <div class="group-card-name">${esc(l.name)}</div>
+            <div class="group-card-region">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+          </div>
         </div>
-      </div>
-      ${cnt === 0
-        ? `<div class="group-no-members">No members yet</div>`
-        : `<div class="group-card-stats">
-            <span class="group-stat"><span class="group-stat-dot" style="background:var(--grn-ring)"></span>${fl} Flourishing</span>
-            <span class="group-stat"><span class="group-stat-dot" style="background:var(--amb-ring)"></span>${gr} Growing</span>
-            <span class="group-stat"><span class="group-stat-dot" style="background:var(--red-ring)"></span>${nc} Needs Care</span>
-          </div>`
-      }
-    </div>`;
-  }).join('');
+        ${cnt === 0
+          ? `<div class="group-no-members">No members yet</div>`
+          : `<div class="group-card-stats">
+              ${drift ? `<span class="group-stat"><span class="group-stat-dot" style="background:#ba1a1a"></span>${drift} need attention</span>` : ''}
+              ${grow  ? `<span class="group-stat"><span class="group-stat-dot" style="background:#16a34a"></span>${grow} growing</span>` : ''}
+              ${!drift && !grow ? `<span class="group-stat" style="color:var(--ink3)">All steady</span>` : ''}
+            </div>`
+        }
+      </div>`;
+    }).join('')}
+  </div>
+  <div class="tw-spacer"></div>`;
+
+  document.getElementById('tw-content').innerHTML = html;
 }
 
 /* ──────────────────────────────────────────────
@@ -2531,9 +3380,139 @@ function copyMsgFromPreview() {
     .catch(() => { prompt('Copy this message:', _previewMsg); });
 }
 
-function renderHealth() {
+function renderHealthAdmin() {
   const el = document.getElementById('health-content');
   if (!el) return;
+  document.getElementById('health-overline').textContent = 'ANALYTICS';
+  document.getElementById('health-headline').textContent = 'Church Picture.';
+
+  const all   = myPeople();
+  const total = all.length || 1;
+
+  // Tier distribution
+  const tierData = TIERS.map(t => ({
+    ...t, count: all.filter(p => p.careStage === t.key).length,
+  }));
+
+  // Signal distribution
+  const SIG_DEFS = [
+    { key:'growing',    label:'Growing',    color:'#16a34a' },
+    { key:'steady',     label:'Steady',     color:'#2563eb' },
+    { key:'drifting',   label:'Drifting',   color:'#d97706' },
+    { key:'disengaged', label:'Out of Touch', color:'#ba1a1a' },
+    { key:'new',        label:'New',        color:'#6b7280' },
+  ];
+  const allSigs = all.map(p => journeySignal(p).key);
+  const sigData = SIG_DEFS.map(s => ({ ...s, count: allSigs.filter(k => k === s.key).length }));
+
+  // Milestone completion
+  const milestones = [
+    { label:'Gospel Class',     count: all.filter(p => p.gospelClass).length },
+    { label:'New Start Class',  count: all.filter(p => p.newStart).length },
+    { label:'Baptised',         count: all.filter(p => p.baptised).length },
+    { label:'Be One, Make One', count: all.filter(p => p.beOneMakeOne).length },
+    { label:'Membership Class', count: all.filter(p => p.rdClass).length },
+    { label:'In Ministry',      count: all.filter(p => p.inMinistry).length },
+  ];
+
+  // Per-group signal breakdown
+  const groupRows = LEADERS.filter(l => !l.isAdmin).map(l => {
+    const gp = all.filter(p => p.leaderId === l.id);
+    if (!gp.length) return null;
+    const sigs       = gp.map(p => journeySignal(p).key);
+    const growing    = sigs.filter(s => s === 'growing').length;
+    const steady     = sigs.filter(s => s === 'steady').length;
+    const drifting   = sigs.filter(s => s === 'drifting').length;
+    const disengaged = sigs.filter(s => s === 'disengaged').length;
+    return { l, gp, growing, steady, drifting, disengaged, atRisk: drifting + disengaged };
+  }).filter(Boolean).sort((a, b) => b.atRisk - a.atRisk);
+
+  // HTML builders
+  const tierChipsHTML = tierData.map(t => `
+    <div style="flex:1;min-width:0;border:1px solid ${t.color}30;border-radius:10px;padding:14px 10px;text-align:center">
+      <div style="font-size:26px;font-weight:700;color:${t.color};line-height:1">${t.count}</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--ink3);margin-top:5px;text-transform:uppercase">${t.label}</div>
+    </div>`).join('');
+
+  const sigBarsHTML = sigData.map(s => {
+    const pct = Math.round(s.count / total * 100);
+    return `<div style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+        <span style="font-size:13px;font-weight:600;color:var(--ink)">${s.label}</span>
+        <span style="font-size:12px;color:var(--ink3)">${s.count} &nbsp;<span style="color:var(--ink4)">${pct}%</span></span>
+      </div>
+      <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${s.color};border-radius:3px"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const msHTML = milestones.map(ms => {
+    const pct = Math.round(ms.count / total * 100);
+    return `<div class="health-gap-row">
+      <div class="health-gap-label">${ms.label}</div>
+      <div class="health-gap-bar-wrap">
+        <div class="health-gap-track"><div class="health-gap-fill" style="width:${pct}%;background:var(--red)"></div></div>
+        <div class="health-gap-pct">${ms.count}/${all.length}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const grpRowsHTML = groupRows.map(({ l, gp, growing, steady, drifting, disengaged }) => {
+    const segs = [
+      { n: growing,    c: '#16a34a' },
+      { n: steady,     c: '#2563eb' },
+      { n: drifting,   c: '#d97706' },
+      { n: disengaged, c: '#ba1a1a' },
+    ].filter(s => s.n > 0).map(s => `<div style="flex:${s.n};background:${s.c}"></div>`).join('');
+    const pills = [
+      drifting   ? `<span class="adm-ov-sig" style="color:#d97706;background:#d9770614">${drifting} drifting</span>` : '',
+      disengaged ? `<span class="adm-ov-sig" style="color:#ba1a1a;background:#ba1a1a14">${disengaged} out of touch</span>` : '',
+      growing    ? `<span class="adm-ov-sig" style="color:#16a34a;background:#16a34a14">${growing} growing</span>` : '',
+    ].filter(Boolean).join('');
+    return `
+      <div class="adm-leader-row" onclick="openGroupMeeting('${l.id}')">
+        <div class="adm-leader-info" style="flex:1;min-width:0">
+          <div class="adm-leader-name">${esc(l.group || l.name)}</div>
+          <div class="adm-leader-group">${esc(l.name)} · ${gp.length} members</div>
+          <div style="display:flex;height:4px;border-radius:2px;overflow:hidden;background:var(--line);margin-top:6px">${segs || '<div style="flex:1"></div>'}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:3px;margin-left:10px;align-items:flex-end">
+          ${pills || '<span class="adm-ov-sig" style="color:var(--ink4);background:var(--bg)">No signal</span>'}
+        </div>
+        <span class="material-symbols-outlined" style="color:var(--ink3);font-size:18px;flex-shrink:0;margin-left:4px">chevron_right</span>
+      </div>`;
+  }).join('') || `<div class="health-empty">No group data yet.</div>`;
+
+  el.innerHTML = `
+    <div class="health-stats">
+      <div class="health-section-title">DISCIPLESHIP TIERS</div>
+      <div style="display:flex;gap:8px;margin-top:10px">${tierChipsHTML}</div>
+    </div>
+    <div class="health-gaps">
+      <div class="health-section-title">MOMENTUM</div>
+      ${sigBarsHTML}
+    </div>
+    <div class="health-gaps">
+      <div class="health-section-title">MILESTONES</div>
+      ${msHTML}
+    </div>
+    <div class="health-actions" style="padding-bottom:8px">
+      <div class="health-section-title" style="margin-bottom:12px">GROUPS · MOST AT RISK FIRST</div>
+      ${grpRowsHTML}
+    </div>
+    <div class="health-spacer"></div>`;
+}
+
+function renderHealth() {
+  if (currentUser && currentUser.isAdmin) {
+    try { renderHealthAdmin(); } catch(e) { console.error('renderHealthAdmin failed:', e); }
+    return;
+  }
+  const el = document.getElementById('health-content');
+  if (!el) return;
+  document.getElementById('health-overline').textContent  = 'ACTIONS & INSIGHTS';
+  document.getElementById('health-headline').textContent  = 'Health Check-up.';
   const mp    = myPeople();
   const total = mp.length || 1;
   const gn    = mp.filter(p => score(p) >= 0.7).length;
@@ -2618,95 +3597,472 @@ function renderHealth() {
       <div class="health-section-title">WHERE POINTS ARE LOST</div>
       ${gapHTML}
     </div>
+    <div class="health-gaps">
+      <div class="health-section-title">TIER BREAKDOWN</div>
+      ${careStageBreakdownHTML(mp)}
+    </div>
     <div class="health-spacer"></div>`;
+}
+
+/* ──────────────────────────────────────────────
+   SEED DUMMY DATA
+   ────────────────────────────────────────────── */
+async function seedDummyData() {
+  if (!confirm('Add 130 demo people across all groups? This replaces any existing people data.')) return;
+  const S = {
+    a: ['2026-01-03','2026-01-17','2026-02-07','2026-02-21','2026-03-07','2026-03-21'],
+    m: ['2026-01-03','2026-01-17','2026-02-07','2026-02-21','2026-03-07'],
+    d: ['2026-01-03','2026-01-17','2026-02-07','2026-02-21'],
+    p: ['2026-02-07','2026-02-21','2026-03-07','2026-03-21'],
+    o: ['2026-01-17','2026-02-21','2026-03-07'],
+    l: ['2026-01-03','2026-01-17'],
+    r: ['2026-03-07','2026-03-21'],
+    s: ['2026-01-03','2026-03-21'],
+    n: [],
+  };
+  // [id, firstName, lastInit, leaderId, tier, sessKey, gospel, newstart, baptised, beone, rdclass, ministry, daysAgo]
+  const RAW = [
+    ['d001','Samuel',  'O','cg_at','core',        'a',1,1,1,1,1,1,160],
+    ['d002','Abena',   'K','cg_at','congregation','m',1,1,1,0,1,0,140],
+    ['d003','Marcus',  'T','cg_at','congregation','a',1,1,1,0,0,0,150],
+    ['d004','Grace',   'A','cg_at','congregation','d',1,1,0,0,0,0,130],
+    ['d005','Kofi',    'B','cg_at','community',   'o',1,0,1,0,0,0,90],
+    ['d006','Emma',    'R','cg_at','community',   'p',1,0,0,0,0,0,60],
+    ['d007','Dwayne',  'P','cg_at','community',   'l',0,0,0,0,0,0,110],
+    ['d008','Amara',   'N','cg_at','community',   'd',1,0,0,0,0,0,100],
+    ['d009','Ruth',    'C','cg_at','crowd',       'r',0,0,0,0,0,0,28],
+    ['d010','Joseph',  'W','cg_at','crowd',       'n',0,0,0,0,0,0,10],
+    ['d011','Emmanuel','A','cg_cd','core',        'a',1,1,1,1,1,1,180],
+    ['d012','Chioma',  'F','cg_cd','congregation','m',1,1,1,0,1,0,150],
+    ['d013','Winston', 'B','cg_cd','congregation','d',1,1,1,0,0,0,160],
+    ['d014','Ngozi',   'E','cg_cd','congregation','o',1,1,0,0,0,0,120],
+    ['d015','Aaron',   'M','cg_cd','community',   'p',1,0,0,0,0,0,70],
+    ['d016','Sonia',   'G','cg_cd','community',   'a',1,0,1,0,0,0,130],
+    ['d017','Kwame',   'J','cg_cd','community',   'l',0,0,0,0,0,0,100],
+    ['d018','Rebecca', 'D','cg_cd','community',   's',0,0,0,0,0,0,85],
+    ['d019','Leroy',   'H','cg_cd','crowd',       'r',0,0,0,0,0,0,21],
+    ['d020','Faith',   'S','cg_cd','crowd',       'n',0,0,0,0,0,0,7],
+    ['d021','Thomas',  'O','cg_cj','core',        'a',1,1,1,1,1,1,170],
+    ['d022','Adwoa',   'P','cg_cj','congregation','a',1,1,1,0,1,0,145],
+    ['d023','Daniel',  'L','cg_cj','congregation','m',1,1,1,0,0,1,155],
+    ['d024','Efua',    'K','cg_cj','congregation','d',1,1,0,0,0,0,125],
+    ['d025','Michael', 'T','cg_cj','community',   'o',1,0,1,0,0,0,95],
+    ['d026','Ama',     'R','cg_cj','community',   'p',0,0,0,0,0,0,55],
+    ['d027','James',   'N','cg_cj','community',   's',1,0,0,0,0,0,105],
+    ['d028','Tricia',  'B','cg_cj','community',   'l',0,0,0,0,0,0,115],
+    ['d029','Kojo',    'A','cg_cj','crowd',       'n',0,0,0,0,0,0,14],
+    ['d030','Sarah',   'M','cg_cj','crowd',       'r',0,0,0,0,0,0,25],
+    ['d031','Kwabena', 'S','cg_jp','core',        'a',1,1,1,1,1,1,175],
+    ['d032','Beverly', 'O','cg_jp','congregation','m',1,1,1,0,1,0,135],
+    ['d033','Emeka',   'C','cg_jp','congregation','a',1,1,1,0,0,0,148],
+    ['d034','Hannah',  'W','cg_jp','congregation','d',1,1,0,0,0,0,138],
+    ['d035','Yaw',     'F','cg_jp','community',   'p',1,0,0,0,0,0,65],
+    ['d036','Rachel',  'J','cg_jp','community',   'o',0,0,1,0,0,0,95],
+    ['d037','Adaeze',  'T','cg_jp','community',   'd',1,0,0,0,0,0,108],
+    ['d038','Luke',    'N','cg_jp','community',   'l',0,0,0,0,0,0,118],
+    ['d039','Esi',     'B','cg_jp','crowd',       'r',0,0,0,0,0,0,30],
+    ['d040','David',   'P','cg_jp','crowd',       'n',0,0,0,0,0,0,5],
+    ['d041','Nana',    'A','cg_jd','core',        'a',1,1,1,1,1,1,165],
+    ['d042','Obinna',  'E','cg_jd','congregation','m',1,1,1,0,1,0,142],
+    ['d043','Shanice', 'L','cg_jd','congregation','a',1,1,1,0,0,0,152],
+    ['d044','Kelechi', 'M','cg_jd','congregation','o',1,1,0,0,0,0,122],
+    ['d045','Maria',   'G','cg_jd','community',   'p',1,0,0,0,0,0,62],
+    ['d046','Aaron',   'K','cg_jd','community',   's',0,0,1,0,0,0,88],
+    ['d047','Ifeoma',  'D','cg_jd','community',   'd',1,0,0,0,0,0,102],
+    ['d048','Paul',    'R','cg_jd','community',   'l',0,0,0,0,0,0,112],
+    ['d049','Adjoa',   'N','cg_jd','crowd',       'r',0,0,0,0,0,0,22],
+    ['d050','Stephen', 'C','cg_jd','crowd',       'n',0,0,0,0,0,0,8],
+    ['d051','Esther',  'O','cg_js','core',        'a',1,1,1,1,1,1,168],
+    ['d052','Kwame',   'S','cg_js','congregation','m',1,1,1,0,1,1,138],
+    ['d053','Grace',   'T','cg_js','congregation','a',1,1,1,0,0,0,153],
+    ['d054','Marcus',  'K','cg_js','congregation','d',1,1,0,0,0,0,128],
+    ['d055','Akua',    'P','cg_js','community',   'p',1,0,0,0,0,0,68],
+    ['d056','Jordan',  'B','cg_js','community',   'o',0,0,0,0,0,0,93],
+    ['d057','Amaka',   'F','cg_js','community',   'd',1,0,0,0,0,0,106],
+    ['d058','Thomas',  'E','cg_js','community',   'r',0,0,0,0,0,0,35],
+    ['d059','Afia',    'W','cg_js','crowd',       'n',0,0,0,0,0,0,12],
+    ['d060','Daniel',  'H','cg_js','crowd',       'r',0,0,0,0,0,0,18],
+    ['d061','Kofi',    'A','cg_ji','core',        'a',1,1,1,1,1,1,172],
+    ['d062','Rebecca', 'N','cg_ji','congregation','m',1,1,1,0,1,0,143],
+    ['d063','Emmanuel','P','cg_ji','congregation','a',1,1,1,0,0,1,156],
+    ['d064','Abena',   'L','cg_ji','congregation','d',1,1,0,0,0,0,133],
+    ['d065','Winston', 'G','cg_ji','community',   'p',0,0,1,0,0,0,72],
+    ['d066','Chioma',  'D','cg_ji','community',   'o',1,0,0,0,0,0,97],
+    ['d067','Samuel',  'M','cg_ji','community',   'l',0,0,0,0,0,0,107],
+    ['d068','Faith',   'T','cg_ji','community',   's',1,0,0,0,0,0,92],
+    ['d069','James',   'K','cg_ji','crowd',       'r',0,0,0,0,0,0,20],
+    ['d070','Efua',    'R','cg_ji','crowd',       'n',0,0,0,0,0,0,6],
+    ['d071','Adwoa',   'S','cg_jk','core',        'a',1,1,1,1,1,1,178],
+    ['d072','Michael', 'O','cg_jk','congregation','m',1,1,1,0,1,0,148],
+    ['d073','Ngozi',   'B','cg_jk','congregation','a',1,1,1,0,0,0,158],
+    ['d074','Aaron',   'E','cg_jk','congregation','d',1,1,0,0,0,0,127],
+    ['d075','Shanice', 'W','cg_jk','community',   'p',1,0,0,0,0,0,67],
+    ['d076','Kwabena', 'J','cg_jk','community',   'o',0,0,0,0,0,0,91],
+    ['d077','Emma',    'C','cg_jk','community',   'd',1,0,0,0,0,0,103],
+    ['d078','Yaw',     'F','cg_jk','community',   'r',0,0,0,0,0,0,32],
+    ['d079','Tricia',  'M','cg_jk','crowd',       'n',0,0,0,0,0,0,9],
+    ['d080','Joseph',  'A','cg_jk','crowd',       'r',0,0,0,0,0,0,15],
+    ['d081','Amara',   'D','cg_jt','core',        'a',1,1,1,1,1,1,162],
+    ['d082','Leroy',   'P','cg_jt','congregation','m',1,1,1,0,1,0,136],
+    ['d083','Ama',     'K','cg_jt','congregation','a',1,1,1,0,0,0,149],
+    ['d084','Emeka',   'T','cg_jt','congregation','d',1,1,0,0,0,0,124],
+    ['d085','Hannah',  'L','cg_jt','community',   'p',1,0,0,0,0,0,58],
+    ['d086','Kojo',    'R','cg_jt','community',   'o',0,0,1,0,0,0,86],
+    ['d087','Rachel',  'S','cg_jt','community',   'd',0,0,0,0,0,0,109],
+    ['d088','Obinna',  'N','cg_jt','community',   'l',1,0,0,0,0,0,119],
+    ['d089','Grace',   'E','cg_jt','crowd',       'r',0,0,0,0,0,0,26],
+    ['d090','Luke',    'B','cg_jt','crowd',       'n',0,0,0,0,0,0,11],
+    ['d091','Ifeoma',  'W','cg_kb','core',        'a',1,1,1,1,1,1,176],
+    ['d092','Marcus',  'G','cg_kb','congregation','m',1,1,1,0,1,0,146],
+    ['d093','Adaeze',  'O','cg_kb','congregation','a',1,1,1,0,0,0,154],
+    ['d094','Thomas',  'J','cg_kb','congregation','d',1,1,0,0,0,0,129],
+    ['d095','Beverly', 'C','cg_kb','community',   'p',1,0,0,0,0,0,63],
+    ['d096','Daniel',  'M','cg_kb','community',   'o',0,0,0,0,0,0,89],
+    ['d097','Akua',    'F','cg_kb','community',   'd',1,0,0,0,0,0,104],
+    ['d098','Stephen', 'T','cg_kb','community',   's',0,0,0,0,0,0,94],
+    ['d099','Nana',    'K','cg_kb','crowd',       'r',0,0,0,0,0,0,23],
+    ['d100','Sarah',   'H','cg_kb','crowd',       'n',0,0,0,0,0,0,4],
+    ['d101','Kelechi', 'A','cg_lg','core',        'a',1,1,1,1,1,1,169],
+    ['d102','Sonia',   'E','cg_lg','congregation','m',1,1,1,0,1,0,139],
+    ['d103','Kwame',   'B','cg_lg','congregation','a',1,1,1,0,0,0,151],
+    ['d104','Faith',   'P','cg_lg','congregation','d',1,1,0,0,0,0,126],
+    ['d105','Emmanuel','N','cg_lg','community',   'p',1,0,0,0,0,0,61],
+    ['d106','Esi',     'L','cg_lg','community',   'o',0,0,1,0,0,0,87],
+    ['d107','Aaron',   'W','cg_lg','community',   'd',0,0,0,0,0,0,101],
+    ['d108','Chioma',  'R','cg_lg','community',   'r',0,0,0,0,0,0,33],
+    ['d109','David',   'S','cg_lg','crowd',       'n',0,0,0,0,0,0,13],
+    ['d110','Adjoa',   'T','cg_lg','crowd',       'r',0,0,0,0,0,0,17],
+    ['d111','Yaw',     'K','cg_ms','core',        'a',1,1,1,1,1,1,173],
+    ['d112','Rebecca', 'O','cg_ms','congregation','m',1,1,1,0,1,0,141],
+    ['d113','Dwayne',  'C','cg_ms','congregation','a',1,1,1,0,0,1,157],
+    ['d114','Amara',   'G','cg_ms','congregation','d',1,1,0,0,0,0,131],
+    ['d115','Jordan',  'N','cg_ms','community',   'p',0,0,0,0,0,0,64],
+    ['d116','Efua',    'P','cg_ms','community',   'o',1,0,0,0,0,0,90],
+    ['d117','Joseph',  'B','cg_ms','community',   'd',0,0,0,0,0,0,105],
+    ['d118','Adwoa',   'M','cg_ms','community',   'l',1,0,0,0,0,0,115],
+    ['d119','Marcus',  'F','cg_ms','crowd',       'r',0,0,0,0,0,0,27],
+    ['d120','Hannah',  'J','cg_ms','crowd',       'n',0,0,0,0,0,0,3],
+    ['d121','Kofi',    'E','cg_of','core',        'a',1,1,1,1,1,1,167],
+    ['d122','Grace',   'W','cg_of','congregation','m',1,1,1,0,1,0,137],
+    ['d123','Obinna',  'S','cg_of','congregation','a',1,1,1,0,0,0,147],
+    ['d124','Emma',    'N','cg_of','congregation','d',1,1,0,0,0,0,132],
+    ['d125','Kojo',    'T','cg_of','community',   'p',1,0,0,0,0,0,66],
+    ['d126','Ngozi',   'L','cg_of','community',   'o',0,0,1,0,0,0,84],
+    ['d127','Thomas',  'A','cg_of','community',   's',0,0,0,0,0,0,96],
+    ['d128','Ama',     'D','cg_of','community',   'l',1,0,0,0,0,0,113],
+    ['d129','Shanice', 'K','cg_of','crowd',       'r',0,0,0,0,0,0,24],
+    ['d130','Samuel',  'R','cg_of','crowd',       'n',0,0,0,0,0,0,16],
+  ];
+  const today = new Date();
+  const expanded = RAW.map(r => {
+    const [id,firstName,lastInit,leaderId,tier,sk,gospel,newstart,baptised,beone,rdclass,ministry,daysAgo] = r;
+    const joined = new Date(today); joined.setDate(joined.getDate() - daysAgo);
+    const ldr = LEADERS.find(l => l.id === leaderId);
+    return { id, firstName, lastInit, leaderId, leaderName: ldr ? ldr.name : '',
+      attendance:'unknown', attendedSessions: S[sk], careStage: tier,
+      gospelClass:!!gospel, newStart:!!newstart, baptised:!!baptised,
+      beOneMakeOne:!!beone, rdClass:!!rdclass, inMinistry:!!ministry,
+      ministryNames: ministry ? ['Ministry'] : [], ministryName: ministry ? 'Ministry' : '',
+      needsMarital:false, needsFamily:false, needsBereavement:false, lastContact:null, followUpDate:null, followUpNote:'', notes:[],
+      createdAt: joined.toISOString() };
+  });
+  if (useLocal) {
+    localStorage.setItem('rd_people', JSON.stringify(expanded));
+    people = expanded;
+  } else {
+    for (const p of expanded) {
+      const { id, ...data } = p;
+      await db.collection('people').doc(id).set(data);
+    }
+    people = expanded;
+  }
+  renderHome(); renderPeople(); renderHealth();
+  toast('130 people seeded across 13 groups');
+}
+
+/* ──────────────────────────────────────────────
+   MEETING MODE
+   ────────────────────────────────────────────── */
+let meetingLeaderId = null;
+let meetingSubTab   = 'bytier';
+
+function renderMeeting() {
+  if (!currentUser || !currentUser.isAdmin) return;
+  const leaders = LEADERS.filter(l => !l.isAdmin);
+  const el = document.getElementById('meeting-content');
+
+  if (!meetingLeaderId) {
+    const opts = leaders.map(l =>
+      `<option value="${l.id}">${esc(l.name)} — ${esc(l.group)}</option>`
+    ).join('');
+    el.innerHTML = `
+      <div class="meeting-panel">
+        <div class="meeting-panel-label">Select a leader to begin</div>
+        <select class="meeting-select" onchange="setMeetingLeader(this.value)">
+          <option value="">— Choose a leader —</option>
+          ${opts}
+        </select>
+      </div>`;
+    return;
+  }
+
+  const leader = LEADERS.find(l => l.id === meetingLeaderId);
+  const group  = people.filter(p => p.leaderId === meetingLeaderId && !p.archived);
+  const leaderOpts = leaders.map(l =>
+    `<option value="${l.id}"${l.id === meetingLeaderId ? ' selected' : ''}>${esc(l.name)}</option>`
+  ).join('');
+
+  const subTabs = [
+    { key:'bytier',    label:'By Tier'         },
+    { key:'attention', label:'Needs Attention'  },
+    { key:'movingup',  label:'Moving Up'        },
+    { key:'baptism',   label:'Baptism'          },
+  ];
+  const subTabHTML = subTabs.map(t =>
+    `<button class="meeting-sub-tab${meetingSubTab === t.key ? ' active' : ''}"
+      onclick="setMeetingSubTab('${t.key}')">${t.label}</button>`
+  ).join('');
+
+  el.innerHTML = `
+    <div class="meeting-panel">
+      <div class="meeting-active-hdr">
+        <div>
+          <div class="meeting-active-title">Meeting Mode Active</div>
+          <div class="meeting-active-sub">${esc(leader.name)} · ${group.length} ${group.length === 1 ? 'person' : 'people'}</div>
+        </div>
+        <select class="meeting-select-sm" onchange="setMeetingLeader(this.value)">
+          ${leaderOpts}
+        </select>
+      </div>
+      <div class="meeting-sub-tabs">${subTabHTML}</div>
+    </div>
+    <div class="meeting-body">${renderMeetingBody(group)}</div>`;
+}
+
+function renderMeetingBody(group) {
+  if (meetingSubTab === 'bytier')    return renderMeetingByTier(group);
+  if (meetingSubTab === 'attention') return renderMeetingAttention(group);
+  if (meetingSubTab === 'movingup')  return renderMeetingMovingUp(group);
+  if (meetingSubTab === 'baptism')   return renderMeetingBaptism(group);
+  return '';
+}
+
+function renderMeetingByTier(group) {
+  if (!group.length) return `<div class="meeting-empty">No members in this group yet.</div>`;
+  let html = '';
+  TIERS.forEach(t => {
+    const members = group.filter(p => p.careStage === t.key);
+    if (!members.length) return;
+    html += `<div class="meeting-tier-section">
+      <div class="meeting-tier-hdr" style="color:${t.color}">
+        <span class="meeting-tier-dot" style="background:${t.color}"></span>
+        ${esc(t.label)} <span class="meeting-tier-count">${members.length}</span>
+      </div>
+      ${members.map(p => meetingCardHTML(p)).join('')}
+    </div>`;
+  });
+  const noTier = group.filter(p => !p.careStage);
+  if (noTier.length) {
+    html += `<div class="meeting-tier-section">
+      <div class="meeting-tier-hdr" style="color:var(--ink4)">
+        <span class="meeting-tier-dot" style="background:var(--ink4)"></span>
+        Not Set <span class="meeting-tier-count">${noTier.length}</span>
+      </div>
+      ${noTier.map(p => meetingCardHTML(p)).join('')}
+    </div>`;
+  }
+  return html || `<div class="meeting-empty">No members assigned to tiers yet.</div>`;
+}
+
+function renderMeetingAttention(group) {
+  const list = group.filter(p => {
+    const sig = journeySignal(p).key;
+    return sig === 'drifting' || sig === 'disengaged';
+  }).sort((a,b) => {
+    const order = { disengaged:0, drifting:1 };
+    return (order[journeySignal(a).key]??2) - (order[journeySignal(b).key]??2);
+  });
+  if (!list.length) return `<div class="meeting-empty">No one drifting or out of touch right now — praise God!</div>`;
+  return `<div class="meeting-tier-section">${list.map(p => meetingCardHTML(p)).join('')}</div>`;
+}
+
+function renderMeetingMovingUp(group) {
+  const list = group.filter(p => journeySignal(p).key === 'growing');
+  if (!list.length) return `<div class="meeting-empty">No one flagged as growing right now.</div>`;
+  return `<div class="meeting-tier-section">${list.map(p => meetingCardHTML(p)).join('')}</div>`;
+}
+
+function renderMeetingBaptism(group) {
+  const list = group.filter(p => !p.baptised);
+  if (!list.length) return `<div class="meeting-empty">Everyone in this group has been baptised!</div>`;
+  return `<div class="meeting-tier-section">${list.map(p => meetingCardHTML(p)).join('')}</div>`;
+}
+
+function meetingCardHTML(p, ctx) {
+  const tier = TIERS.find(t => t.key === p.careStage);
+  const sig  = journeySignal(p);
+  return `<div class="meeting-card" onclick="openDetail('${p.id}')">
+    <div class="meeting-card-av">${esc(initials(p.firstName + ' ' + p.lastInit))}</div>
+    <div class="meeting-card-info">
+      <div class="meeting-card-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+      <div style="display:flex;gap:5px;margin-top:3px;flex-wrap:wrap">
+        ${tier ? `<span class="meeting-tier-badge" style="background:${tier.color}18;color:${tier.color}">${esc(tier.label)}</span>` : ''}
+        <span class="meeting-tier-badge" style="background:${sig.color}18;color:${sig.color}">${esc(sig.label)}</span>
+      </div>
+      ${ctx ? `<div style="font-size:12px;color:var(--ink3);margin-top:4px">${esc(ctx)}</div>` : ''}
+    </div>
+    <span style="color:var(--ink4);font-size:18px;flex-shrink:0">›</span>
+  </div>`;
+}
+
+function setMeetingLeader(id) {
+  meetingLeaderId = id || null;
+  meetingSubTab   = 'bytier';
+  renderMeeting();
+}
+
+function setMeetingSubTab(key) {
+  meetingSubTab = key;
+  renderMeeting();
 }
 
 /* ──────────────────────────────────────────────
    MILESTONES
    ────────────────────────────────────────────── */
 const MILESTONES_DEF = [
-  { key:'gospelClass',  label:'Gospel Class',    icon:'auto_stories',     total:4  },
-  { key:'newStart',     label:'New Start Class', icon:'school',           total:5  },
-  { key:'baptised',     label:'Baptised',        icon:'water_drop'                 },
-  { key:'beOneMakeOne', label:'Be One, Make One',icon:'diversity_3',      total:12 },
-  { key:'rdClass',      label:'Membership Class',icon:'workspace_premium'          },
-  { key:'inMinistry',   label:'In Ministry',     icon:'volunteer_activism'         },
+  { key:'cgAttendance', label:'Connect Group',   icon:'groups',                      isCG:true },
+  { key:'gospelClass',  label:'Gospel Class',    icon:'auto_stories',     total:4             },
+  { key:'newStart',     label:'New Start Class', icon:'school',           total:5             },
+  { key:'baptised',     label:'Baptised',        icon:'water_drop'                            },
+  { key:'beOneMakeOne', label:'Be One, Make One',icon:'diversity_3',      total:12            },
+  { key:'rdClass',      label:'Membership Class',icon:'workspace_premium'                     },
+  { key:'inMinistry',   label:'In Ministry',     icon:'volunteer_activism'                    },
+];
+
+const PATHWAY_STAGES = [
+  { label:'→ Community',    color:'#2563eb', keys:['cgAttendance','gospelClass']                    },
+  { label:'→ Congregation', color:'#d97706', keys:['newStart','baptised','beOneMakeOne','rdClass']  },
+  { label:'→ Core',         color:'#C41230', keys:['inMinistry']                                    },
 ];
 
 let msOpen = null;
 let msTabs = {};
 
-function renderMilestones() {
-  const mp = myPeople();
-  document.getElementById('ms-sub').textContent = currentUser.isAdmin
-    ? `${mp.length} people · ${LEADERS.filter(l => !l.isAdmin).length} groups`
-    : currentUser.group;
+function renderAdminMsGroupList() {
+  document.getElementById('ms-list').classList.add('hidden');
+  const el = document.getElementById('ms-admin-list');
+  el.classList.remove('hidden');
+  const cgLeaders = LEADERS.filter(l => !l.isAdmin);
+  const allPeople = myPeople();
+  document.getElementById('ms-sub').textContent = `${allPeople.length} people · ${cgLeaders.length} groups`;
+  const msKeys = ['gospelClass','newStart','baptised','beOneMakeOne','rdClass','inMinistry'];
+  el.innerHTML = `
+    <div class="adm-group-list-rows">
+      ${cgLeaders.map(l => {
+        const gp  = allPeople.filter(p => p.leaderId === l.id);
+        const cnt = gp.length;
+        if (!cnt) return '';
+        const completed = msKeys.reduce((sum, k) => sum + gp.filter(p => p[k]).length, 0);
+        const pct = Math.round(completed / (cnt * msKeys.length) * 100);
+        return `<div class="adm-leader-row" onclick="adminMsGroupId='${l.id}';renderMilestones()">
+          <div class="adm-leader-info">
+            <div class="adm-leader-name">${esc(l.name)}</div>
+            <div class="adm-leader-group">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+            <div class="adm-leader-bar-track" style="margin-top:6px"><div class="adm-leader-bar-fill" style="width:${pct}%;background:var(--ink)"></div></div>
+          </div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink3);flex-shrink:0;min-width:36px;text-align:right">${pct}%</div>
+          <span class="material-symbols-outlined" style="color:var(--ink3);font-size:18px;flex-shrink:0">chevron_right</span>
+        </div>`;
+      }).filter(Boolean).join('')}
+    </div>`;
+}
 
-  document.getElementById('ms-list').innerHTML = MILESTONES_DEF.map(m => {
-    const reached    = mp.filter(p => !!p[m.key]);
-    const notDone    = mp.filter(p => !p[m.key]);
-    const inProgress = m.total ? notDone.filter(p => (p[m.key + 'Count'] || 0) > 0) : [];
-    const togo       = m.total ? notDone.filter(p => (p[m.key + 'Count'] || 0) === 0) : notDone;
+function renderMilestones() {
+  document.getElementById('ms-admin-list').classList.add('hidden');
+  document.getElementById('ms-list').classList.remove('hidden');
+
+  const mp = myPeople();
+  document.getElementById('ms-sub').textContent = currentUser.group || '';
+
+  const SIG_RISK = { disengaged:0, drifting:1, new:2, steady:3, growing:4 };
+
+  function msMilestoneHTML(m) {
+    const isReached = p => m.isCG ? cgAttendanceRate(p) >= 0.5 : !!p[m.key];
+    const reached    = mp.filter(p => isReached(p));
+    const notDone    = mp.filter(p => !isReached(p));
+    const inProgress = (!m.isCG && m.total) ? notDone.filter(p => (p[m.key + 'Count'] || 0) > 0) : [];
+    const togo       = (!m.isCG && m.total) ? notDone.filter(p => (p[m.key + 'Count'] || 0) === 0) : notDone;
     const pct        = mp.length ? reached.length / mp.length : 0;
     const isOpen     = msOpen === m.key;
-    const defaultTab = m.total ? 'inprogress' : 'togo';
+    const defaultTab = (!m.isCG && m.total) ? 'inprogress' : 'togo';
     const tab        = msTabs[m.key] || defaultTab;
 
-    let listPeople;
-    if (tab === 'reached')    listPeople = reached;
-    else if (tab === 'inprogress') listPeople = inProgress;
-    else                      listPeople = togo;
-    listPeople = listPeople.slice().sort((a, b) => score(b) - score(a));
+    let listPeople = tab === 'reached' ? reached : tab === 'inprogress' ? inProgress : togo;
+    listPeople = listPeople.slice().sort((a, b) => {
+      const ra = SIG_RISK[journeySignal(a).key] ?? 5;
+      const rb = SIG_RISK[journeySignal(b).key] ?? 5;
+      return ra !== rb ? ra - rb : a.firstName.localeCompare(b.firstName);
+    });
 
     const personRows = listPeople.length
       ? listPeople.map(p => {
-          const progress = m.total && tab === 'inprogress'
-            ? `<div class="ms-person-sub" style="color:var(--amb)">${p[m.key + 'Count'] || 0}/${m.total} classes</div>`
-            : currentUser.isAdmin ? `<div class="ms-person-sub">${esc(p.leaderName || '')}</div>` : '';
+          const sig      = journeySignal(p);
+          const progress = (!m.isCG && m.total && tab === 'inprogress')
+            ? `<div class="ms-person-sub" style="color:var(--amb)">${p[m.key + 'Count'] || 0} of ${m.total} sessions</div>`
+            : '';
           return `<div class="ms-person-row" onclick="openDetail('${p.id}')">
             <div style="flex:1;min-width:0">
               <div class="ms-person-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
               ${progress}
             </div>
-            <span class="material-symbols-outlined" style="color:var(--ink4);font-size:18px">chevron_right</span>
+            <span class="meeting-tier-badge" style="background:${sig.color}14;color:${sig.color};flex-shrink:0">${esc(sig.label)}</span>
+            <span class="material-symbols-outlined" style="color:var(--ink4);font-size:18px;margin-left:4px;flex-shrink:0">chevron_right</span>
           </div>`;
         }).join('')
       : `<div class="ms-empty">${
-          tab === 'reached'    ? 'No one has reached this milestone yet' :
+          tab === 'reached'    ? 'No one has completed this yet' :
           tab === 'inprogress' ? 'No one is currently in progress' :
-                                 'Everyone has started or completed this milestone'
+                                 'Everyone has started or completed this'
         }</div>`;
 
-    const tabsHTML = m.total
-      ? `<button class="ms-tab ${tab === 'inprogress' ? 'active' : ''}" onclick="setMsTab('${m.key}','inprogress')">IN PROGRESS (${inProgress.length})</button>
-         <button class="ms-tab ${tab === 'togo'       ? 'active' : ''}" onclick="setMsTab('${m.key}','togo')">NOT STARTED (${togo.length})</button>
-         <button class="ms-tab ${tab === 'reached'    ? 'active' : ''}" onclick="setMsTab('${m.key}','reached')">DONE (${reached.length})</button>`
-      : `<button class="ms-tab ${tab === 'togo'    ? 'active' : ''}" onclick="setMsTab('${m.key}','togo')">TO GO (${togo.length})</button>
-         <button class="ms-tab ${tab === 'reached' ? 'active' : ''}" onclick="setMsTab('${m.key}','reached')">REACHED (${reached.length})</button>`;
+    const tabsHTML = (!m.isCG && m.total)
+      ? `<button class="ms-tab ${tab==='inprogress'?'active':''}" onclick="setMsTab('${m.key}','inprogress')">IN PROGRESS (${inProgress.length})</button>
+         <button class="ms-tab ${tab==='togo'      ?'active':''}" onclick="setMsTab('${m.key}','togo')">NOT STARTED (${togo.length})</button>
+         <button class="ms-tab ${tab==='reached'   ?'active':''}" onclick="setMsTab('${m.key}','reached')">DONE (${reached.length})</button>`
+      : `<button class="ms-tab ${tab==='togo'   ?'active':''}" onclick="setMsTab('${m.key}','togo')">NOT YET (${togo.length})</button>
+         <button class="ms-tab ${tab==='reached'?'active':''}" onclick="setMsTab('${m.key}','reached')">REACHED (${reached.length})</button>`;
 
-    const inProgressBadge = m.total && inProgress.length
-      ? `<div style="font-size:11px;font-weight:600;color:var(--amb);margin-top:4px;letter-spacing:0.05em">${inProgress.length} IN PROGRESS</div>`
+    const inProgressBadge = (!m.isCG && m.total && inProgress.length)
+      ? `<div style="font-size:11px;font-weight:600;color:var(--amb);margin-top:4px;letter-spacing:.05em">${inProgress.length} IN PROGRESS</div>`
       : '';
 
     return `
       <div class="ms-row">
         <div class="ms-row-hdr" onclick="toggleMs('${m.key}')">
-          <span class="material-symbols-outlined" style="flex-shrink:0">${m.icon}</span>
+          <span class="material-symbols-outlined" style="flex-shrink:0;font-size:22px">${m.icon}</span>
           <div class="ms-info">
             <div class="ms-name">${m.label}</div>
-            <div class="ms-bar-track">
-              <div class="ms-bar-fill" style="width:${Math.round(pct * 100)}%"></div>
-            </div>
+            <div class="ms-bar-track"><div class="ms-bar-fill" style="width:${Math.round(pct*100)}%"></div></div>
             ${inProgressBadge}
           </div>
           <span class="ms-count">${reached.length}<span> / ${mp.length}</span></span>
-          <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px;flex-shrink:0">${isOpen ? 'expand_less' : 'expand_more'}</span>
+          <span class="material-symbols-outlined" style="color:var(--ink4);font-size:20px;flex-shrink:0">${isOpen?'expand_less':'expand_more'}</span>
         </div>
-        <div class="ms-expand-body ${isOpen ? 'open' : ''}">
+        <div class="ms-expand-body ${isOpen?'open':''}">
           <div class="ms-tabs">${tabsHTML}</div>
           <div>${personRows}</div>
         </div>
       </div>`;
+  }
+
+  document.getElementById('ms-list').innerHTML = PATHWAY_STAGES.map(stage => {
+    const stageMilestones = stage.keys.map(k => MILESTONES_DEF.find(m => m.key === k)).filter(Boolean);
+    return `
+      <div class="ms-stage-hdr">
+        <span class="ms-stage-label" style="color:${stage.color}">${stage.label}</span>
+        <div class="ms-stage-line"></div>
+      </div>
+      ${stageMilestones.map(msMilestoneHTML).join('')}`;
   }).join('');
 }
 
@@ -2752,24 +4108,43 @@ function toggleFilter() {
 
 function filteredPeople(q) {
   let list = myPeople();
+  if (currentUser.isAdmin && adminPeopleGroupId) {
+    list = list.filter(p => p.leaderId === adminPeopleGroupId);
+  }
   if (q) list = list.filter(p =>
     `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q) ||
     getMinistryNames(p).join(' ').toLowerCase().includes(q)
   );
-  if      (activeFilter === 'grn')         list = list.filter(p => score(p) >= 0.7);
-  else if (activeFilter === 'amb')         list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
-  else if (activeFilter === 'red')         list = list.filter(p => score(p) < 0.35);
-  else if (activeFilter === 'marital')     list = list.filter(p => p.needsMarital);
-  else if (activeFilter === 'family')      list = list.filter(p => p.needsFamily);
-  else if (activeFilter === 'bereavement') list = list.filter(p => p.needsBereavement);
+  if      (activeFilter === 'grn')              list = list.filter(p => score(p) >= 0.7);
+  else if (activeFilter === 'amb')              list = list.filter(p => { const s=score(p); return s>=0.35&&s<0.7; });
+  else if (activeFilter === 'red')              list = list.filter(p => score(p) < 0.35);
+  else if (activeFilter === 'marital')          list = list.filter(p => p.needsMarital);
+  else if (activeFilter === 'family')           list = list.filter(p => p.needsFamily);
+  else if (activeFilter === 'bereavement')      list = list.filter(p => p.needsBereavement);
+  else if (activeFilter.startsWith('cs-'))      list = list.filter(p => p.careStage === activeFilter.slice(3));
   return list;
+}
+
+function lastAttendedLabel(p) {
+  const sessions = (p.attendedSessions || []).filter(Boolean).sort();
+  if (!sessions.length) return null;
+  const last  = sessions[sessions.length - 1];
+  const today = new Date().toISOString().slice(0, 10);
+  const days  = Math.round((new Date(today + 'T00:00:00') - new Date(last + 'T00:00:00')) / 86400000);
+  if (days <= 0)  return 'Today';
+  if (days === 1) return '1d ago';
+  if (days < 14)  return `${days}d ago`;
+  const weeks = Math.round(days / 7);
+  if (weeks < 9)  return `${weeks}wk ago`;
+  return `${Math.round(days / 30)}mo ago`;
 }
 
 function personRowHTML(p) {
   const chk = `<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 200,'GRAD' 0,'opsz' 20;font-size:20px;color:var(--ink)">check_circle</span>`;
   const mmt = `<span class="material-symbols-outlined" style="font-size:20px;color:var(--ink4)">radio_button_unchecked</span>`;
+  const last = lastAttendedLabel(p);
   return `<tr onclick="openDetail('${p.id}')">
-    <td>${esc(p.firstName)} ${esc(p.lastInit)}.</td>
+    <td>${esc(p.firstName)} ${esc(p.lastInit)}.${last ? `<div class="person-row-sub">${last}</div>` : ''}</td>
     <td>${cgAttendanceRate(p) >= 0.5 ? chk : mmt}</td>
     <td>${p.gospelClass              ? chk : mmt}</td>
     <td>${p.newStart                 ? chk : mmt}</td>
@@ -2795,19 +4170,133 @@ function clearMilestoneView() {
   renderPeople();
 }
 
+function renderAdminPeopleGroupList() {
+  document.getElementById('people-tracker-wrap').classList.add('hidden');
+  const el = document.getElementById('people-admin-list');
+  el.classList.remove('hidden');
+  const cgLeaders = LEADERS.filter(l => !l.isAdmin);
+  const allPeople = myPeople();
+  const q = adminPeopleSearch.trim().toLowerCase();
+
+  const searchBar = `
+    <div class="adm-search-wrap">
+      <input class="adm-search-input" id="adm-people-search" placeholder="Search all people…"
+        value="${esc(adminPeopleSearch)}"
+        oninput="adminPeopleSearch=this.value;renderAdminPeopleGroupList()">
+      ${q ? `<button class="adm-search-clear" onclick="adminPeopleSearch='';renderAdminPeopleGroupList()">
+        <span class="material-symbols-outlined">close</span>
+      </button>` : ''}
+    </div>`;
+
+  let bodyHTML;
+  if (q) {
+    const results = allPeople.filter(p =>
+      `${p.firstName} ${p.lastInit}`.toLowerCase().includes(q)
+    );
+    bodyHTML = results.length
+      ? results.map(p => {
+          const ldr = LEADERS.find(l => l.id === p.leaderId);
+          const m   = healthMeta(score(p));
+          return `<div class="adm-search-result-row" onclick="openDetail('${p.id}')">
+            <div style="flex:1;min-width:0">
+              <div class="adm-search-result-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
+              <div class="adm-search-result-sub">${esc(ldr ? ldr.name : p.leaderName || 'Unknown')} · ${esc(ldr ? ldr.group : '')}</div>
+            </div>
+            <span class="adm-needs-badge" style="background:${m.text}">${m.label}</span>
+            <span class="material-symbols-outlined" style="color:var(--ink3);font-size:18px;margin-left:4px;flex-shrink:0">chevron_right</span>
+          </div>`;
+        }).join('')
+      : `<div class="health-empty" style="padding:32px 24px">No results for "${esc(adminPeopleSearch)}"</div>`;
+  } else {
+    bodyHTML = `
+      <div class="adm-group-list-hdr">
+        <div class="adm-group-list-title">CONNECT GROUPS</div>
+        <div class="adm-group-list-sub">${cgLeaders.length} groups · ${allPeople.length} people</div>
+      </div>
+      <div class="adm-group-list-rows">
+        ${cgLeaders.map(l => {
+          const gp  = allPeople.filter(p => p.leaderId === l.id);
+          const cnt = gp.length;
+          const fl  = gp.filter(p => score(p) >= 0.7).length;
+          const gr  = gp.filter(p => { const s=score(p); return s>=0.35&&s<0.7; }).length;
+          const nc  = gp.filter(p => score(p) < 0.35).length;
+          const bar = cnt ? `<div class="adm-leader-bar-track" style="margin-top:6px"><div class="adm-leader-bar-fill" style="width:${Math.round(fl/cnt*100)}%;background:var(--grn)"></div></div>` : '';
+          return `<div class="adm-leader-row" onclick="adminPeopleGroupId='${l.id}';renderPeople()">
+            <div class="adm-leader-info">
+              <div class="adm-leader-name">${esc(l.name)}</div>
+              <div class="adm-leader-group">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+              ${bar}
+            </div>
+            <div class="adm-leader-stats">
+              <span class="adm-stat" style="color:var(--grn)">${fl}</span>
+              <span class="adm-stat-sep">/</span>
+              <span class="adm-stat" style="color:var(--amb)">${gr}</span>
+              <span class="adm-stat-sep">/</span>
+              <span class="adm-stat" style="color:var(--red)">${nc}</span>
+            </div>
+            <span class="material-symbols-outlined" style="color:var(--ink3);font-size:18px;flex-shrink:0">chevron_right</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+  }
+
+  el.innerHTML = searchBar + bodyHTML;
+
+  // Restore focus and cursor position after re-render
+  if (q) {
+    const input = document.getElementById('adm-people-search');
+    if (input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); }
+  }
+}
+
 function renderPeople() {
+  if (currentUser.isAdmin && !adminPeopleGroupId) {
+    renderAdminPeopleGroupList();
+    return;
+  }
+
+  // Show tracker, hide admin group list
+  document.getElementById('people-admin-list').classList.add('hidden');
+  document.getElementById('people-tracker-wrap').classList.remove('hidden');
+
+  const isAdminGroup = currentUser.isAdmin && !!adminPeopleGroupId;
+
+  document.getElementById('people-tracker-footer').classList.remove('hidden');
+
+  // Update tracker header
+  if (isAdminGroup) {
+    const l = LEADERS.find(x => x.id === adminPeopleGroupId);
+    document.getElementById('people-tracker-hdr').innerHTML = `
+      <div style="flex:1;min-width:0">
+        <button class="adm-back-btn" style="margin-bottom:6px" onclick="adminPeopleGroupId=null;renderPeople()">
+          <span class="material-symbols-outlined">arrow_back</span> All groups
+        </button>
+        <div style="font-size:15px;font-weight:600;color:var(--ink)">${esc(l.name)}</div>
+        <div style="font-size:12px;color:var(--ink3)">${esc(l.group)}</div>
+      </div>
+      <div class="tracker-actions">
+        <button class="tracker-icon-btn" onclick="toggleSearch()">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <button class="tracker-icon-btn" onclick="toggleFilter()">
+          <span class="material-symbols-outlined">filter_list</span>
+        </button>
+      </div>`;
+  } else {
+    document.getElementById('people-tracker-hdr').innerHTML = `
+      <h3 class="tracker-title">My Group</h3>
+      <div class="tracker-actions">
+        <button class="tracker-icon-btn" onclick="toggleSearch()">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <button class="tracker-icon-btn" onclick="toggleFilter()">
+          <span class="material-symbols-outlined">filter_list</span>
+        </button>
+      </div>`;
+  }
+
   const q    = (document.getElementById('search-input')?.value || '').toLowerCase();
-  const all  = myPeople();
-
-  const nM = all.filter(p => p.needsMarital).length;
-  const nF = all.filter(p => p.needsFamily).length;
-  const nB = all.filter(p => p.needsBereavement).length;
-  const r  = n => `${n} ${n===1?'REQUEST':'REQUESTS'}`;
-  document.getElementById('nc-marital').textContent     = r(nM);
-  document.getElementById('nc-family').textContent      = r(nF);
-  document.getElementById('nc-bereavement').textContent = r(nB);
-
-  let list = filteredPeople(q);
+  let list   = filteredPeople(q);
 
   if (activeMilestoneView) {
     list = list.slice().sort((a, b) => {
@@ -2835,9 +4324,8 @@ function renderPeople() {
 }
 
 function personCardHTML(p) {
-  const pct = score(p);
-  const m   = healthMeta(pct);
-  const ring = ringHTML(pct, 44);
+  const tier = TIERS.find(t => t.key === p.careStage);
+  const sig  = journeySignal(p);
   const badges = [];
   if (p.baptised)   badges.push('Baptised');
   if (p.inMinistry) {
@@ -2846,11 +4334,14 @@ function personCardHTML(p) {
   }
   if (p.rdClass)    badges.push('Membership Class');
   return `<div class="person-card" onclick="openDetail('${p.id}')">
-    ${ring}
+    <div class="meeting-card-av">${esc(initials(p.firstName + ' ' + p.lastInit))}</div>
     <div class="pc-info">
       <div class="pc-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
-      <div class="pc-att">${cgAttendanceLabel(p)}</div>
-      ${badges.length ? `<div class="pc-badges">${badges.map(b=>`<span class="pc-badge">${esc(b)}</span>`).join('')}</div>` : ''}
+      <div style="display:flex;gap:5px;margin-top:3px;flex-wrap:wrap">
+        ${tier ? `<span class="meeting-tier-badge" style="background:${tier.color}18;color:${tier.color}">${esc(tier.label)}</span>` : ''}
+        <span class="meeting-tier-badge" style="background:${sig.color}18;color:${sig.color}">${esc(sig.label)}</span>
+      </div>
+      ${badges.length ? `<div class="pc-badges" style="margin-top:4px">${badges.map(b=>`<span class="pc-badge">${esc(b)}</span>`).join('')}</div>` : ''}
     </div>
     <div class="pc-arrow">&#8250;</div>
   </div>`;
@@ -2881,15 +4372,21 @@ function renderDetail(p) {
 }
 
 function renderDetailHero(p) {
-  const pct = score(p);
-  const m   = healthMeta(pct);
-  const ldr = LEADERS.find(l => l.id === p.leaderId);
+  const tier = TIERS.find(t => t.key === p.careStage);
+  const sig  = journeySignal(p);
+  const ldr  = LEADERS.find(l => l.id === p.leaderId);
   const shortId = String(p.id).replace(/\D/g,'').slice(-5) || p.id.slice(-5).toUpperCase();
   document.getElementById('d-hero').innerHTML = `
     <div class="detail-header">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
         <div class="detail-name">${esc(p.firstName)} ${esc(p.lastInit)}.</div>
         <div class="detail-id-badge">ID: ${esc(shortId)}</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+        ${tier
+          ? `<span class="meeting-tier-badge" style="background:${tier.color}18;color:${tier.color};font-size:12px;padding:4px 10px">${esc(tier.label)}</span>`
+          : `<span class="meeting-tier-badge" style="background:var(--bg);color:var(--ink3);font-size:12px;padding:4px 10px">No tier set</span>`}
+        <span class="meeting-tier-badge" style="background:${sig.color}18;color:${sig.color};font-size:12px;padding:4px 10px">${esc(sig.label)}</span>
       </div>
     </div>
     <div class="detail-stats-grid">
@@ -2898,19 +4395,14 @@ function renderDetailHero(p) {
         <span class="detail-stat-val">${p.baptised ? 'YES' : 'NO'}</span>
       </div>
       <div class="detail-stat-cell">
-        <span class="detail-stat-label">MEMBERSHIP</span>
+        <span class="detail-stat-label">MEMBERSHIP CLASS</span>
         <span class="detail-stat-val">${p.rdClass ? 'YES' : 'NO'}</span>
       </div>
       ${currentUser.isAdmin ? `
-      <div class="detail-stat-cell">
-        <span class="detail-stat-label">GROUP</span>
-        <span class="detail-stat-sub">LEADER</span>
-        <span class="detail-stat-val-sm">${ldr ? esc(ldr.name) : 'Unassigned'}</span>
+      <div class="detail-stat-cell" style="grid-column:span 2">
+        <span class="detail-stat-label">CONNECT GROUP LEADER</span>
+        <span class="detail-stat-val-sm" style="font-size:15px;font-weight:600;color:var(--ink);margin-top:6px">${ldr ? esc(ldr.name) : 'Unassigned'}</span>
       </div>` : ''}
-      <div class="detail-stat-cell stat-active">
-        <span class="detail-stat-label">STATUS</span>
-        <span class="detail-stat-val">${m.label.toUpperCase()}</span>
-      </div>
     </div>
   `;
 }
@@ -2931,15 +4423,99 @@ function renderDetailBody(p) {
       ${ministryRowHTML(p)}
     </div>
     ${discipleshipCardHTML(p)}
+    ${careStageHTML(p)}
     <div class="card">
       <div class="card-hdr">SUPPORT NEEDED</div>
       ${needRowHTML(p, 'needsMarital',     'Marital')}
       ${needRowHTML(p, 'needsFamily',      'Family')}
       ${needRowHTML(p, 'needsBereavement', 'Bereavement')}
     </div>
+    ${pastoralContactCardHTML(p)}
     ${notesHTML(p)}
   `;
   if (scroll) scroll.scrollTop = top;
+}
+
+function pastoralContactCardHTML(p) {
+  const lastContactStr = p.lastContact ? fmtDate(p.lastContact) : null;
+  const followUpStr    = p.followUpDate ? fmtDate(p.followUpDate) : null;
+  const today = new Date().toISOString().slice(0,10);
+  const overdue = p.followUpDate && p.followUpDate < today;
+  const dueToday = p.followUpDate && p.followUpDate === today;
+  return `
+    <div class="card">
+      <div class="card-hdr">PASTORAL CONTACT</div>
+      <div class="profile-row" onclick="updateLastContact('${p.id}')">
+        <span class="material-symbols-outlined profile-row-icon" style="color:var(--ink3)">handshake</span>
+        <div class="profile-row-body">
+          <div class="profile-row-label">Last contact</div>
+          <div class="profile-row-val">${lastContactStr || 'Not recorded'}</div>
+        </div>
+        <span class="profile-row-action">Mark today</span>
+      </div>
+      <div class="profile-row" onclick="openFollowUpSheet('${p.id}')">
+        <span class="material-symbols-outlined profile-row-icon" style="color:${overdue ? '#ba1a1a' : dueToday ? '#d97706' : 'var(--ink3)'}">event</span>
+        <div class="profile-row-body">
+          <div class="profile-row-label">Follow-up</div>
+          <div class="profile-row-val" style="color:${overdue ? '#ba1a1a' : dueToday ? '#d97706' : 'inherit'}">
+            ${followUpStr ? (overdue ? 'Overdue · ' : dueToday ? 'Due today · ' : '') + followUpStr : 'Not set'}
+          </div>
+          ${p.followUpNote ? `<div class="profile-row-sub">${esc(p.followUpNote)}</div>` : ''}
+        </div>
+        <span class="profile-row-action">Set</span>
+      </div>
+    </div>`;
+}
+
+async function updateLastContact(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.lastContact = new Date().toISOString().slice(0,10);
+  await dbSave(p);
+  renderDetailBody(p);
+  toast('Last contact updated to today');
+}
+
+function openFollowUpSheet(pid) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  document.getElementById('fu-pid').value = pid;
+  document.getElementById('fu-date').value = p.followUpDate || '';
+  document.getElementById('fu-note').value = p.followUpNote || '';
+  document.getElementById('followup-sheet').classList.add('open');
+}
+
+async function saveFollowUp() {
+  const pid  = document.getElementById('fu-pid').value;
+  const date = document.getElementById('fu-date').value;
+  const note = document.getElementById('fu-note').value.trim();
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.followUpDate = date || null;
+  p.followUpNote = note;
+  await dbSave(p);
+  document.getElementById('followup-sheet').classList.remove('open');
+  renderDetailBody(p);
+  renderHome();
+  toast('Follow-up saved');
+}
+
+async function clearFollowUp() {
+  const pid = document.getElementById('fu-pid').value;
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.followUpDate = null;
+  p.followUpNote = '';
+  await dbSave(p);
+  document.getElementById('followup-sheet').classList.remove('open');
+  renderDetailBody(p);
+  renderHome();
+  toast('Follow-up cleared');
+}
+
+function closeFollowUpSheet(e) {
+  if (!e || e.target === document.getElementById('followup-sheet'))
+    document.getElementById('followup-sheet').classList.remove('open');
 }
 
 function notesHTML(p) {
@@ -3075,15 +4651,31 @@ function cgSessionRowHTML(p) {
   const label    = cgAttendanceLabel(p);
   const pct      = past.length ? Math.round(rate * 100) : null;
 
-  const dots = sessions.map(d => {
-    const isPast   = d <= today;
-    const ticked   = attended.has(d);
-    const day = new Date(d + 'T00:00:00').getDate();
-    const mon = new Date(d + 'T00:00:00').toLocaleString('en-GB', { month: 'short' });
-    if (!isPast) {
-      return `<div class="cg-dot future"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></div>`;
-    }
-    return `<button class="cg-dot${ticked ? ' attended' : ''}" onclick="toggleSession('${p.id}','${d}',this)"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></button>`;
+  const seasons = getCGSeasons(sessions); // most-recent first
+
+  const seasonBlocks = seasons.map(s => {
+    const dots = s.sessions.map(d => {
+      const isPast = d <= today;
+      const ticked = attended.has(d);
+      const day = new Date(d + 'T00:00:00').getDate();
+      const mon = new Date(d + 'T00:00:00').toLocaleString('en-GB', { month: 'short' });
+      if (!isPast) {
+        return `<div class="cg-dot future"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></div>`;
+      }
+      return `<button class="cg-dot${ticked ? ' attended' : ''}" onclick="toggleSession('${p.id}','${d}',this)"><span class="cg-day">${day}</span><span class="cg-mon">${mon}</span></button>`;
+    }).join('');
+
+    const pastInSeason = s.sessions.filter(d => d <= today);
+    const attInSeason  = pastInSeason.filter(d => attended.has(d)).length;
+    const attStr = pastInSeason.length ? `${attInSeason}/${pastInSeason.length}` : '';
+
+    return `<div>
+      <div class="cg-season-block-label">
+        <span>${s.label} &middot; ${s.range}</span>
+        ${attStr ? `<span class="cg-season-block-att">${attStr}</span>` : ''}
+      </div>
+      <div class="cg-session-grid">${dots}</div>
+    </div>`;
   }).join('');
 
   return `<div class="toggle-row cg-row">
@@ -3093,7 +4685,7 @@ function cgSessionRowHTML(p) {
         <div class="toggle-sub">${pct !== null ? `${label} · ${pct}%` : 'Sessions start June'}</div>
       </div>
     </div>
-    <div class="cg-session-grid">${dots}</div>
+    <div class="cg-seasons-wrap">${seasonBlocks}</div>
   </div>`;
 }
 
@@ -3162,6 +4754,48 @@ function needRowHTML(p, field, label) {
     </div>
     <span class="need-title">${label}</span>
   </div>`;
+}
+
+/* Care Stage */
+function careStageHTML(p) {
+  const current = p.careStage || null;
+  const btns = TIERS.map(s => {
+    const active = current === s.key;
+    return `<button class="cs-btn${active ? ' active' : ''}"
+      style="${active ? `background:${s.color}` : ''}"
+      onclick="setCareStage('${p.id}','${s.key}')">${esc(s.label)}</button>`;
+  }).join('');
+  return `<div class="card">
+    <div class="card-hdr">TIER</div>
+    <div class="care-stage-grid">${btns}</div>
+  </div>`;
+}
+
+async function setCareStage(pid, key) {
+  const p = people.find(x => x.id === pid);
+  if (!p) return;
+  p.careStage = (p.careStage === key) ? null : key;
+  await dbSave(p);
+  renderDetailBody(p);
+  toast('Stage updated');
+}
+
+function careStageBreakdownHTML(peopleList) {
+  const total    = peopleList.length || 1;
+  const assigned = peopleList.filter(p => p.careStage).length;
+  if (!assigned) return `<div class="health-empty">No tiers set yet.</div>`;
+  return TIERS.map(s => {
+    const count = peopleList.filter(p => p.careStage === s.key).length;
+    if (!count) return '';
+    const pct = Math.round(count / total * 100);
+    return `<div class="health-gap-row">
+      <div class="health-gap-label" style="color:${s.color}">${s.label}</div>
+      <div class="health-gap-bar-wrap">
+        <div class="health-gap-track"><div class="health-gap-fill" style="width:${pct}%;background:${s.color}"></div></div>
+        <div class="health-gap-pct">${count}/${total}</div>
+      </div>
+    </div>`;
+  }).filter(Boolean).join('');
 }
 
 /* Field updates */
@@ -3494,6 +5128,7 @@ function openDetailMenu() {
   if (!p) return;
   _actionSheetPid = detailId;
   document.getElementById('action-sheet-title').textContent = `${p.firstName} ${p.lastInit}.`;
+  document.getElementById('action-reassign-btn').classList.toggle('hidden', !currentUser.isAdmin);
   document.getElementById('action-sheet').classList.add('open');
 }
 
@@ -3582,11 +5217,15 @@ async function submitAdd() {
   const init  = document.getElementById('add-init').value.trim().toUpperCase() || '?';
   if (!fname) { toast('Enter a first name'); return; }
 
+  const assignedLeader = (currentUser.isAdmin && adminPeopleGroupId)
+    ? LEADERS.find(l => l.id === adminPeopleGroupId) || currentUser
+    : currentUser;
+
   const person = {
     firstName:        fname,
     lastInit:         init,
-    leaderId:         currentUser.id,
-    leaderName:       currentUser.name,
+    leaderId:         assignedLeader.id,
+    leaderName:       assignedLeader.name,
     attendance:       'unknown',
     attendedSessions: [],
     newStart:      document.getElementById('a-newstart').classList.contains('on'),
@@ -3601,6 +5240,9 @@ async function submitAdd() {
     needsMarital:      false,
     needsFamily:       false,
     needsBereavement:  false,
+    lastContact:       null,
+    followUpDate:      null,
+    followUpNote:      '',
     createdAt:     new Date().toISOString(),
   };
 
@@ -3617,6 +5259,10 @@ async function submitAdd() {
    ────────────────────────────────────────────── */
 let cgSessionDate    = null;
 let cgOpenSeasonKey  = null;
+let adminPeopleGroupId = null;
+let adminMsGroupId     = null;
+let adminCGGroupId     = null;
+let adminPeopleSearch  = '';
 
 function sessionSeason(dateStr) {
   const m = parseInt(dateStr.slice(5, 7), 10);
@@ -3642,26 +5288,74 @@ function getCGSeasons(sessions) {
 
 function getAccordionSessions() {
   const today   = new Date().toISOString().slice(0, 10);
-  const past    = CG_SESSIONS.filter(d => d <= today);
+  const gated   = getYearGatedSessions();
+  const past    = gated.filter(d => d <= today);
   const pastSet = new Set(past);
   const todaySn = sessionSeason(today);
   const todayYr = today.slice(0, 4);
   let upcoming  = [];
   if (todaySn !== 0) {
-    // mid-season: add remaining sessions of the current season
-    upcoming = CG_SESSIONS.filter(d => d > today && d.slice(0,4) === todayYr && sessionSeason(d) === todaySn);
+    upcoming = gated.filter(d => d > today && d.slice(0,4) === todayYr && sessionSeason(d) === todaySn);
   } else {
-    // between seasons: add all sessions of the next upcoming season
-    const next = CG_SESSIONS.find(d => d > today);
+    const next = gated.find(d => d > today);
     if (next) {
       const nSn = sessionSeason(next), nYr = next.slice(0, 4);
-      upcoming = CG_SESSIONS.filter(d => d > today && d.slice(0,4) === nYr && sessionSeason(d) === nSn);
+      upcoming = gated.filter(d => d > today && d.slice(0,4) === nYr && sessionSeason(d) === nSn);
     }
   }
   return { all: [...past, ...upcoming], pastSet };
 }
 
+function renderAdminCGGroupList() {
+  document.getElementById('cg-normal-wrap').classList.add('hidden');
+  const el = document.getElementById('cg-admin-list');
+  el.classList.remove('hidden');
+  const cgLeaders = LEADERS.filter(l => !l.isAdmin);
+  const allPeople = myPeople();
+  const today = new Date().toISOString().slice(0, 10);
+  const pastSessions = CG_SESSIONS.filter(d => d <= today);
+  const lastSession  = pastSessions.length ? pastSessions[pastSessions.length - 1] : null;
+  el.innerHTML = `
+    <div class="adm-group-list-hdr">
+      <div class="adm-group-list-title">CONNECT GROUPS</div>
+      <div class="adm-group-list-sub">Select a group to view sessions &amp; attendance</div>
+    </div>
+    <div class="adm-group-list-rows">
+      ${cgLeaders.map(l => {
+        const gp  = allPeople.filter(p => p.leaderId === l.id);
+        const cnt = gp.length;
+        let attStr = '';
+        if (lastSession && cnt) {
+          const att = gp.filter(p => (p.attendedSessions||[]).includes(lastSession)).length;
+          attStr = `Last session: ${att}/${cnt}`;
+        }
+        return `<div class="adm-leader-row" onclick="adminCGGroupId='${l.id}';cgSessionDate=null;cgOpenSeasonKey=null;renderCGTab()">
+          <div class="adm-leader-info">
+            <div class="adm-leader-name">${esc(l.name)}</div>
+            <div class="adm-leader-group">${esc(l.group)} · ${cnt} ${cnt===1?'person':'people'}</div>
+            ${attStr ? `<div class="adm-leader-group" style="margin-top:2px">${attStr}</div>` : ''}
+          </div>
+          <span class="material-symbols-outlined" style="color:var(--ink3);font-size:18px;flex-shrink:0">chevron_right</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
 function renderCGTab() {
+  if (currentUser.isAdmin && !adminCGGroupId) {
+    renderAdminCGGroupList();
+    return;
+  }
+  document.getElementById('cg-admin-list').classList.add('hidden');
+  document.getElementById('cg-normal-wrap').classList.remove('hidden');
+  if (currentUser.isAdmin && adminCGGroupId) {
+    const l = LEADERS.find(x => x.id === adminCGGroupId);
+    document.getElementById('cg-admin-back').classList.remove('hidden');
+    document.getElementById('cg-headline').textContent = (l ? l.name : '') + '.';
+  } else {
+    document.getElementById('cg-admin-back').classList.add('hidden');
+    document.getElementById('cg-headline').textContent = 'Connect Group.';
+  }
   const today = new Date().toISOString().slice(0, 10);
   const past  = CG_SESSIONS.filter(d => d <= today);
   if (!cgSessionDate || !past.includes(cgSessionDate)) {
@@ -3678,7 +5372,7 @@ function renderCGTab() {
 
 function renderCGAccordion() {
   const { all, pastSet } = getAccordionSessions();
-  const mp      = myPeople();
+  const mp      = cgPeople();
   const seasons = getCGSeasons(all);
   const el      = document.getElementById('cg-season-accordion');
   if (!el) return;
@@ -3758,7 +5452,7 @@ function renderCGPeopleList() {
     document.getElementById('cg-att-badge').textContent = '';
     return;
   }
-  const eligible = myPeople().filter(p => {
+  const eligible = cgPeople().filter(p => {
     const joined = p.createdAt ? p.createdAt.slice(0, 10) : null;
     return !joined || joined <= cgSessionDate;
   });
@@ -3789,7 +5483,7 @@ async function toggleCGAttendance(pid) {
   await dbSave(p);
   const chk = document.getElementById('cgchk-' + pid);
   if (chk) chk.classList.toggle('on', on);
-  const eligible = myPeople().filter(x => {
+  const eligible = cgPeople().filter(x => {
     const joined = x.createdAt ? x.createdAt.slice(0, 10) : null;
     return !joined || joined <= cgSessionDate;
   });
@@ -3799,7 +5493,7 @@ async function toggleCGAttendance(pid) {
 
 
 function renderCGArchived() {
-  const ap = archivedPeople();
+  const ap = cgArchivedPeople();
   const el = document.getElementById('cg-archived-list');
   if (!el) return;
   el.innerHTML = ap.length
@@ -3835,6 +5529,43 @@ function archiveFromSheet() {
   const pid = _actionSheetPid;
   closeActionSheet();
   if (pid) archivePerson(pid);
+}
+
+function openReassignSheet() {
+  document.getElementById('action-sheet').classList.remove('open');
+  const p = people.find(x => x.id === detailId);
+  if (!p) return;
+  const cgLeaders = LEADERS.filter(l => !l.isAdmin);
+  document.getElementById('reassign-leader-list').innerHTML = cgLeaders.map(l => {
+    const isCurrent = l.id === p.leaderId;
+    return `<button class="sheet-opt${isCurrent ? ' sheet-opt-current' : ''}"
+      onclick="${isCurrent ? '' : `reassignPerson('${detailId}','${l.id}')`}"
+      ${isCurrent ? 'disabled' : ''}>
+      ${esc(l.name)}<span style="font-size:13px;font-weight:400;color:var(--ink3)"> · ${esc(l.group)}</span>
+      ${isCurrent ? '<span style="float:right;color:var(--ink3)">✓ current</span>' : ''}
+    </button>`;
+  }).join('');
+  document.getElementById('reassign-sheet').classList.add('open');
+}
+
+function closeReassignSheet(e) {
+  if (e && e.target !== document.getElementById('reassign-sheet')) return;
+  document.getElementById('reassign-sheet').classList.remove('open');
+}
+
+async function reassignPerson(pid, newLeaderId) {
+  document.getElementById('reassign-sheet').classList.remove('open');
+  const p = people.find(x => x.id === pid);
+  const l = LEADERS.find(x => x.id === newLeaderId);
+  if (!p || !l) return;
+  p.leaderId   = l.id;
+  p.leaderName = l.name;
+  await dbSave(p);
+  renderDetail(p);
+  renderHome();
+  renderPeople();
+  renderHealth();
+  toast(`Moved to ${l.name}'s group`);
 }
 
 /* ──────────────────────────────────────────────
